@@ -1,0 +1,49 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Build NexOS",
+      "type": "shell",
+      "command": "g++ os.cpp -o NexOS -lraylib -lGL -lm -lpthread -ldl -lrt -lX11 -Iinclude",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "focus": true
+      },
+      "problemMatcher": "$gcc"
+    },
+    {
+      "label": "Run NexOS",
+      "type": "shell",
+      "command": "./NexOS 2048 262144 8",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "group": "test",
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      }
+    },
+    {
+      "label": "Build and Run",
+      "type": "shell",
+      "command": "g++ os.cpp -o NexOS -lraylib -lGL -lm -lpthread -ldl -lrt -lX11 -Iinclude && ./NexOS 2048 262144 8",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "group": "test",
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      }
+    }
+  ]
+}

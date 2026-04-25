@@ -4,6 +4,7 @@
 #include <sys/shm.h>
 #include <semaphore.h>
 #include <fcntl.h>
+#include <unistd.h>
 #include <cstdio>
 #include <cstring>
 #include "resources.h"
