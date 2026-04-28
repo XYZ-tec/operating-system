@@ -88,6 +88,8 @@ static sem_t*       shm_sem   = nullptr;
 static int          shmid     = -1;
 static FILE*        logFile   = nullptr;
 
+static void MinimizeApp(pid_t pid, bool m);
+
 static void Log(const char* fmt, ...)
 {
     if (!logFile || !sharedRes || !sharedRes->logging_enabled) return;
@@ -196,6 +198,12 @@ static void* DeadlockThread(void*)
 
 static void LaunchApp(int idx)
 {
+    for (auto& ra : runningApps) {
+        if (ra.appIndex == idx) {
+            if (ra.minimized) MinimizeApp(ra.pid, false);
+            return;
+        }
+    }
     pid_t pid = fork();
     if (pid < 0) { perror("fork"); return; }
     if (pid == 0) { execl(APPS[idx].binary, APPS[idx].binary, nullptr); fprintf(stderr,"exec failed: %s\n",APPS[idx].binary); exit(1); }
@@ -924,9 +932,6 @@ int main()
 
     // ── STEP 5: Boot animation ─────────────────────────────
     RunBootAnimation(sw,sh);
-
-    // ── STEP 6: Auto-start Clock (index 8) ────────────────
-    LaunchApp(8);
 
     // ── MAIN LOOP ──────────────────────────────────────────
     bool running=true;
