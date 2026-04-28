@@ -319,3 +319,8 @@
 [13:30:47] Launched 'Clock' PID:13936
 [13:30:49] PID:13936 exited
 [15:19:50] NexOS shutting down
+[15:53:42] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[15:53:47] Launched 'Clock' PID:18184
+[15:53:48] PID:18184 exited
+[15:53:49] Launched 'Notepad' PID:18203
+[15:53:49] 'Notepad' (PID:18203) granted RAM:50MB HDD:10MB
