@@ -8,7 +8,7 @@
 // ============================================================
 
 // --- Background colors --------------------------------------
-static const Color BG_DEEP      = { 10,  10,  20, 255 }; // main desktop
+static const Color BG_DEEP      = { 16,  16,  32, 255 }; // main desktop
 static const Color BG_PANEL     = { 18,  18,  36, 255 }; // app windows
 static const Color BG_TITLEBAR  = { 14,  14,  30, 255 }; // window title bars
 static const Color BG_TASKBAR   = { 12,  12,  26, 255 }; // bottom taskbar

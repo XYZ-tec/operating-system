@@ -1,4 +1,3 @@
-
 #include "raylib.h"
 #include "raymath.h"
 #include "include/theme.h"
@@ -702,7 +701,7 @@ static void DrawKernelMode(int sw,int sh)
             for(int i=0;i<sharedRes->process_count&&i<maxRows;i++){
                 PCB& p=sharedRes->processes[i];
                 int ry=py+90+i*28;
-                Color rowColor = i%2==0 ? BG_DEEP : Color{22,22,46,255};
+                Color rowColor=i%2==0?BG_DEEP:Color{22,22,46,255};
                 DrawRectangle(px+8,ry-2,tableW-16,26,rowColor);
                 char ps[12],rs[12],prs[4],qs[4];
                 sprintf(ps,"%d",p.pid);sprintf(rs,"%dM",p.ram_mb);
