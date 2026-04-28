@@ -829,7 +829,6 @@ int main(){
 
     mkdir("hdd",0755);
     NewDocument();
-    SetStatus("Ctrl+Shift+S = Save As new file   Ctrl+S = Save   Ctrl+O = Open");
 
     pthread_t asSave;pthread_create(&asSave,nullptr,AutoSaveThread,nullptr);
 
@@ -838,7 +837,6 @@ int main(){
         if(autoSaveSignal){autoSaveSignal=false;SetStatus("Auto-saved.",NEON_CYAN);}
         if(IsMouseButtonPressed(MOUSE_LEFT_BUTTON)&&(showFileMenu||showEditMenu||showViewMenu)&&GetMousePosition().y>MENUBAR_H)CloseMenus();
         HandleKeys();
-
         int fbH=findOpen?(replaceOpen?FINDBAR_H*2:FINDBAR_H):0;
         int sbH2=showStatusBar?STATUSBAR_H:0;
         int cY=MENUBAR_H+fbH,cH=sh-MENUBAR_H-sbH2-fbH;
