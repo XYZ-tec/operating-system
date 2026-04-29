@@ -1,32 +1,8 @@
-// ============================================================
-//  NexOS — Notepad  (apps/notepad.cpp)
-//
-//  Features:
-//   - Full text editor, arrow keys, mouse click to place cursor
-//   - Line numbers in gutter
-//   - Auto-save every 10s via background pthread
-//   - Live word / char / line count in status bar
-//   - Ctrl+F  Find text with highlights + next/prev
-//   - Ctrl+S  Save   Ctrl+N  New   Ctrl+O  Open file browser
-//   - Scrolling (mouse wheel + page up/down)
-//   - Cyberpunk theme
-//   - IPC resource request/release
-//
-//  Compile:
-//    g++ apps/notepad.cpp -o apps/notepad \
-//        -lraylib -lGL -lm -lpthread -ldl -lrt -lX11 -Iinclude
-//
-//  Owner: Musferah
-// ============================================================
+
 #include "raylib.h"
 #include "../include/theme.h"
 #include "../include/resources.h"
 #include "../include/ipc.h"
-// ============================================================
-//  NexOS Notepad  —  apps/notepad.cpp
-//  Core fix: proper multi-file support with Save As dialog
-//  Each file gets its own name, saves independently forever.
-// ============================================================
 
 #include <unistd.h>
 #include <pthread.h>
@@ -44,7 +20,7 @@
 
 #define APP_NAME    "Notepad"
 #define RAM_MB      50
-#define HDD_MB      10
+#define HDD_MB      20
 #define MENUBAR_H   32
 #define STATUSBAR_H 26
 #define FINDBAR_H   36
@@ -66,8 +42,7 @@ static std::vector<std::string> lines;
 static int  cursorRow=0, cursorCol=0, scrollRow=0;
 
 // ── File tracking ─────────────────────────────────────────
-// isUntitled = file has never been given a real name yet
-// currentFile = the actual path we save to
+
 static char currentFile[256] = "";
 static bool isUntitled  = true;   // TRUE until user gives it a name
 static bool isDirty     = false;
@@ -81,8 +56,9 @@ static volatile bool   autoSaveSignal = false;
 static char   statusMsg[192]="";
 static double statusAt=-999.0;
 static Color  statusColor={0,255,200,255};
-static void SetStatus(const char* m, Color c={0,255,200,255}){
-    strncpy(statusMsg,m,191); statusAt=GetTime(); statusColor=c;
+static void SetStatus(const char* m, Color c={0,255,200,255})
+{
+     strncpy(statusMsg,m,191); statusAt=GetTime(); statusColor=c;
 }
 
 // ── Clipboard ─────────────────────────────────────────────
@@ -93,18 +69,28 @@ static bool hasSelect=false;
 static int  selAnchorRow=0, selAnchorCol=0;
 
 // ── Font ──────────────────────────────────────────────────
-static Font edFont; static bool edFontOK=false;
-static void DT(const char* t,int x,int y,int sz,Color c){
-    if(edFontOK) DrawTextEx(edFont,t,{(float)x,(float)y},(float)sz,1.0f,c);
-    else DrawText(t,x,y,sz,c);}
-static int MT(const char* t,int sz){
-    if(edFontOK) return(int)MeasureTextEx(edFont,t,(float)sz,1.0f).x;
+static Font edFont; 
+static bool edFontOK=false;
+static void DT(const char* t,int x,int y,int sz,Color c)
+{
+    if(edFontOK) 
+        DrawTextEx(edFont,t,{(float)x,(float)y},(float)sz,1.0f,c);
+    else 
+        DrawText(t,x,y,sz,c);
+    }
+static int MT(const char* t,int sz)
+{
+    if(edFontOK) 
+    return(int)MeasureTextEx(edFont,t,(float)sz,1.0f).x;
     return MeasureText(t,sz);}
 
 // ── Menus ─────────────────────────────────────────────────
 static bool showFileMenu=false, showEditMenu=false, showViewMenu=false;
 static bool showLineNums=true, showStatusBar=true;
-static void CloseMenus(){showFileMenu=showEditMenu=showViewMenu=false;}
+static void CloseMenus()
+{
+    showFileMenu=showEditMenu=showViewMenu=false;
+}
 
 // ── Find ──────────────────────────────────────────────────
 static bool findOpen=false, replaceOpen=false, findFocused=true;
@@ -128,24 +114,23 @@ static int  browserScroll=0;
 static bool unsavedPrompt=false;
 static int  unsavedAction=0; // 1=new 2=open 3=quit
 
-// ============================================================
-//  FILE HELPERS
-// ============================================================
-static const char* DisplayName(){
-    if(isUntitled) return "untitled";
+static const char* DisplayName()
+{
+    if(isUntitled) 
+    return "untitled";
     const char* sl=strrchr(currentFile,'/');
     return sl?sl+1:currentFile;
 }
 
-// Write lines[] to disk at given path
-// Returns true on success. ALWAYS thread-locked.
 static bool WriteToDisk(const char* path){
     mkdir("hdd",0755);
     pthread_mutex_lock(&docMutex);
     std::ofstream f(path);
     bool ok=false;
-    if(f.is_open()){
-        for(int i=0;i<(int)lines.size();i++){
+    if(f.is_open())
+    {
+        for(int i=0;i<(int)lines.size();i++)
+        {
             f<<lines[i];
             if(i+1<(int)lines.size())f<<'\n';
         }
@@ -155,34 +140,43 @@ static bool WriteToDisk(const char* path){
     return ok;
 }
 
-// Save to currentFile (must NOT be untitled)
-static void SaveCurrent(){
-    if(isUntitled){SetStatus("Use Ctrl+Shift+S or Save As to name this file first.",NEON_GOLD);return;}
-    if(WriteToDisk(currentFile)){isDirty=false;SetStatus("Saved.",NEON_GREEN);}
-    else SetStatus("Error: could not write file.",NEON_PINK);
+// Save to currentFile 
+static void SaveCurrent()
+{
+    if(isUntitled)
+    {
+        SetStatus("Use Ctrl+Shift+S or Save As to name this file first.",NEON_GOLD);
+        return;
+    }
+    if(WriteToDisk(currentFile))
+    {
+        isDirty=false;SetStatus("Saved.",NEON_GREEN);
+    }
+    else 
+    SetStatus("Error: could not write file.",NEON_PINK);
 }
 
-// Save As: give the file a brand new name, update currentFile
-// Called ONLY after user confirms name in SaveAs dialog
-static void CommitSaveAs(const char* name){
-    // name = bare name, no path, no extension
-    char path[300]; sprintf(path,"hdd/%s.txt",name);
-    if(WriteToDisk(path)){
-        // Keep it untitled so every Ctrl+S prompts for name
-        // strncpy(currentFile,path,255);
-        // isUntitled=false;
+static void CommitSaveAs(const char* name)
+{
+    char path[300]; 
+    sprintf(path,"hdd/%s.txt",name);
+    if(WriteToDisk(path))
+    {
         isDirty=false;
         SetStatus("Saved as new file.",NEON_GREEN);
-    } else {
+    } 
+    else {
         SetStatus("Error: could not create file.",NEON_PINK);
     }
 }
 
-static void LoadFromDisk(const char* path){
+static void LoadFromDisk(const char* path)
+{
     pthread_mutex_lock(&docMutex);
     lines.clear();
     std::ifstream f(path);
-    if(f.is_open()){
+    if(f.is_open())
+    {
         std::string ln;
         while(std::getline(f,ln))lines.push_back(ln);
         f.close();
@@ -195,27 +189,33 @@ static void LoadFromDisk(const char* path){
     pthread_mutex_unlock(&docMutex);
 }
 
-static void NewDocument(){
+static void NewDocument()
+{
     lines.clear(); lines.push_back("");
     currentFile[0]='\0';
     isUntitled=true; isDirty=false;
     cursorRow=cursorCol=scrollRow=0;
     hasSelect=false;
-    SetStatus("New file — press Ctrl+Shift+S to name and save it.");
+    SetStatus("New file press Ctrl+S to name and save it.");
 }
 
 // ── Auto-save thread ──────────────────────────────────────
-// Only saves if file has a real name (not untitled)
-static void* AutoSaveThread(void*){
-    while(appRunning){
-        for(int i=0;i<20&&appRunning;i++)usleep(500000);
-        if(!appRunning)break;
+static void* AutoSaveThread(void*)
+{
+    while(appRunning)
+    {
+        for(int i=0;i<20&&appRunning;i++)
+        usleep(500000);
+        if(!appRunning)
+        break;
         pthread_mutex_lock(&docMutex);
         bool dirty=isDirty;
         bool named=!isUntitled;
-        char path[256]; strncpy(path,currentFile,255);
+        char path[256]; 
+        strncpy(path,currentFile,255);
         pthread_mutex_unlock(&docMutex);
-        if(dirty&&named){
+        if(dirty&&named)
+        {
             WriteToDisk(path);
             pthread_mutex_lock(&docMutex);
             isDirty=false;
@@ -227,11 +227,23 @@ static void* AutoSaveThread(void*){
 }
 
 // ── File browser ──────────────────────────────────────────
-static void OpenBrowser(){
-    browserFiles.clear();browserScroll=0;
+static void OpenBrowser()
+{
+    browserFiles.clear();
+    browserScroll=0;
     mkdir("hdd",0755);
     DIR* d=opendir("hdd");
-    if(d){struct dirent* e;while((e=readdir(d))){std::string n(e->d_name);if(n!="."&&n!="..")browserFiles.push_back(n);}closedir(d);}
+    if(d)
+    {
+        struct dirent* e;
+        while((e=readdir(d)))
+        {
+            std::string n(e->d_name);
+            if(n!="."&&n!="..")
+            browserFiles.push_back(n);
+        }
+        closedir(d);
+    }
     std::sort(browserFiles.begin(),browserFiles.end());
     browserOpen=true;
 }

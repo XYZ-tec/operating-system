@@ -324,3 +324,123 @@
 [15:53:48] PID:18184 exited
 [15:53:49] Launched 'Notepad' PID:18203
 [15:53:49] 'Notepad' (PID:18203) granted RAM:50MB HDD:10MB
+[16:06:19] Kernel mode unlocked
+[16:09:38] NexOS shutting down
+[13:50:18] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[13:50:23] Launched 'Clock' PID:3931
+[13:50:25] PID:3931 exited
+[13:50:26] Launched 'Notepad' PID:3955
+[13:50:26] 'Notepad' (PID:3955) granted RAM:50MB HDD:10MB
+[13:51:25] Launched 'Notepad' PID:3992
+[13:51:25] 'Notepad' (PID:3992) granted RAM:50MB HDD:10MB
+[13:51:53] Launched 'Notepad' PID:4042
+[13:51:53] 'Notepad' (PID:4042) granted RAM:50MB HDD:10MB
+[13:55:17] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[13:55:22] Launched 'Clock' PID:3870
+[13:55:23] PID:3870 exited
+[13:56:43] Launched 'Notepad' PID:5158
+[13:56:43] 'Notepad' (PID:5158) granted RAM:50MB HDD:10MB
+[13:56:45] Launched 'Notepad' PID:5182
+[13:56:45] 'Notepad' (PID:5182) granted RAM:50MB HDD:10MB
+[13:56:46] Launched 'Notepad' PID:5188
+[13:56:46] 'Notepad' (PID:5188) granted RAM:50MB HDD:10MB
+[13:56:47] Launched 'Notepad' PID:5194
+[13:56:47] 'Notepad' (PID:5194) granted RAM:50MB HDD:10MB
+[13:56:48] Launched 'Notepad' PID:5200
+[13:56:48] 'Notepad' (PID:5200) granted RAM:50MB HDD:10MB
+[13:56:48] Launched 'Notepad' PID:5205
+[13:56:48] 'Notepad' (PID:5205) granted RAM:50MB HDD:10MB
+[13:56:49] Launched 'Notepad' PID:5211
+[13:56:49] 'Notepad' (PID:5211) granted RAM:50MB HDD:10MB
+[13:56:49] Launched 'Notepad' PID:5231
+[13:56:49] 'Notepad' (PID:5231) granted RAM:50MB HDD:10MB
+[13:56:50] Launched 'Notepad' PID:5246
+[13:56:50] 'Notepad' (PID:5246) granted RAM:50MB HDD:10MB
+[13:56:51] Launched 'Notepad' PID:5274
+[13:56:51] 'Notepad' (PID:5274) granted RAM:50MB HDD:10MB
+[13:56:51] Launched 'Notepad' PID:5280
+[13:56:51] 'Notepad' (PID:5280) granted RAM:50MB HDD:10MB
+[13:56:52] Launched 'Notepad' PID:5285
+[13:56:52] 'Notepad' (PID:5285) granted RAM:50MB HDD:10MB
+[13:56:52] Launched 'Notepad' PID:5287
+[13:56:52] 'Notepad' (PID:5287) granted RAM:50MB HDD:10MB
+[13:56:53] Launched 'Notepad' PID:5295
+[13:56:53] 'Notepad' (PID:5295) granted RAM:50MB HDD:10MB
+[13:56:53] Launched 'Notepad' PID:5302
+[13:56:53] 'Notepad' (PID:5302) granted RAM:50MB HDD:10MB
+[13:56:53] Launched 'Notepad' PID:5309
+[13:56:53] 'Notepad' (PID:5309) granted RAM:50MB HDD:10MB
+[13:56:54] Launched 'Notepad' PID:5316
+[13:56:54] 'Notepad' (PID:5316) granted RAM:50MB HDD:10MB
+[13:56:54] Launched 'Notepad' PID:5336
+[13:56:54] 'Notepad' (PID:5336) granted RAM:50MB HDD:10MB
+[13:56:55] Launched 'Notepad' PID:5353
+[13:56:55] 'Notepad' (PID:5353) granted RAM:50MB HDD:10MB
+[13:56:55] Launched 'Notepad' PID:5359
+[13:56:55] 'Notepad' (PID:5359) granted RAM:50MB HDD:10MB
+[13:56:55] Launched 'Notepad' PID:5377
+[13:56:55] 'Notepad' (PID:5377) granted RAM:50MB HDD:10MB
+[13:56:56] Launched 'Notepad' PID:5410
+[13:56:56] 'Notepad' (PID:5410) granted RAM:50MB HDD:10MB
+[13:56:56] Launched 'Notepad' PID:5414
+[13:56:56] 'Notepad' (PID:5414) granted RAM:50MB HDD:10MB
+[13:56:57] Launched 'Notepad' PID:5422
+[13:56:57] 'Notepad' (PID:5422) granted RAM:50MB HDD:10MB
+[13:56:57] Launched 'Notepad' PID:5426
+[13:56:57] 'Notepad' (PID:5426) granted RAM:50MB HDD:10MB
+[13:56:58] Launched 'Notepad' PID:5435
+[13:56:58] 'Notepad' (PID:5435) granted RAM:50MB HDD:10MB
+[13:56:58] Launched 'Notepad' PID:5441
+[13:56:58] 'Notepad' (PID:5441) granted RAM:50MB HDD:10MB
+[13:56:59] Launched 'Notepad' PID:5443
+[13:56:59] 'Notepad' (PID:5443) granted RAM:50MB HDD:10MB
+[13:56:59] Launched 'Notepad' PID:5452
+[13:56:59] 'Notepad' (PID:5452) granted RAM:50MB HDD:10MB
+[13:56:59] Launched 'Notepad' PID:5469
+[13:56:59] 'Notepad' (PID:5469) granted RAM:50MB HDD:10MB
+[13:57:00] Launched 'Notepad' PID:5495
+[13:57:00] 'Notepad' (PID:5495) granted RAM:50MB HDD:10MB
+[13:57:01] Launched 'Notepad' PID:5506
+[13:57:01] 'Notepad' (PID:5506) granted RAM:50MB HDD:10MB
+[13:57:01] Launched 'Notepad' PID:5572
+[13:57:01] 'Notepad' (PID:5572) granted RAM:50MB HDD:10MB
+[13:57:02] Aging PID:5246 prio->1
+[13:57:02] Aging PID:5274 prio->1
+[13:57:02] Aging PID:5280 prio->1
+[13:57:07] Aging PID:5285 prio->1
+[13:57:07] Aging PID:5287 prio->1
+[13:57:07] Aging PID:5295 prio->1
+[13:57:07] Aging PID:5302 prio->1
+[13:57:07] Aging PID:5309 prio->1
+[13:57:07] Aging PID:5316 prio->1
+[13:57:07] Aging PID:5336 prio->1
+[13:57:07] Aging PID:5353 prio->1
+[13:57:07] Aging PID:5359 prio->1
+[13:57:07] Aging PID:5377 prio->1
+[13:57:07] Aging PID:5410 prio->1
+[13:57:07] Aging PID:5414 prio->1
+[13:57:12] Aging PID:5422 prio->1
+[13:57:12] Aging PID:5426 prio->1
+[13:57:12] Aging PID:5435 prio->1
+[13:57:12] Aging PID:5441 prio->1
+[13:57:12] Aging PID:5443 prio->1
+[13:57:12] Aging PID:5452 prio->1
+[13:57:12] Aging PID:5469 prio->1
+[13:57:12] Aging PID:5495 prio->1
+[13:57:12] Aging PID:5506 prio->1
+[13:58:17] PID:5158 exited
+[13:58:22] PID:5182 exited
+[13:58:24] PID:5188 exited
+[13:58:25] PID:5194 exited
+[13:58:27] PID:5200 exited
+[13:58:28] PID:5205 exited
+[13:58:30] PID:5211 exited
+[13:58:31] PID:5295 exited
+[13:58:33] PID:5287 exited
+[13:58:36] PID:5285 exited
+[13:58:38] PID:5280 exited
+[13:58:40] PID:5274 exited
+[13:58:42] PID:5246 exited
+[13:58:44] PID:5231 exited
+[13:58:58] Kernel mode unlocked
+[13:59:37] NexOS shutting down
