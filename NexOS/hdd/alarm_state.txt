@@ -1,9 +1,0 @@
-WORLD 3
-Local Time|300
-London|0
-Lahore|300
-ALARMS 2
-7|30|1|0|10|Wake up
-18|18|1|0|10|Alarm
-TIMER 0|300.000|300.000|0
-SW 0|0.000|0

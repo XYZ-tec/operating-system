@@ -9,9 +9,9 @@
 // ============================================================
 
 #include "raylib.h"
-#include "include/theme.h"
-#include "include/resources.h"
-#include "include/ipc.h"
+#include "../include/./theme.h"
+#include "../include/resources.h"
+#include "../include/ipc.h"
 #include <unistd.h>
 #include <cstdio>
 #include <cstring>
