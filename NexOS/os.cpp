@@ -69,10 +69,10 @@ static AppInfo APPS[] = {
     { "Chat",          "apps/chat",          50, 10, PRIORITY_NORMAL, 1, NEON_CYAN,   "assets/icons/chat.png"         },
     { "Shell",         "apps/nexos_shell",   60, 10, PRIORITY_NORMAL, 1, NEON_GREEN,  "assets/icons/shell.png"        },
     { "Song Player",   "apps/songplayer",    40, 20, PRIORITY_NORMAL, 1, NEON_PURPLE, "assets/icons/songplayer.png"   },
-    { "Clock",         "apps/clock",         20,  1, PRIORITY_HIGH,   0, NEON_GOLD,   "assets/icons/clock.png"        },
+    { "Alarm",         "apps/alarm",         20,  1, PRIORITY_HIGH,   0, NEON_GOLD,   "assets/icons/clock.png"        },
     { "Weather",       "apps/weather",       30,  5, PRIORITY_NORMAL, 1, NEON_CYAN,   "assets/icons/weather.png"      },
     { "File Manager",  "apps/file_manager",  60, 30, PRIORITY_NORMAL, 1, NEON_GOLD,   "assets/icons/file_manager.png" },
-    { "Calendar",      "apps/clock",         20,  1, PRIORITY_HIGH,   0, NEON_CYAN,   "assets/icons/calendar.png"     },
+    { "Calendar",      "apps/alarm",         20,  1, PRIORITY_HIGH,   0, NEON_CYAN,   "assets/icons/calendar.png"     },
 };
 static const int APP_COUNT = 12;
 
@@ -87,8 +87,6 @@ static int          mqid      = -1;
 static sem_t*       shm_sem   = nullptr;
 static int          shmid     = -1;
 static FILE*        logFile   = nullptr;
-
-static void MinimizeApp(pid_t pid, bool m);
 
 static void Log(const char* fmt, ...)
 {
@@ -198,12 +196,6 @@ static void* DeadlockThread(void*)
 
 static void LaunchApp(int idx)
 {
-    for (auto& ra : runningApps) {
-        if (ra.appIndex == idx) {
-            if (ra.minimized) MinimizeApp(ra.pid, false);
-            return;
-        }
-    }
     pid_t pid = fork();
     if (pid < 0) { perror("fork"); return; }
     if (pid == 0) { execl(APPS[idx].binary, APPS[idx].binary, nullptr); fprintf(stderr,"exec failed: %s\n",APPS[idx].binary); exit(1); }
@@ -709,7 +701,7 @@ static void DrawKernelMode(int sw,int sh)
             for(int i=0;i<sharedRes->process_count&&i<maxRows;i++){
                 PCB& p=sharedRes->processes[i];
                 int ry=py+90+i*28;
-                Color rowColor=i%2==0?BG_DEEP:Color{22,22,46,255};
+                Color rowColor = i%2==0 ? BG_DEEP : Color{22,22,46,255};
                 DrawRectangle(px+8,ry-2,tableW-16,26,rowColor);
                 char ps[12],rs[12],prs[4],qs[4];
                 sprintf(ps,"%d",p.pid);sprintf(rs,"%dM",p.ram_mb);
