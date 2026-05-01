@@ -643,7 +643,7 @@ static void DrawPalette(int sw, int sh) {
         snprintf(cpHexBuf,8,"%02X%02X%02X",cpR,cpG,cpB); cpHexLen=6;
     }
     // Swap btn
-    if(DrawButton({(float)(TOOLBAR_W+54),(float)(py2+24),18,18},"⇆",BG_HOVER,TEXT_MUTED,FONT_TINY))
+    if(DrawButton({(float)(TOOLBAR_W+54),(float)(py2+24),18,18},"<>",BG_HOVER,TEXT_MUTED,FONT_TINY))
         std::swap(fgColor,bgColor);
 
     // Palette swatches
@@ -860,7 +860,7 @@ static void DrawShapePreview(int sw, int sh) {
 // ============================================================
 int main() {
     if (!RequestResources(APP_NAME, RAM_MB, HDD_MB, PRIORITY_NORMAL, 1)) {
-        InitWindow(440,120,"Paint — Denied"); SetTargetFPS(30);
+        InitWindow(440,120,"Paint - Denied"); SetTargetFPS(30);
         double t=GetTime();
         while (!WindowShouldClose()&&GetTime()-t<3.5) {
             BeginDrawing(); ClearBackground(BG_DEEP);

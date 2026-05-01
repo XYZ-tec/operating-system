@@ -264,9 +264,9 @@ struct InputField {
 static bool RunHardwareInputScreen(int& outRam, int& outHdd, int& outCores)
 {
     InputField fields[3] = {
-        {"2048", 4, false, 256,  65536, "RAM",        "MB",  "256 – 65536 MB"},
-        {"262144",6,false,1024,1048576, "Hard Drive",  "MB",  "1024 MB – 1 TB"},
-        {"8",    1, false, 1,    64,    "CPU Cores",   "cores","1 – 64"},
+        {"2048", 4, false, 256,  65536, "RAM",        "MB",  "256 - 65536 MB"},
+        {"262144",6,false,1024,1048576, "Hard Drive",  "MB",  "1024 MB - 1 TB"},
+        {"8",    1, false, 1,    64,    "CPU Cores",   "cores","1 - 64"},
     };
 
     char errorMsg[64] = "";
@@ -382,11 +382,11 @@ static bool RunHardwareInputScreen(int& outRam, int& outHdd, int& outCores)
             int hdd  = atoi(fields[1].buf);
             int cors = atoi(fields[2].buf);
             if (ram  < fields[0].minVal || ram  > fields[0].maxVal)
-                sprintf(errorMsg,"RAM must be %d – %d MB", fields[0].minVal, fields[0].maxVal);
+                sprintf(errorMsg,"RAM must be %d - %d MB", fields[0].minVal, fields[0].maxVal);
             else if (hdd < fields[1].minVal || hdd > fields[1].maxVal)
-                sprintf(errorMsg,"HDD must be %d – %d MB", fields[1].minVal, fields[1].maxVal);
+                sprintf(errorMsg,"HDD must be %d - %d MB", fields[1].minVal, fields[1].maxVal);
             else if (cors < fields[2].minVal || cors > fields[2].maxVal)
-                sprintf(errorMsg,"Cores must be %d – %d", fields[2].minVal, fields[2].maxVal);
+                sprintf(errorMsg,"Cores must be %d - %d", fields[2].minVal, fields[2].maxVal);
             else {
                 outRam = ram; outHdd = hdd; outCores = cors;
                 done = true;
@@ -394,7 +394,7 @@ static bool RunHardwareInputScreen(int& outRam, int& outHdd, int& outCores)
         }
 
         // Footer
-        DrawT("TAB to switch fields  •  Click a field to select",
+        DrawT("TAB to switch fields  |  Click a field to select",
               px, startY+3*80+115, FONT_TINY, TEXT_DIM);
 
         EndDrawing();
@@ -460,7 +460,7 @@ static void DrawSearchOverlay(int sw, int sh) {
         if (isRun){DrawCircle((int)(row.x+pw-30),ry+itemH/2-2,5,NEON_GREEN);DrawT("running",(int)(row.x+pw-96),ry+14,FONT_TINY,NEON_GREEN);}
     }
     if (filteredCount==0) DrawT("No apps found.",(int)(pw/2+px-60),py+90,FONT_NORMAL,TEXT_MUTED);
-    DrawT("ESC close  •  Enter or click to launch",px+18,py+ph-16,FONT_TINY,TEXT_DIM);
+    DrawT("ESC close  |  Enter or click to launch",px+18,py+ph-16,FONT_TINY,TEXT_DIM);
 }
 
 static void HandleSearchInput() {
@@ -648,7 +648,7 @@ static void DrawKernelMode(int sw,int sh)
         DrawRectangleLinesEx(pb,1.5f,typingPass?NEON_PURPLE:BORDER_DIM);
         if(typingPass) DrawGlowRect(pb,NEON_PURPLE,3);
 
-        std::string stars(strlen(kernelPass),'●');
+        std::string stars(strlen(kernelPass),'*');
         DrawT(stars.c_str(),(int)pb.x+14,(int)pb.y+12,FONT_NORMAL,TEXT_PRIMARY);
         if(typingPass&&(int)(GetTime()*2)%2==0){
             int sw2=MeasureT(stars.c_str(),FONT_NORMAL);
@@ -857,7 +857,7 @@ int main()
 {
     // Open window first so we can show the input screen
     SetConfigFlags(FLAG_WINDOW_RESIZABLE);
-    InitWindow(1280,720,"NexOS — Hardware Setup");
+    InitWindow(1280,720,"NexOS - Hardware Setup");
     SetTargetFPS(60);
     SetExitKey(KEY_NULL);
 
@@ -976,7 +976,7 @@ int main()
         DrawTaskbar(sw,sh,ramFrac,hddFrac,ramMB,hddMB);
 
         // Desktop hint
-        DrawT("Type to search apps  •  [K] Kernel Mode  •  [ESC] Shutdown",
+        DrawT("Type to search apps  |  [K] Kernel Mode  |  [ESC] Shutdown",
               72,sh-TASKBAR_H-22,FONT_TINY,TEXT_DIM);
 
         // Overlays (always on top)

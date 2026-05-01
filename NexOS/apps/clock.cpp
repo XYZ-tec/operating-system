@@ -458,14 +458,14 @@ static void DrawTimerTab(Rectangle c){
     float sx=c.x+(c.width-380)/2,sy=c.y+142;
     auto stepper=[&](float x,const char* lbl,int val)->int{
         Rectangle up={x,sy,90,24},dn={x,sy+52,90,24},disp={x,sy+24,90,28};
-        if(DrawButton(up,"▲",BG_HOVER,NEON_CYAN,FONT_SMALL))return 1;
+        if(DrawButton(up,"+",BG_HOVER,NEON_CYAN,FONT_SMALL))return 1;
         DrawRectangleRounded(disp,0.1f,8,BG_PANEL);
         DrawRectangleLinesEx(disp,1.0f,BORDER_DIM);
         char buf[8];snprintf(buf,sizeof(buf),"%02d",val);
         int bw=MeasureText(buf,FONT_LARGE);
         DrawText(buf,(int)(disp.x+(disp.width-bw)/2),(int)disp.y+4,FONT_LARGE,TEXT_PRIMARY);
         DrawText(lbl,(int)x+2,(int)(sy+80),FONT_TINY,TEXT_DIM);
-        if(DrawButton(dn,"▼",BG_HOVER,NEON_CYAN,FONT_SMALL))return -1;
+        if(DrawButton(dn,"-",BG_HOVER,NEON_CYAN,FONT_SMALL))return -1;
         return 0;
     };
     int hd=stepper(sx,"Hours",h),md=stepper(sx+130,"Minutes",m),sd=stepper(sx+260,"Seconds",s);
@@ -643,7 +643,7 @@ static void DrawNotifModal(int sw,int sh){
 // ============================================================
 int main(){
     if(!RequestResources(APP_NAME,RAM_MB,HDD_MB,PRIORITY_HIGH,0)){
-        InitWindow(440,120,"Clock — Denied");SetTargetFPS(30);
+        InitWindow(440,120,"Clock - Denied");SetTargetFPS(30);
         double t=GetTime();
         while(!WindowShouldClose()&&GetTime()-t<3.5){BeginDrawing();ClearBackground(BG_DEEP);DrawText("Insufficient resources.",18,40,FONT_NORMAL,NEON_PINK);EndDrawing();}
         CloseWindow();return 1;

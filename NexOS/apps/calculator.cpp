@@ -171,7 +171,7 @@ static void DrawButtonGrid(Rectangle area, int rows, int cols, const std::vector
 
 int main() {
     if (!RequestResources(APP_NAME, RAM_MB, HDD_MB, PRIORITY_NORMAL, 1)) {
-        InitWindow(420, 120, APP_NAME " — Denied");
+        InitWindow(420, 120, APP_NAME " - Denied");
         SetTargetFPS(30);
         double start = GetTime();
         while (!WindowShouldClose() && GetTime() - start < 3.5) {
@@ -220,14 +220,14 @@ int main() {
             "4", "5", "6", "*",
             "1", "2", "3", "-",
             "0", ".", "=", "+",
-            "C", "(", ")", "⌫"
+            "C", "(", ")", "BS"
         };
         std::vector<std::string> advancedLabels = {
             "7", "8", "9", "/", "log",
             "4", "5", "6", "*", "sin",
             "1", "2", "3", "-", "cos",
             "0", ".", "=", "+", "tan",
-            "C", "(", ")", "⌫", "^"
+            "C", "(", ")", "BS", "^"
         };
         auto labels = isAdvanced ? advancedLabels : basicLabels;
         int rows = isAdvanced ? 5 : 5;
@@ -237,7 +237,7 @@ int main() {
             auto& lbl = labels[idx];
             if (lbl == "C") clearExpression();
             else if (lbl == "=") calculate();
-            else if (lbl == "⌫") { if (!expression.empty()) expression.pop_back(); }
+            else if (lbl == "BS") { if (!expression.empty()) expression.pop_back(); }
             else if (isAdvanced && lbl == "log") appendToExpression("log(");
             else if (isAdvanced && lbl == "sin") appendToExpression("sin(");
             else if (isAdvanced && lbl == "cos") appendToExpression("cos(");

@@ -318,7 +318,7 @@ static void DrawSaveAsDialog(int sw,int sh){
     DrawRectangle(px,py,pw,ph,BG_PANEL);
     DrawGlowRect({(float)px,(float)py,(float)pw,(float)ph},NEON_CYAN,7);
     DrawRectangle(px,py,pw,38,BG_TITLEBAR);
-    DT("Save As — Name Your File",px+14,py+11,FONT_LARGE,NEON_CYAN);
+    DT("Save As - Name Your File",px+14,py+11,FONT_LARGE,NEON_CYAN);
     DrawLine(px,py+38,px+pw,py+38,BORDER_DIM);
 
     DT("Each file is saved separately in  hdd/  folder.",px+16,py+52,FONT_SMALL,TEXT_MUTED);
@@ -346,7 +346,7 @@ static void DrawSaveAsDialog(int sw,int sh){
         char prev[300]; sprintf(prev,"OK - Will create: hdd/%s.txt",saveAsBuf);
         DT(prev,px+16,py+158,FONT_SMALL,NEON_GREEN);
     } else {
-        DT("↑  Type a filename above, then press Enter or click Save",px+16,py+158,FONT_SMALL,NEON_GOLD);
+        DT("Type a filename above, then press Enter or click Save",px+16,py+158,FONT_SMALL,NEON_GOLD);
     }
 
     // Buttons
@@ -561,7 +561,7 @@ static void DrawMenuBar(int sw){
             Rectangle ir={(float)(bx+2),(float)(by+2+i*bh),(float)(bw-4),(float)bh};
             bool ih=CheckCollisionPointRec(GetMousePosition(),ir);
             if(ih)DrawRectangleRec(ir,BG_HOVER);
-            DT(*items[i].t?"✓":" ",(int)ir.x+8,(int)ir.y+7,FONT_SMALL,NEON_CYAN);
+            DT(*items[i].t?"x":" ",(int)ir.x+8,(int)ir.y+7,FONT_SMALL,NEON_CYAN);
             DT(items[i].l,(int)ir.x+26,(int)ir.y+7,FONT_SMALL,ih?NEON_CYAN:TEXT_PRIMARY);
             if(ih&&IsMouseButtonPressed(MOUSE_LEFT_BUTTON)){*items[i].t=!*items[i].t;CloseMenus();}
         }
@@ -631,7 +631,7 @@ static void DrawStatusBar(int sw,int sh){
 
     // File path on left-middle
     char fp[200];
-    if(isUntitled) strcpy(fp,"[Not saved] — press Ctrl+Shift+S to save");
+    if(isUntitled) strcpy(fp,"[Not saved] - press Ctrl+Shift+S to save");
     else sprintf(fp,"Saved: %s",currentFile);
     DT(fp,220,y+7,FONT_TINY,isUntitled?NEON_GOLD:TEXT_DIM);
 
@@ -821,7 +821,7 @@ static void HandleKeys(){
 // ============================================================
 int main(){
     if(!RequestResources(APP_NAME,RAM_MB,HDD_MB,PRIORITY_NORMAL,1)){
-        InitWindow(440,120,"Notepad — Denied");SetTargetFPS(30);
+        InitWindow(440,120,"Notepad - Denied");SetTargetFPS(30);
         double t=GetTime();
         while(!WindowShouldClose()&&GetTime()-t<3.5){BeginDrawing();ClearBackground(BG_DEEP);DrawText("Insufficient resources.",18,40,FONT_NORMAL,NEON_PINK);EndDrawing();}
         CloseWindow();return 1;

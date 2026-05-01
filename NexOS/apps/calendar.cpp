@@ -302,7 +302,7 @@ static void DrawEventPanel(Rectangle c) {
 
 int main() {
     if (!RequestResources(APP_NAME, RAM_MB, HDD_MB, PRIORITY_NORMAL, 1)) {
-        InitWindow(420, 120, APP_NAME " — Denied");
+        InitWindow(420, 120, APP_NAME " - Denied");
         SetTargetFPS(30);
         double start = GetTime();
         while (!WindowShouldClose() && GetTime() - start < 3.5) {

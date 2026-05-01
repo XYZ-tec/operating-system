@@ -1,10 +1,10 @@
 # ============================================================
 #  NexOS Makefile
 #  Usage:
-#    make          → build everything
-#    make run      → build + run with default hardware
-#    make clean    → remove all compiled binaries
-#    make apps/notepad  → build one app only
+#    make          -> build everything
+#    make run      -> build + run with default hardware
+#    make clean    -> remove all compiled binaries
+#    make apps/notepad  -> build one app only
 # ============================================================
 
 CXX      = g++
@@ -35,12 +35,12 @@ all: NexOS $(APPS)
 # Main OS binary
 NexOS: os.cpp include/theme.h include/resources.h include/ipc.h
 	$(CXX) $(CXXFLAGS) os.cpp -o NexOS $(LDFLAGS)
-	@echo "✓ NexOS compiled"
+	@echo "[OK] NexOS compiled"
 
 # Each app binary (pattern rule)
 apps/%: apps/%.cpp include/theme.h include/resources.h include/ipc.h
 	$(CXX) $(CXXFLAGS) $< -o $@ $(LDFLAGS)
-	@echo "✓ $@ compiled"
+	@echo "[OK] $@ compiled"
 
 # Run with default hardware: 2048MB RAM, 256GB HDD, 8 cores
 run: NexOS
@@ -49,11 +49,11 @@ run: NexOS
 # Clean all binaries
 clean:
 	rm -f NexOS $(APPS)
-	@echo "✓ Cleaned"
+	@echo "[OK] Cleaned"
 
 # Create required directories if missing
 setup:
 	mkdir -p apps include logs hdd
-	@echo "✓ Directories created"
+	@echo "[OK] Directories created"
 
 .PHONY: all run clean setup

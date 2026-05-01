@@ -212,7 +212,7 @@ static void LoadPreview(const FileEntry& f){
     previewContent="";
     if(f.isDir){previewContent="[Directory]";return;}
     if(!IsTextFile(f.name)){
-        previewContent="[Binary file — no preview]";return;}
+        previewContent="[Binary file - no preview]";return;}
     std::ifstream fs(f.fullPath);
     if(!fs.is_open()){previewContent="[Cannot read file]";return;}
     std::string line;
@@ -693,7 +693,7 @@ static void DrawDialogs(int sw,int sh){
             row(76,"Path:",f.fullPath.c_str());
             row(102,"Type:",f.isDir?"Directory":(GetExt(f.name).empty()?"File":GetExt(f.name).c_str()));
             char szBuf[32]; snprintf(szBuf,sizeof(szBuf),"%s (%ld bytes)",FormatSize(f.size).c_str(),f.size);
-            row(128,"Size:",f.isDir?"—":szBuf);
+            row(128,"Size:",f.isDir?"-":szBuf);
             row(154,"Modified:",FormatTime(f.modified).c_str());
 
             // Permissions
@@ -802,7 +802,7 @@ static void HandleKeys(){
 // ============================================================
 int main(){
     if(!RequestResources(APP_NAME,RAM_MB,HDD_MB,PRIORITY_NORMAL,1)){
-        InitWindow(440,120,"File Manager — Denied");SetTargetFPS(30);
+        InitWindow(440,120,"File Manager - Denied");SetTargetFPS(30);
         double t=GetTime();
         while(!WindowShouldClose()&&GetTime()-t<3.5){
             BeginDrawing();ClearBackground(BG_DEEP);

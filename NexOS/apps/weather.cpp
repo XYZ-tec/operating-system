@@ -389,12 +389,12 @@ static void DrawCurrentPanel(Rectangle c, const CityWeather& cw) {
     DrawTxtC(cw.condStr.c_str(), cx, (int)c.y+190, FONT_NORMAL, TEXT_MUTED);
 
     // Big temperature
-    char tmpStr[16]; snprintf(tmpStr,16,"%.0f°C", cw.tempC);
+    char tmpStr[16]; snprintf(tmpStr,16,"%.0f C", cw.tempC);
     int tw = MeasureText(tmpStr, 56);
     DrawText(tmpStr, cx-tw/2, (int)c.y+216, 56, NEON_GOLD);
 
     // Feels like
-    char flStr[32]; snprintf(flStr,32,"Feels like %.0f°C", cw.feelsLike);
+    char flStr[32]; snprintf(flStr,32,"Feels like %.0f C", cw.feelsLike);
     DrawTxtC(flStr, cx, (int)c.y+280, FONT_SMALL, TEXT_MUTED);
 
     // Stats row
@@ -445,7 +445,7 @@ static void DrawHourlyPanel(Rectangle c, const CityWeather& cw) {
 
         DrawWeatherIcon(hfe.condCode, hx+colW/2, c.y+130, 44, animTime);
 
-        char tStr[10]; snprintf(tStr,10,"%.0f°",hfe.tempC);
+        char tStr[10]; snprintf(tStr,10,"%.0f",hfe.tempC);
         DrawTxtC(tStr, (int)(hx+colW/2), (int)c.y+190, FONT_NORMAL, NEON_GOLD);
 
         char pStr[8]; snprintf(pStr,8,"%.0f%%",hfe.precipPct);
@@ -476,10 +476,10 @@ static void DrawWeeklyPanel(Rectangle c, const CityWeather& cw) {
         // Icon
         DrawWeatherIcon(fc[i].condCode, c.x+140, ry+rowH/2, 30, animTime);
         // Hi/Lo
-        char hlStr[20]; snprintf(hlStr,20,"%.0f° / %.0f°", fc[i].hiC, fc[i].loC);
+        char hlStr[20]; snprintf(hlStr,20,"%.0f / %.0f", fc[i].hiC, fc[i].loC);
         DrawText(hlStr, (int)(c.x+c.width-240), (int)ry+12, FONT_SMALL, TEXT_PRIMARY);
         // Precip
-        char prStr[16]; snprintf(prStr,16,"💧 %d%%", fc[i].precipPct);
+        char prStr[16]; snprintf(prStr,16,"Rain %d%%", fc[i].precipPct);
         DrawText(prStr, (int)(c.x+c.width-100), (int)ry+12, FONT_TINY, {80,160,255,220});
     }
 }
@@ -509,7 +509,7 @@ static void DrawCitySidebar(int sw, int sh, int sideW) {
 
         DrawWeatherIcon(cities[i].condCode, 28, cy+34, 28, animTime);
         DrawText(cities[i].name.c_str(), 52, cy+8, FONT_TINY, sel?NEON_CYAN:TEXT_PRIMARY);
-        char tmpStr[16]; snprintf(tmpStr,16,"%.0f°C", cities[i].tempC);
+        char tmpStr[16]; snprintf(tmpStr,16,"%.0f C", cities[i].tempC);
         DrawText(tmpStr, 52, cy+28, FONT_SMALL, NEON_GOLD);
         DrawText(cities[i].condStr.c_str(), 52, cy+48, FONT_TINY, TEXT_DIM);
 
@@ -552,7 +552,7 @@ static double lastRefresh = 0;
 static void DrawRefreshBtn(int sw) {
     double age = GetTime() - lastRefresh;
     bool can = age > 10.0;
-    char label[24]; snprintf(label,24, can ? "↺ Refresh" : "↺ %.0fs", 10.0 - age);
+    char label[24]; snprintf(label,24, can ? "Refresh" : "%.0fs", 10.0 - age);
     if (DrawButton({(float)(sw-104),4,96,28}, label, BG_HOVER, can?NEON_GREEN:TEXT_DIM, FONT_TINY)) {
         if (can) {
             for (auto& c : cities) c = MakeCityWeather(c.name, c.utcOffsetMin);
@@ -566,7 +566,7 @@ static void DrawRefreshBtn(int sw) {
 // ============================================================
 int main() {
     if (!RequestResources(APP_NAME, RAM_MB, HDD_MB, PRIORITY_NORMAL, 1)) {
-        InitWindow(440,120,"Weather — Denied"); SetTargetFPS(30);
+        InitWindow(440,120,"Weather - Denied"); SetTargetFPS(30);
         double t=GetTime();
         while (!WindowShouldClose()&&GetTime()-t<3.5) {
             BeginDrawing(); ClearBackground(BG_DEEP);

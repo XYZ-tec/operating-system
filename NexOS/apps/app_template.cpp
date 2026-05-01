@@ -56,7 +56,7 @@ static int DrawWindowChrome(Rectangle& win, const char* title,
     DrawText(title, (int)win.x + 12, (int)win.y + 8,
              FONT_SMALL, NEON_CYAN);
 
-    // Buttons: minimize [–], maximize [□], close [✕]
+    // Buttons: minimize [-], maximize [O], close [X]
     float bx = win.x + win.width - 90;
     float by = win.y + 5;
     float bw = 22, bh = 20;
@@ -67,8 +67,8 @@ static int DrawWindowChrome(Rectangle& win, const char* title,
     Rectangle closeBtn= { bx + 56,  by, bw, bh };
 
     if (DrawButton(minBtn,   "-", BG_DEEP, NEON_ORANGE, FONT_NORMAL)) result = 1;
-    if (DrawButton(maxBtn,   "□", BG_DEEP, NEON_CYAN,   FONT_TINY))   result = 0;
-    if (DrawButton(closeBtn, "✕", BG_DEEP, NEON_PINK,   FONT_SMALL))  result = 2;
+    if (DrawButton(maxBtn,   "O", BG_DEEP, NEON_CYAN,   FONT_TINY))   result = 0;
+    if (DrawButton(closeBtn, "X", BG_DEEP, NEON_PINK,   FONT_SMALL))  result = 2;
 
     // Drag logic
     Vector2 mouse = GetMousePosition();
@@ -95,7 +95,7 @@ int main()
     if (!RequestResources(APP_NAME, RAM_MB, HDD_MB,
                           PRIORITY_NORMAL, 1)) {
         // OS denied — show brief error and exit
-        InitWindow(400, 120, APP_NAME " — Error");
+        InitWindow(400, 120, APP_NAME " - Error");
         SetTargetFPS(30);
         double start = GetTime();
         while (!WindowShouldClose() && GetTime() - start < 3.0) {
