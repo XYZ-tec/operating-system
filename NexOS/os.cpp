@@ -72,7 +72,7 @@ static AppInfo APPS[] = {
     { "Alarm",         "apps/alarm",         20,  1, PRIORITY_HIGH,   0, NEON_GOLD,   "assets/icons/clock.png"        },
     { "Weather",       "apps/weather",       30,  5, PRIORITY_NORMAL, 1, NEON_CYAN,   "assets/icons/weather.png"      },
     { "File Manager",  "apps/file_manager",  60, 30, PRIORITY_NORMAL, 1, NEON_GOLD,   "assets/icons/file_manager.png" },
-    { "Calendar",      "apps/alarm",         20,  1, PRIORITY_HIGH,   0, NEON_CYAN,   "assets/icons/calendar.png"     },
+    { "Calendar",      "apps/calendar",      20,  1, PRIORITY_HIGH,   0, NEON_CYAN,   "assets/icons/calendar.png"     },
 };
 static const int APP_COUNT = 12;
 

@@ -106,7 +106,7 @@ struct ToolIcon {
 };
 
 static ToolIcon toolIcons[] = {
-    {"assets/icons/pencil.png",       {}, false},
+    {"assets/icons//pencil.png",       {}, false},
     {"assets/icons/eraser.png",       {}, false},
     {"assets/icons/filler.png",       {}, false},
     {"assets/icons/line.png",         {}, false},
