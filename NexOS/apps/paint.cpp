@@ -99,6 +99,62 @@ static int     browserScroll   = 0;
 static RenderTexture2D canvasTex;
 static bool   canvasTexDirty = true;
 
+struct ToolIcon {
+    const char* path;
+    Texture2D texture;
+    bool loaded;
+};
+
+static ToolIcon toolIcons[] = {
+    {"assets/icons/pencil.png",       {}, false},
+    {"assets/icons/eraser.png",       {}, false},
+    {"assets/icons/filler.png",       {}, false},
+    {"assets/icons/line.png",         {}, false},
+    {"assets/icons/rectangle.png",    {}, false},
+    {"assets/icons/ellipse.png",      {}, false},
+    {"assets/icons/colourPicker.png", {}, false},
+};
+
+static void LoadToolIcons() {
+    for (auto& icon : toolIcons) {
+        if (FileExists(icon.path)) {
+            icon.texture = LoadTexture(icon.path);
+            icon.loaded = icon.texture.id > 0;
+            if (icon.loaded) SetTextureFilter(icon.texture, TEXTURE_FILTER_BILINEAR);
+        }
+    }
+}
+
+static void UnloadToolIcons() {
+    for (auto& icon : toolIcons) {
+        if (icon.loaded) {
+            UnloadTexture(icon.texture);
+            icon.loaded = false;
+        }
+    }
+}
+
+static void DrawToolIcon(int index, Rectangle bounds, bool active, bool hovered) {
+    Color tint = active ? NEON_CYAN : TEXT_PRIMARY;
+    Color back = active ? BG_HOVER : (hovered ? Color{25,25,50,255} : BG_PANEL);
+    DrawRectangleRounded(bounds, 0.15f, 6, back);
+    if (active) DrawRectangleLinesEx(bounds, 1.5f, NEON_CYAN);
+
+    Rectangle iconRect = {bounds.x + 12.0f, bounds.y + 9.0f, 28.0f, 28.0f};
+    if (index >= 0 && index < (int)(sizeof(toolIcons) / sizeof(toolIcons[0])) && toolIcons[index].loaded) {
+        DrawTexturePro(toolIcons[index].texture,
+                       {0.0f, 0.0f, (float)toolIcons[index].texture.width, (float)toolIcons[index].texture.height},
+                       iconRect,
+                       {0.0f, 0.0f},
+                       0.0f,
+                       tint);
+    } else {
+        const char* fallback = (index == 0) ? "P" : (index == 1) ? "E" : (index == 2) ? "F" : (index == 3) ? "/" : (index == 4) ? "R" : (index == 5) ? "O" : "I";
+        int lw = MeasureText(fallback, FONT_LARGE);
+        DrawText(fallback, (int)(bounds.x + (bounds.width - lw) / 2), (int)(bounds.y + 8), FONT_LARGE, tint);
+    }
+}
+
 static void SetStatus(const char* m, Color c = TEXT_MUTED) {
     strncpy(statusMsg, m, 127); statusAt = GetTime(); statusColor = c;
 }
@@ -513,13 +569,13 @@ static void DrawMenuBar(int sw) {
 // ── Toolbar ───────────────────────────────────────────────
 struct ToolDef { Tool id; const char* label; const char* hint; };
 static const ToolDef TOOLS[] = {
-    {TOOL_PENCIL,  "✏",   "Pencil"},
-    {TOOL_ERASER,  "⬜",  "Eraser"},
-    {TOOL_FILL,    "⬛",  "Fill"},
-    {TOOL_LINE,    "/",   "Line"},
-    {TOOL_RECT,    "▭",   "Rect"},
-    {TOOL_ELLIPSE, "◯",   "Ellipse"},
-    {TOOL_EYEDROP, "💉",  "Eyedrop"},
+    {TOOL_PENCIL,  "",   "Pencil"},
+    {TOOL_ERASER,  "",   "Eraser"},
+    {TOOL_FILL,    "",   "Fill"},
+    {TOOL_LINE,    "",   "Line"},
+    {TOOL_RECT,    "",   "Rect"},
+    {TOOL_ELLIPSE, "",   "Ellipse"},
+    {TOOL_EYEDROP, "",  "Eyedrop"},
 };
 static const int TOOL_COUNT = 7;
 
@@ -535,10 +591,7 @@ static void DrawToolbar(int sw, int sh) {
         Rectangle r={6,(float)ty,52,46};
         bool act=(TOOLS[i].id==activeTool);
         bool hov=CheckCollisionPointRec(GetMousePosition(),r);
-        DrawRectangleRounded(r, 0.15f, 6, act?BG_HOVER:(hov?Color{25,25,50,255}:BG_PANEL));
-        if(act) DrawRectangleLinesEx(r,1.5f,NEON_CYAN);
-        int lw=MeasureText(TOOLS[i].label,FONT_LARGE);
-        DrawText(TOOLS[i].label,(int)(r.x+(r.width-lw)/2),(int)(r.y+8),FONT_LARGE,act?NEON_CYAN:TEXT_PRIMARY);
+        DrawToolIcon(i, r, act, hov);
         // Tooltip
         if(hov){
             int tw=MeasureText(TOOLS[i].hint,FONT_TINY)+12;
@@ -825,6 +878,7 @@ int main() {
 
     mkdir("hdd",0755);
     canvasTex = LoadRenderTexture(CANVAS_W, CANVAS_H);
+    LoadToolIcons();
     ClearCanvas({255,255,255,255});
     SetStatus("Welcome to NexOS Paint!  P=Pencil E=Eraser F=Fill L=Line R=Rect O=Ellipse I=Eyedrop", NEON_CYAN);
 
@@ -856,6 +910,7 @@ int main() {
 
     appRunning = false;
     UnloadRenderTexture(canvasTex);
+    UnloadToolIcons();
     ReleaseResources(APP_NAME, RAM_MB, HDD_MB);
     CloseWindow();
     return 0;
