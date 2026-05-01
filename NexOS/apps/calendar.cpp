@@ -43,6 +43,11 @@ static bool noteFocused = false;
 static bool appRunning = true;
 static bool stateDirty = false;
 
+static constexpr float EVENT_PANEL_WIDTH = 300.0f;
+static constexpr float EVENT_PANEL_RIGHT_MARGIN = 20.0f;
+static constexpr float GRID_LEFT_MARGIN = 16.0f;
+static constexpr float GRID_GAP_TO_PANEL = 12.0f;
+
 static std::vector<std::string> Split(const std::string& s, char d) {
     std::vector<std::string> result;
     std::stringstream ss(s);
@@ -62,12 +67,17 @@ static int DaysInMonth(int year, int month) {
 }
 
 static int FirstWeekdayOfMonth(int year, int month) {
-    tm t = {};
-    t.tm_year = year - 1900;
-    t.tm_mon = month - 1;
-    t.tm_mday = 1;
-    mktime(&t);
-    return t.tm_wday;
+    int y = year;
+    int m = month;
+    if (m < 3) {
+        m += 12;
+        y -= 1;
+    }
+    int K = y % 100;
+    int J = y / 100;
+    int h = (1 + (13 * (m + 1)) / 5 + K + K / 4 + J / 4 + 5 * J) % 7;
+    // Zeller's congruence returns 0=Saturday, 1=Sunday, ..., 6=Friday
+    return (h + 6) % 7;
 }
 
 static bool IsToday(int year, int month, int day) {
@@ -191,9 +201,12 @@ static void DrawCalendarHeader(Rectangle c) {
 static void DrawCalendarGrid(Rectangle c) {
     int days = DaysInMonth(currentYear, currentMonth);
     int firstWeekday = FirstWeekdayOfMonth(currentYear, currentMonth);
-    float gridX = c.x + 16;
+    float gridX = c.x + GRID_LEFT_MARGIN;
     float gridY = c.y + 84;
-    float gridW = c.width - 32;
+    float panelX = c.x + c.width - EVENT_PANEL_WIDTH - EVENT_PANEL_RIGHT_MARGIN;
+    float gridRight = panelX - GRID_GAP_TO_PANEL;
+    float gridW = gridRight - gridX;
+    if (gridW < 280.0f) gridW = 280.0f;
     float cellW = gridW / 7.0f;
     float cellH = 70.0f;
 
@@ -238,7 +251,12 @@ static void DrawCalendarGrid(Rectangle c) {
 }
 
 static void DrawEventPanel(Rectangle c) {
-    Rectangle panel = {c.x + c.width - 320, c.y + 84, 300, c.height - 108};
+    Rectangle panel = {
+        c.x + c.width - EVENT_PANEL_WIDTH - EVENT_PANEL_RIGHT_MARGIN,
+        c.y + 84,
+        EVENT_PANEL_WIDTH,
+        c.height - 108
+    };
     DrawRectangleRounded(panel, 0.08f, 8, BG_PANEL);
     DrawRectangleLinesEx(panel, 1.0f, BORDER_DIM);
 
