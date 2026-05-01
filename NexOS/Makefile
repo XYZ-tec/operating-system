@@ -12,22 +12,7 @@ CXXFLAGS = -std=c++17 -Wall -O2 -Iinclude
 LDFLAGS  = -lraylib -lGL -lm -lpthread -ldl -lrt -lX11
 
 APPS = \
-  apps/notepad       \
-  apps/calculator    \
-  apps/file_manager  \
-  apps/system_monitor\
-  apps/clock         \
-  apps/minesweeper   \
-  apps/snake         \
-  apps/tetris        \
-  apps/paint         \
-  apps/scheduler_vis \
-  apps/lan_chat      \
-  apps/nexos_shell   \
-  apps/process_vis   \
-  apps/alarm         \
-  apps/encryption    \
-  apps/typing_test
+  apps/weather
 
 # Default: build OS + all apps
 all: NexOS $(APPS)
