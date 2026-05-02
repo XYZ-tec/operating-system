@@ -29,10 +29,10 @@
 #define ED_FONT     16
 #define ED_LINE_H   22
 
-static const Color ED_BG      = {  7,  7, 16, 255 };
-static const Color ED_GUTTER  = { 12, 12, 26, 255 };
-static const Color ED_LINEHIGH= { 18, 18, 42, 255 };
-static const Color ED_LINENUM = { 60, 60,100, 255 };
+static const Color ED_BG      = { 46, 48, 68, 255 };
+static const Color ED_GUTTER  = { 52, 54, 74, 255 };
+static const Color ED_LINEHIGH= { 58, 60, 84, 255 };
+static const Color ED_LINENUM = {120,122,155, 255 };
 static const Color ED_CURSOR_C= {  0,255,200, 255 };
 static const Color ED_FIND_HL = {255,210,  0,  55 };
 static const Color ED_SEL_HL  = {  0,120,220,  70 };
@@ -573,7 +573,7 @@ static void DrawMenuBar(int sw){
 // ============================================================
 static void DrawFindBar(int sw,int y){
     int barH=replaceOpen?FINDBAR_H*2:FINDBAR_H;
-    DrawRectangle(0,y,sw,barH,{14,14,32,255});
+    DrawRectangle(0,y,sw,barH,{44,46,66,255});
     DrawLine(0,y,sw,y,{0,255,200,55});
     DrawLine(0,y+barH,sw,y+barH,BORDER_DIM);
 

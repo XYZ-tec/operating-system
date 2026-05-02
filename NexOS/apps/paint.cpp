@@ -136,7 +136,7 @@ static void UnloadToolIcons() {
 
 static void DrawToolIcon(int index, Rectangle bounds, bool active, bool hovered) {
     Color tint = active ? NEON_CYAN : TEXT_PRIMARY;
-    Color back = active ? BG_HOVER : (hovered ? Color{25,25,50,255} : BG_PANEL);
+    Color back = active ? BG_HOVER : (hovered ? Color{58,60,88,255} : BG_PANEL);
     DrawRectangleRounded(bounds, 0.15f, 6, back);
     if (active) DrawRectangleLinesEx(bounds, 1.5f, NEON_CYAN);
 
@@ -704,7 +704,7 @@ static void DrawCanvasArea(int sw, int sh) {
     // Checkerboard background (transparent indicator)
     for (int cy=0; cy<canvasAreaH; cy+=16)
         for (int cx=0; cx<canvasAreaW; cx+=16) {
-            Color chk = ((cx/16+cy/16)%2==0) ? Color{48,48,64,255} : Color{40,40,56,255};
+            Color chk = ((cx/16+cy/16)%2==0) ? Color{72,72,92,255} : Color{64,64,84,255};
             DrawRectangle(canvasAreaX+cx, canvasAreaY+cy, 16, 16, chk);
         }
 

@@ -2,18 +2,18 @@
 #include "raylib.h"
 
 // ============================================================
-//  NexOS — Cyberpunk Theme
+//  NexOS — Cyberpunk Theme (lighter slate)
 //  All colors, fonts sizes, and UI drawing helpers live here.
 //  Include this in every file that draws anything.
 // ============================================================
 
 // --- Background colors --------------------------------------
-static const Color BG_DEEP      = { 16,  16,  32, 255 }; // main desktop
-static const Color BG_PANEL     = { 18,  18,  36, 255 }; // app windows
-static const Color BG_TITLEBAR  = { 14,  14,  30, 255 }; // window title bars
-static const Color BG_TASKBAR   = { 12,  12,  26, 255 }; // bottom taskbar
-static const Color BG_ICON      = { 22,  22,  44, 255 }; // desktop icon bg
-static const Color BG_HOVER     = { 30,  30,  60, 255 }; // hovered icon/btn
+static const Color BG_DEEP      = { 48,  50,  72, 255 }; // main desktop
+static const Color BG_PANEL     = { 56,  58,  82, 255 }; // app windows
+static const Color BG_TITLEBAR  = { 44,  46,  66, 255 }; // window title bars
+static const Color BG_TASKBAR   = { 42,  44,  62, 255 }; // bottom taskbar
+static const Color BG_ICON      = { 62,  64,  90, 255 }; // desktop icon bg
+static const Color BG_HOVER     = { 74,  76, 108, 255 }; // hovered icon/btn
 
 // --- Neon accent colors -------------------------------------
 static const Color NEON_CYAN    = {  0, 255, 200, 255 }; // primary accent
@@ -26,15 +26,15 @@ static const Color NEON_GREEN   = { 57, 255,  20, 255 }; // success / running
 static const Color NEON_ORANGE  = {255, 140,   0, 255 }; // minimize btn
 
 // --- Text colors --------------------------------------------
-static const Color TEXT_PRIMARY = {220, 220, 255, 255 }; // main readable text
-static const Color TEXT_MUTED   = {110, 110, 160, 255 }; // secondary / labels
-static const Color TEXT_DIM     = { 60,  60, 100, 255 }; // very faint text
-static const Color TEXT_CYAN    = {  0, 230, 180, 255 }; // cyan labels
+static const Color TEXT_PRIMARY = {235, 236, 252, 255 }; // main readable text
+static const Color TEXT_MUTED   = {150, 152, 188, 255 }; // secondary / labels
+static const Color TEXT_DIM     = {115, 117, 152, 255 }; // very faint text
+static const Color TEXT_CYAN    = {  0, 190, 155, 255 }; // cyan labels
 
 // --- Border / line colors -----------------------------------
-static const Color BORDER_CYAN  = {  0, 255, 200,  90 }; // window border glow
-static const Color BORDER_DIM   = { 40,  40,  80, 255 }; // subtle separator
-static const Color GRID_LINE    = {  0, 255, 200,  12 }; // bg grid (very faint)
+static const Color BORDER_CYAN  = {  0, 255, 200, 100 }; // window border glow
+static const Color BORDER_DIM   = { 92,  94, 128, 255 }; // subtle separator
+static const Color GRID_LINE    = {  0, 220, 180,  22 }; // bg grid (very faint)
 
 // --- Font sizes ---------------------------------------------
 #define FONT_TITLE   28

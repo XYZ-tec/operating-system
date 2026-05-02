@@ -230,10 +230,10 @@ static void DrawCalendarGrid(Rectangle c) {
                 bool isSelected = (day == currentDay);
                 bool isToday = IsToday(currentYear, currentMonth, day);
                 if (isSelected) {
-                    DrawRectangleRounded(cell, 0.12f, 8, Color{0, 70, 130, 255});
+                    DrawRectangleRounded(cell, 0.12f, 8, Color{20, 90, 150, 255});
                     DrawRectangleLinesEx(cell, 2.0f, NEON_CYAN);
                 } else if (isToday) {
-                    DrawRectangleRounded(cell, 0.12f, 8, Color{18, 36, 80, 255});
+                    DrawRectangleRounded(cell, 0.12f, 8, Color{38, 52, 100, 255});
                     DrawRectangleLinesEx(cell, 1.5f, NEON_GOLD);
                 }
                 char label[3]; snprintf(label, sizeof(label), "%02d", day);

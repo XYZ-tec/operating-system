@@ -30,12 +30,12 @@
 #define ITEM_H      28
 
 // ── Colours ───────────────────────────────────────────────
-static const Color FM_BG       = {  8,  8, 18, 255};
-static const Color FM_PANEL    = { 14, 14, 30, 255};
-static const Color FM_TOOLBAR  = { 10, 10, 22, 255};
+static const Color FM_BG       = { 46, 48, 68, 255};
+static const Color FM_PANEL    = { 54, 56, 78, 255};
+static const Color FM_TOOLBAR  = { 48, 50, 70, 255};
 static const Color FM_SEL      = {  0,120,200,  80};
-static const Color FM_HOVER    = { 30, 30, 60, 200};
-static const Color FM_GRID     = { 30, 30, 60, 255};
+static const Color FM_HOVER    = { 74, 76,108, 200};
+static const Color FM_GRID     = { 88, 90,120, 255};
 
 // ── Font helpers ──────────────────────────────────────────
 static Font fmFont; static bool fmFontOK=false;

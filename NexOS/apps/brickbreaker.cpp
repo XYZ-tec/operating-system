@@ -64,8 +64,8 @@ static bool appRunning  = true;
 
 // ── Soft cyberpunk palette ────────────────────────────────
 // Muted-bright: saturated but with slight grey mixed in
-static const Color COL_BG      = {  8,  8, 18, 255 };
-static const Color COL_GRID    = { 20, 20, 44, 255 };
+static const Color COL_BG      = { 38, 40, 58, 255 };
+static const Color COL_GRID    = { 52, 54, 74, 255 };
 static const Color COL_PAD     = {130, 220, 210, 255 };  // soft teal
 static const Color COL_PAD_GL  = {130, 220, 210,  55 };
 static const Color COL_BALL    = {230, 220, 160, 255 };  // warm cream
@@ -329,7 +329,7 @@ static void DrawMenu(int sw, int sh) {
         Rectangle r={(float)(cx-110),(float)btn.y,220,44};
         bool hov = CheckCollisionPointRec(GetMousePosition(), r);
         float pulse2 = sinf(menuAnim*3.0f)*0.05f + (hov?1.0f:0.85f);
-        Color fill = hov ? Color{50,65,80,255} : Color{22,28,42,255};
+        Color fill = hov ? Color{70,84,98,255} : Color{44,50,65,255};
         DrawRectangleRounded(r, 0.3f, 8, fill);
         DrawRectangleLinesEx(r, hov?2.0f:1.2f, {COL_PAD.r,COL_PAD.g,COL_PAD.b,(unsigned char)(int)(pulse2*220)});
         if (hov) DrawRectangle((int)r.x,(int)(r.y+r.height-2),(int)r.width,2,{COL_PAD.r,COL_PAD.g,COL_PAD.b,120});
@@ -469,7 +469,7 @@ static void DrawOverlay(const char* title, Color titleC, int sw, int sh,
     if (showRestart) {
         Rectangle r={(float)(cx-100),(float)btnY,200,40};
         bool hov=CheckCollisionPointRec(GetMousePosition(),r);
-        DrawRectangleRounded(r,0.25f,8,hov?Color{40,60,60,255}:Color{20,30,30,255});
+        DrawRectangleRounded(r,0.25f,8,hov?Color{58,74,78,255}:Color{36,48,52,255});
         DrawRectangleLinesEx(r,1.5f,{COL_PAD.r,COL_PAD.g,COL_PAD.b,180});
         DrawTxtC("PLAY AGAIN",cx,btnY+11,FONT_NORMAL,COL_PAD);
         if(hov&&IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) StartGame();
@@ -478,7 +478,7 @@ static void DrawOverlay(const char* title, Color titleC, int sw, int sh,
     if (showMenu) {
         Rectangle r={(float)(cx-100),(float)btnY,200,40};
         bool hov=CheckCollisionPointRec(GetMousePosition(),r);
-        DrawRectangleRounded(r,0.25f,8,hov?Color{40,50,70,255}:Color{18,22,36,255});
+        DrawRectangleRounded(r,0.25f,8,hov?Color{54,62,82,255}:Color{40,44,58,255});
         DrawRectangleLinesEx(r,1.5f,{130,160,200,180});
         DrawTxtC("MAIN MENU",cx,btnY+11,FONT_NORMAL,{170,195,220,240});
         if(hov&&IsMouseButtonPressed(MOUSE_LEFT_BUTTON)){

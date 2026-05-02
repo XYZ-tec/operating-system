@@ -503,7 +503,7 @@ static void DrawCitySidebar(int sw, int sh, int sideW) {
         bool hov = CheckCollisionPointRec(GetMousePosition(), row);
         bool sel = (i == selectedCity);
 
-        Color bg = sel ? BG_HOVER : (hov ? Color{22,22,44,255} : BG_PANEL);
+        Color bg = sel ? BG_HOVER : (hov ? Color{58,60,86,255} : BG_PANEL);
         DrawRectangleRounded(row, 0.1f, 6, bg);
         if (sel) DrawRectangleLinesEx(row, 1.0f, NEON_CYAN);
 

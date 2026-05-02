@@ -326,7 +326,7 @@ static void DrawPieceMini(int type, Rectangle box) {
             int dc = c - minC;
             Rectangle cell = {startX + dc * size, startY + dr * size, size - 2, size - 2};
             DrawRectangleRec(cell, PIECE_COLORS[type]);
-            DrawRectangleLinesEx(cell, 1.0f, Color{10, 16, 30, 220});
+            DrawRectangleLinesEx(cell, 1.0f, Color{55, 62, 88, 220});
         }
     }
 }
@@ -341,17 +341,17 @@ static void DrawBoard(Rectangle area, int cellSize) {
         (float)(BOARD_W * cellSize),
         (float)(BOARD_H * cellSize)
     };
-    DrawRectangleRec(boardRect, Color{6, 8, 20, 255});
+    DrawRectangleRec(boardRect, Color{40, 42, 62, 255});
     DrawRectangleLinesEx(boardRect, 1.0f, BORDER_DIM);
 
     // Grid lines
     for (int x = 1; x < BOARD_W; x++) {
         DrawLine((int)(boardRect.x + x * cellSize), (int)boardRect.y,
-                 (int)(boardRect.x + x * cellSize), (int)(boardRect.y + boardRect.height), Color{30, 38, 70, 120});
+                 (int)(boardRect.x + x * cellSize), (int)(boardRect.y + boardRect.height), Color{70, 76, 108, 120});
     }
     for (int y = 1; y < BOARD_H; y++) {
         DrawLine((int)boardRect.x, (int)(boardRect.y + y * cellSize),
-                 (int)(boardRect.x + boardRect.width), (int)(boardRect.y + y * cellSize), Color{30, 38, 70, 120});
+                 (int)(boardRect.x + boardRect.width), (int)(boardRect.y + y * cellSize), Color{70, 76, 108, 120});
     }
 
     // Locked cells
@@ -366,7 +366,7 @@ static void DrawBoard(Rectangle area, int cellSize) {
                 (float)cellSize - 2
             };
             DrawRectangleRec(block, PIECE_COLORS[v - 1]);
-            DrawRectangleLinesEx(block, 1.0f, Color{10, 16, 30, 220});
+            DrawRectangleLinesEx(block, 1.0f, Color{55, 62, 88, 220});
         }
     }
 
@@ -404,12 +404,12 @@ static void DrawBoard(Rectangle area, int cellSize) {
                 (float)cellSize - 2
             };
             DrawRectangleRec(cell, PIECE_COLORS[current.type]);
-            DrawRectangleLinesEx(cell, 1.0f, Color{10, 16, 30, 220});
+            DrawRectangleLinesEx(cell, 1.0f, Color{55, 62, 88, 220});
         }
     }
 
     if (paused || gameOver) {
-        DrawRectangleRec(boardRect, Color{2, 4, 12, 170});
+        DrawRectangleRec(boardRect, Color{36, 38, 56, 170});
         const char* msg = gameOver ? "GAME OVER" : "PAUSED";
         int tw = MeasureText(msg, FONT_TITLE);
         DrawText(msg, (int)(boardRect.x + (boardRect.width - tw) * 0.5f),

@@ -33,16 +33,18 @@
 #define TOPBAR_H         32
 
 // ── Terminal colours ──────────────────────────────────────
-static const Color TERM_BG       = {  5,  5, 12, 255};
+static const Color TERM_BG       = { 44, 46, 66, 255};
 static const Color TERM_PROMPT   = {  0,255,200, 255}; // cyan
-static const Color TERM_CMD      = {220,220,255, 255}; // white
-static const Color TERM_OUTPUT   = {160,160,200, 255}; // light purple
+static const Color TERM_CMD      = {235,236,252, 255}; // white
+static const Color TERM_OUTPUT   = {190,192,228, 255}; // light purple
 static const Color TERM_ERROR    = {255, 80, 80, 255}; // red
 static const Color TERM_SUCCESS  = { 57,255, 20, 255}; // green
 static const Color TERM_DIR      = {  0,200,255, 255}; // light blue
 static const Color TERM_FILE     = {200,200,255, 255}; // white-ish
 static const Color TERM_CURSOR   = {  0,255,200, 255};
-static const Color INPUT_BG      = { 10, 10, 24, 255};
+static const Color INPUT_BG      = { 50, 52, 74, 255};
+static const Color UI_ACCENT_A   = {255,  0, 200, 255}; // neon pink
+static const Color UI_ACCENT_B   = {  0,255, 200, 255}; // neon cyan
 
 // ── Font ──────────────────────────────────────────────────
 static Font shFont; static bool shFontOK=false;
@@ -52,6 +54,19 @@ static void DT(const char* t,int x,int y,Color c){
 static int MT(const char* t){
     if(shFontOK)return(int)MeasureTextEx(shFont,t,(float)TERM_FONT_SIZE,1.0f).x;
     return MeasureText(t,TERM_FONT_SIZE);}
+
+static std::string GetUserName(){
+    static bool init=false;
+    static std::string user="nexos_user";
+    if(!init){
+        char buf[64] = "nexos_user";
+        if(getlogin_r(buf,sizeof(buf))==0 && buf[0]!='\0'){
+            user=buf;
+        }
+        init=true;
+    }
+    return user;
+}
 
 // ============================================================
 //  Terminal line — each line has text + colour
@@ -76,12 +91,7 @@ static std::vector<std::string> history;
 static int                      histIdx    = -1;
 
 static std::string BuildPrompt(){
-    char user[64] = "nexos_user";
-    if (getlogin_r(user, sizeof(user)) != 0 || user[0] == '\0') {
-        strncpy(user, "nexos_user", sizeof(user) - 1);
-        user[sizeof(user) - 1] = '\0';
-    }
-    return std::string(user) + "@NexOS:" + currentDir + "$ ";
+    return GetUserName() + "@NexOS:" + currentDir + "$ ";
 }
 
 // ============================================================
@@ -542,8 +552,16 @@ static void DoTabComplete(){
 //  Draw top bar
 // ============================================================
 static void DrawTopBar(int sw){
-    DrawRectangle(0,0,sw,TOPBAR_H,{10,10,22,255});
-    DrawLine(0,TOPBAR_H,sw,TOPBAR_H,{0,255,200,60});
+    // Subtle "neon" gradient.
+    for(int y=0;y<TOPBAR_H;y++){
+        float t = (float)y/(float)std::max(1,TOPBAR_H-1);
+        unsigned char r = (unsigned char)(42 + (54-42)*t);
+        unsigned char g = (unsigned char)(44 + (52-44)*t);
+        unsigned char b = (unsigned char)(62 + (80-62)*t);
+        DrawRectangle(0,y,sw,1,{r,g,b,255});
+    }
+    float pulse = 0.55f + 0.45f*(float)sin(GetTime()*2.2);
+    DrawLine(0,TOPBAR_H,sw,TOPBAR_H,{UI_ACCENT_B.r,UI_ACCENT_B.g,UI_ACCENT_B.b,(unsigned char)(40 + 90*pulse)});
 
     // Shell title
     DrawText("NexOS Shell",10,9,FONT_NORMAL,NEON_CYAN);
@@ -565,6 +583,12 @@ static void DrawTerminal(int sw,int sh){
     int termY=TOPBAR_H;
 
     DrawRectangle(0,termY,sw,termH,TERM_BG);
+
+    // Scanlines + vignette-ish edges for a more "game terminal" look.
+    for(int y=termY; y<termY+termH; y+=4){
+        DrawRectangle(0,y,sw,1,{0,0,0,14});
+    }
+    DrawRectangle(0,termY,sw,2,{UI_ACCENT_B.r,UI_ACCENT_B.g,UI_ACCENT_B.b,18});
 
     int visLines=termH/TERM_LINE_H;
     int totalLines=(int)termLines.size();
@@ -614,18 +638,28 @@ static void DrawInputBar(int sw,int sh){
     DrawRectangle(0,iy-1,sw,1,{0,255,200,40});
     DrawRectangle(0,iy,sw,INPUT_H,INPUT_BG);
 
-    // Prompt
-    std::string prompt=GetHostPrompt();
-    int pw=MT(prompt.c_str());
-    DT(prompt.c_str(),TERM_PAD_X,iy+7,TERM_PROMPT);
+    // Prompt (segmented + colored): user@host : dir $ 
+    std::string user = GetUserName();
+    const char* atHost = "@NexOS";
+    const char* colon = ":";
+    const char* dollar = "$";
+    const char* space = " ";
+
+    int x = TERM_PAD_X;
+    DT(user.c_str(),x,iy+7,NEON_CYAN); x += MT(user.c_str());
+    DT(atHost,x,iy+7,TERM_PROMPT);     x += MT(atHost);
+    DT(colon,x,iy+7,TERM_OUTPUT);      x += MT(colon);
+    DT(currentDir.c_str(),x,iy+7,TERM_DIR); x += MT(currentDir.c_str());
+    DT(dollar,x,iy+7,UI_ACCENT_A);     x += MT(dollar);
+    DT(space,x,iy+7,TERM_OUTPUT);      x += MT(space);
 
     // Input text
-    DT(inputBuf,TERM_PAD_X+pw+2,iy+7,TERM_CMD);
+    DT(inputBuf,x,iy+7,TERM_CMD);
 
     // Blinking cursor
     if((int)(GetTime()*2)%2==0){
         int cw=MT(inputBuf);
-        DrawRectangle(TERM_PAD_X+pw+2+cw,iy+5,2,TERM_LINE_H-2,TERM_CURSOR);
+        DrawRectangle(x+cw,iy+5,2,TERM_LINE_H-2,TERM_CURSOR);
     }
 }
 
@@ -718,37 +752,21 @@ int main(){
     SetTargetFPS(60);SetExitKey(KEY_NULL);
     SetWindowFocused();
 
-    // Load monospace font with ASCII + required Unicode glyphs.
+    // Same font strategy as os.cpp / file_manager: default glyph set from TTF.
+    // Terminal UI strings stay ASCII-only so they still render if only the
+    // raylib default font is available (no Unicode box-drawing, etc.).
     shFontOK=false;
     if(FileExists("assets/fonts/JetBrainsMono-Regular.ttf")){
-        std::vector<int> cps;
-        cps.reserve(140);
-        for(int cp=32; cp<=126; cp++) cps.push_back(cp); // full printable ASCII
-        int extras[] = {
-            0x2014, // —
-            0x2191, // ↑
-            0x2193, // ↓
-            0x2192, // →
-            0x2500, // ─
-            0x2550, // ═
-            0x2551, // ║
-            0x2554, // ╔
-            0x2557, // ╗
-            0x255A, // ╚
-            0x255D, // ╝
-            0x2588  // █
-        };
-        cps.insert(cps.end(), std::begin(extras), std::end(extras));
-
-        shFont = LoadFontEx(
-            "assets/fonts/JetBrainsMono-Regular.ttf",
-            28,
-            cps.data(),
-            (int)cps.size()
-        );
+        shFont=LoadFontEx("assets/fonts/JetBrainsMono-Regular.ttf",28,nullptr,0);
         shFontOK=(shFont.texture.id>0);
-        if(shFontOK)SetTextureFilter(shFont.texture,TEXTURE_FILTER_BILINEAR);
+    } else if(FileExists("assets/fonts/Roboto-Regular.ttf")){
+        shFont=LoadFontEx("assets/fonts/Roboto-Regular.ttf",28,nullptr,0);
+        shFontOK=(shFont.texture.id>0);
+    } else if(FileExists("assets/fonts/Ubuntu-R.ttf")){
+        shFont=LoadFontEx("assets/fonts/Ubuntu-R.ttf",28,nullptr,0);
+        shFontOK=(shFont.texture.id>0);
     }
+    if(shFontOK)SetTextureFilter(shFont.texture,TEXTURE_FILTER_BILINEAR);
 
 
     // Ensure hdd exists
@@ -756,11 +774,11 @@ int main(){
 
     // Boot message
     PushLine("",TERM_OUTPUT);
-    PushLine("  ===========================================", NEON_CYAN);
-    PushLine("          N E X O S   S H E L L", NEON_CYAN);
-    PushLine("  ===========================================", NEON_CYAN);
+    PushLine("  +==========================================+", UI_ACCENT_B);
+    PushLine("  |          N E X O S   S H E L L            |", NEON_CYAN);
+    PushLine("  +==========================================+", UI_ACCENT_A);
     PushLine("",TERM_OUTPUT);
-    PushLine("  NexOS Shell v1.0 - A Mini Shell Inside Your OS",TERM_PROMPT);
+    PushLine("  NexOS Shell v1.0  -  Neon TTY Mode",TERM_PROMPT);
     PushLine("  Type 'help' to see all commands.",TEXT_MUTED);
     PushLine("  Files are stored in: hdd/",TEXT_MUTED);
     PushLine("",TERM_OUTPUT);
