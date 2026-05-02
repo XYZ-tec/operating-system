@@ -201,10 +201,28 @@ static void LaunchApp(int idx)
     if (pid == 0) { execl(APPS[idx].binary, APPS[idx].binary, nullptr); fprintf(stderr,"exec failed: %s\n",APPS[idx].binary); exit(1); }
     else { RunningApp ra; ra.appIndex=idx; ra.pid=pid; ra.minimized=false; runningApps.push_back(ra); Log("Launched '%s' PID:%d",APPS[idx].name,pid); }
 }
-static void LaunchKernelVis() {
+static bool LaunchKernelVis(char* errBuf, size_t errBufSize) {
+    const char* candidates[] = {"apps/visualization", "./apps/visualization"};
+    const char* selected = nullptr;
+    for (const char* p : candidates) {
+        if (access(p, X_OK) == 0) { selected = p; break; }
+    }
+    if (!selected) {
+        snprintf(errBuf, errBufSize, "Kernel visualizer not found. Build: make apps/visualization");
+        return false;
+    }
+
     pid_t pid = fork();
-    if (pid < 0) return;
-    if (pid == 0) { execl("apps/visualization","apps/visualization",nullptr); exit(1); }
+    if (pid < 0) {
+        snprintf(errBuf, errBufSize, "Failed to launch visualizer (fork failed)");
+        return false;
+    }
+    if (pid == 0) {
+        execl(selected, selected, nullptr);
+        _exit(127);
+    }
+    Log("Launched Kernel Visualizer PID:%d", pid);
+    return true;
 }
 static void KillApp(pid_t pid) { kill(pid,SIGTERM); Log("Killed PID:%d",pid); }
 static void MinimizeApp(pid_t pid, bool m) {
@@ -563,6 +581,8 @@ static void DrawTaskbar(int sw,int sh,float ramFrac,float hddFrac,int ramMB,int 
 static bool showKernelMode=false,kernelUnlocked=false,typingPass=false;
 static char kernelPass[32]="";
 static char wrongPassMsg[32]="";
+static char kernelActionMsg[128]="";
+static double kernelActionMsgUntil=0.0;
 
 // Simple history arrays for live graphs (last 30 samples)
 static float ramHistory[30]={};
@@ -631,6 +651,20 @@ static void DrawKernelMode(int sw,int sh)
     // Close button
     if(DrawButton({(float)(px+pw-38),(float)(py+7),28,22},"X",BG_DEEP,NEON_PINK,FONT_SMALL))
         {showKernelMode=false;kernelUnlocked=false;kernelModeActive=false;memset(kernelPass,0,32);memset(wrongPassMsg,0,32);}
+
+    // Quick full-view launch once kernel is unlocked.
+    if(kernelUnlocked){
+        if(DrawButton({(float)(px+pw-206),(float)(py+7),160,22},"Launch Full View",BG_HOVER,NEON_PURPLE,FONT_TINY)) {
+            char msg[128];
+            if (LaunchKernelVis(msg, sizeof(msg))) {
+                strcpy(kernelActionMsg, "Kernel visualizer launched");
+            } else {
+                strncpy(kernelActionMsg, msg, sizeof(kernelActionMsg) - 1);
+                kernelActionMsg[sizeof(kernelActionMsg) - 1] = '\0';
+            }
+            kernelActionMsgUntil = GetTime() + 3.0;
+        }
+    }
 
     if(!kernelUnlocked) {
         // ── PASSWORD SCREEN ──────────────────────────────────
@@ -775,12 +809,25 @@ static void DrawKernelMode(int sw,int sh)
 
         // Launch Kernel Visualizer button
         DrawT("KERNEL VISUALIZER",graphX,py+378,FONT_TINY,TEXT_MUTED);
-        if(DrawButton({(float)graphX,(float)(py+394),(float)(graphW-8),34},"Launch Full View",BG_HOVER,NEON_PURPLE,FONT_TINY))
-            LaunchKernelVis();
+        if(DrawButton({(float)graphX,(float)(py+394),(float)(graphW-8),34},"Launch Full View",BG_HOVER,NEON_PURPLE,FONT_TINY)) {
+            char msg[128];
+            if (LaunchKernelVis(msg, sizeof(msg))) {
+                strcpy(kernelActionMsg, "Kernel visualizer launched");
+            } else {
+                strncpy(kernelActionMsg, msg, sizeof(kernelActionMsg) - 1);
+                kernelActionMsg[sizeof(kernelActionMsg) - 1] = '\0';
+            }
+            kernelActionMsgUntil = GetTime() + 3.0;
+        }
 
         // Lock button
         if(DrawButton({(float)(px+pw-148),(float)(py+ph-42),138,30},"LOCK KERNEL",BG_DEEP,NEON_PURPLE,FONT_TINY))
             {kernelUnlocked=false;kernelModeActive=false;memset(kernelPass,0,32);Log("Kernel locked");}
+
+        if (kernelActionMsg[0] && GetTime() < kernelActionMsgUntil) {
+            Color msgColor = strstr(kernelActionMsg, "launched") ? NEON_GREEN : NEON_PINK;
+            DrawT(kernelActionMsg, px+16, py+40, FONT_TINY, msgColor);
+        }
     }
 }
 
