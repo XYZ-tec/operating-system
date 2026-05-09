@@ -817,8 +817,8 @@ int main(){
 
     // Load font
     fmFontOK=false;
-    if(FileExists("assets/fonts/JetBrainsMono-Regular.ttf")){
-        fmFont=LoadFontEx("assets/fonts/JetBrainsMono-Regular.ttf",28,nullptr,0);
+        if(FileExists("assets/fonts/DejaVuSans-Bold.ttf")){
+        fmFont=LoadFontEx("assets/fonts/DejaVuSans-Bold.ttf",20,nullptr,0);
         fmFontOK=(fmFont.texture.id>0);
         if(fmFontOK)SetTextureFilter(fmFont.texture,TEXTURE_FILTER_BILINEAR);
     }

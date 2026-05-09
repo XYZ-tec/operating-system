@@ -631,8 +631,6 @@ static void DrawStatusBar(int sw,int sh){
 
     // File path on left-middle
     char fp[200];
-    if(isUntitled) strcpy(fp,"[Not saved] - press Ctrl+Shift+S to save");
-    else sprintf(fp,"Saved: %s",currentFile);
     DT(fp,220,y+7,FONT_TINY,isUntitled?NEON_GOLD:TEXT_DIM);
 
     // Status message bottom right
@@ -832,12 +830,11 @@ int main(){
     SetTargetFPS(60);SetExitKey(KEY_NULL);SetWindowFocused();
 
     edFontOK=false;
-    // Removed font loading to avoid asset dependencies
-    // if(FileExists("assets/fonts/JetBrainsMono-Regular.ttf")){
-    //     edFont=LoadFontEx("assets/fonts/JetBrainsMono-Regular.ttf",32,nullptr,0);
-    //     edFontOK=(edFont.texture.id>0);
-    //     if(edFontOK)SetTextureFilter(edFont.texture,TEXTURE_FILTER_BILINEAR);
-    // }
+        if(FileExists("assets/fonts/DejaVuSans-Bold.ttf")){
+        edFont=LoadFontEx("assets/fonts/DejaVuSans-Bold.ttf",20,nullptr,0);
+        edFontOK=(edFont.texture.id>0);
+        if(edFontOK)SetTextureFilter(edFont.texture,TEXTURE_FILTER_BILINEAR);
+    }
 
     mkdir("hdd",0755);
     NewDocument();

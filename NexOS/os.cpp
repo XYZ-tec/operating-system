@@ -29,6 +29,12 @@
 static Font gFont;
 static bool gFontLoaded = false;
 
+// ============================================================
+//  Desktop wallpaper — loaded once
+// ============================================================
+static Texture2D gWallpaper;
+static bool gWallpaperLoaded = false;
+
 // Wrapper: draw text with our custom font
 static void DrawT(const char* text, int x, int y, int size, Color color)
 {
@@ -877,10 +883,10 @@ static void RunShutdown(int& sw,int& sh)
     while(!WindowShouldClose()&&a<1.0f){
         a+=0.012f; if(IsWindowResized()){sw=GetScreenWidth();sh=GetScreenHeight();}
         BeginDrawing(); ClearBackground(BG_DEEP); DrawCyberpunkGrid(sw,sh);
-        const char* msg="Shutting down NexOS..."; int mw=MeasureT(msg,FONT_LARGE);
-        DrawT(msg,(sw-mw)/2,sh/2-30,FONT_LARGE,{0,255,200,(unsigned char)(int)((1-a*0.4f)*255)});
-        const char* bye="Thank you for using NexOS. Goodbye."; int bw2=MeasureT(bye,FONT_NORMAL);
-        DrawT(bye,(sw-bw2)/2,sh/2+24,FONT_NORMAL,{140,60,220,(unsigned char)(int)(a*220)});
+        const char* msg="Shutting down NexOS..."; int mw=MeasureText(msg,26);
+        DrawText(msg,(sw-mw)/2,sh/2-28,26,{0,255,200,(unsigned char)(int)((1-a*0.4f)*255)});
+        const char* bye="Thank you for using NexOS. Goodbye."; int bw2=MeasureText(bye,17);
+        DrawText(bye,(sw-bw2)/2,sh/2+22,17,{140,60,220,(unsigned char)(int)(a*220)});
         EndDrawing();
     }
 }
@@ -908,18 +914,20 @@ int main()
     SetTargetFPS(60);
     SetExitKey(KEY_NULL);
 
-    // Load custom font (put a .ttf in assets/fonts/ folder)
-    // Falls back to raylib default if not found.
+    // Load custom font — tries several candidates, falls back to raylib default.
     gFontLoaded = false;
-    if (FileExists("assets/fonts/JetBrainsMono-Regular.ttf")) {
-        gFont = LoadFontEx("assets/fonts/JetBrainsMono-Regular.ttf", 32, nullptr, 0);
-        gFontLoaded = (gFont.texture.id > 0);
-    } else if (FileExists("assets/fonts/Roboto-Regular.ttf")) {
-        gFont = LoadFontEx("assets/fonts/Roboto-Regular.ttf", 32, nullptr, 0);
-        gFontLoaded = (gFont.texture.id > 0);
-    } else if (FileExists("assets/fonts/Ubuntu-R.ttf")) {
-        gFont = LoadFontEx("assets/fonts/Ubuntu-R.ttf", 32, nullptr, 0);
-        gFontLoaded = (gFont.texture.id > 0);
+    const char* fontCandidates[] = {
+        "assets/fonts/DejaVuSans-Bold.ttf",
+        "assets/fonts/JetBrainsMono-Regular.ttf",
+        "assets/fonts/Roboto-Regular.ttf",
+        "assets/fonts/Ubuntu-R.ttf",
+    };
+    for (const char* fp : fontCandidates) {
+        if (FileExists(fp)) {
+            gFont = LoadFontEx(fp, 20, nullptr, 0);
+            gFontLoaded = (gFont.texture.id > 0);
+            if (gFontLoaded) break;
+        }
     }
     if (gFontLoaded) SetTextureFilter(gFont.texture, TEXTURE_FILTER_BILINEAR);
 
@@ -965,6 +973,14 @@ int main()
             iconTextures[i]=LoadTexture(APPS[i].iconFile);
             iconLoaded[i]=(iconTextures[i].id>0);
         }
+    }
+
+    // ── STEP 4b: Load wallpaper ────────────────────────────
+    gWallpaperLoaded = false;
+    if (FileExists("assets/wallpaper.png")) {
+        gWallpaper = LoadTexture("assets/wallpaper.png");
+        gWallpaperLoaded = (gWallpaper.id > 0);
+        if (gWallpaperLoaded) SetTextureFilter(gWallpaper, TEXTURE_FILTER_BILINEAR);
     }
 
     UpdateSearch();
@@ -1017,6 +1033,20 @@ int main()
         // ── DRAW ──────────────────────────────────────────
         BeginDrawing();
         ClearBackground(BG_DEEP);
+        if (gWallpaperLoaded) {
+            // Stretch wallpaper to fill screen, preserve aspect by covering
+            float scaleX = (float)sw / gWallpaper.width;
+            float scaleY = (float)sh / gWallpaper.height;
+            float scale  = (scaleX > scaleY) ? scaleX : scaleY;
+            float dw = gWallpaper.width  * scale;
+            float dh = gWallpaper.height * scale;
+            float dx = (sw - dw) * 0.5f;
+            float dy = (sh - dh) * 0.5f;
+            DrawTexturePro(gWallpaper,
+                {0, 0, (float)gWallpaper.width, (float)gWallpaper.height},
+                {dx, dy, dw, dh},
+                {0, 0}, 0.0f, Color{255,255,255,200});
+        }
         DrawCyberpunkGrid(sw,sh);
 
         DrawDock(sh);
@@ -1034,6 +1064,7 @@ int main()
     }
 
     for(int i=0;i<APP_COUNT;i++) if(iconLoaded[i]) UnloadTexture(iconTextures[i]);
+    if(gWallpaperLoaded) UnloadTexture(gWallpaper);
     if(gFontLoaded) UnloadFont(gFont);
 
     RunShutdown(sw,sh);

@@ -33,6 +33,13 @@ struct CalendarEvent {
     int day;
     std::string note;
 };
+static Font gFont; static bool gFontOK=false;
+static void DT(const char* t,int x,int y,int sz,Color c){
+    if(gFontOK)DrawTextEx(gFont,t,{(float)x,(float)y},(float)sz,1.2f,c);
+    else DrawText(t,x,y,sz,c);}
+static int MT(const char* t,int sz){
+    if(gFontOK)return(int)MeasureTextEx(gFont,t,(float)sz,1.2f).x;
+    return MeasureText(t,sz);}
 
 static std::vector<CalendarEvent> events;
 static int currentYear = 0;
@@ -174,8 +181,8 @@ static void SaveNoteForSelectedDay() {
 
 static void DrawCalendarHeader(Rectangle c) {
     std::string title = std::string(MONTH_NAMES[currentMonth - 1]) + " " + std::to_string(currentYear);
-    int tw = MeasureText(title.c_str(), FONT_TITLE);
-    DrawText(title.c_str(), (int)(c.x + (c.width - tw) / 2), (int)(c.y + 18), FONT_TITLE, NEON_CYAN);
+        int tw = MT(title.c_str(), FONT_TITLE);
+    DT(title.c_str(), (int)(c.x + (c.width - tw) / 2), (int)(c.y + 18), FONT_TITLE, NEON_CYAN);
 
     if (DrawButton({c.x + 20, c.y + 16, 46, 30}, "<<", BG_HOVER, TEXT_PRIMARY, FONT_NORMAL)) {
         currentYear -= 1;
@@ -214,8 +221,8 @@ static void DrawCalendarGrid(Rectangle c) {
         Rectangle head = {gridX + i * cellW, gridY, cellW, 28};
         DrawRectangleRec(head, BG_PANEL);
         DrawRectangleLinesEx(head, 1.0f, BORDER_DIM);
-        int tw = MeasureText(WEEK_NAMES[i], FONT_SMALL);
-        DrawText(WEEK_NAMES[i], (int)(head.x + (head.width - tw) / 2), (int)(head.y + 6), FONT_SMALL, TEXT_MUTED);
+                int tw2 = MT(WEEK_NAMES[i], FONT_SMALL);
+        DT(WEEK_NAMES[i], (int)(head.x + (head.width - tw2) / 2), (int)(head.y + 6), FONT_SMALL, TEXT_MUTED);
     }
 
     int rows = (firstWeekday + days + 6) / 7;
@@ -237,7 +244,7 @@ static void DrawCalendarGrid(Rectangle c) {
                     DrawRectangleLinesEx(cell, 1.5f, NEON_GOLD);
                 }
                 char label[3]; snprintf(label, sizeof(label), "%02d", day);
-                DrawText(label, (int)(cell.x + 8), (int)(cell.y + 8), FONT_NORMAL, TEXT_PRIMARY);
+                 DT(label, (int)(cell.x + 8), (int)(cell.y + 8), FONT_NORMAL, TEXT_PRIMARY);
                 auto* ev = FindEvent(currentYear, currentMonth, day);
                 if (ev) {
                     DrawCircle((int)(cell.x + cell.width - 16), (int)(cell.y + cell.height - 16), 6, NEON_CYAN);
@@ -262,18 +269,18 @@ static void DrawEventPanel(Rectangle c) {
 
     char dateLabel[64];
     snprintf(dateLabel, sizeof(dateLabel), "%s %d, %d", MONTH_NAMES[currentMonth - 1], currentDay, currentYear);
-    DrawText(dateLabel, (int)(panel.x + 16), (int)(panel.y + 16), FONT_LARGE, NEON_CYAN);
+    DT(dateLabel, (int)(panel.x + 16), (int)(panel.y + 16), FONT_LARGE, NEON_CYAN);
 
     bool hasEvent = FindEvent(currentYear, currentMonth, currentDay) != nullptr;
-    DrawText(hasEvent ? "Note saved" : "No note yet", (int)(panel.x + 16), (int)(panel.y + 52), FONT_SMALL, hasEvent ? NEON_GREEN : TEXT_MUTED);
+      DT(hasEvent ? "Note saved" : "No note yet", (int)(panel.x + 16), (int)(panel.y + 52), FONT_SMALL, hasEvent ? NEON_GREEN : TEXT_MUTED);
 
     Rectangle noteBox = {panel.x + 16, panel.y + 86, panel.width - 32, panel.height - 160};
     DrawRectangleRec(noteBox, BG_DEEP);
     DrawRectangleLinesEx(noteBox, 1.0f, noteFocused ? NEON_CYAN : BORDER_DIM);
-    DrawText(noteText.c_str(), (int)(noteBox.x + 8), (int)(noteBox.y + 8), FONT_SMALL, TEXT_PRIMARY);
+    DT(noteText.c_str(), (int)(noteBox.x + 8), (int)(noteBox.y + 8), FONT_SMALL, TEXT_PRIMARY);
     if (noteFocused && (int)(GetTime() * 2) % 2 == 0) {
-        int cursorX = (int)(noteBox.x + 8 + MeasureText(noteText.c_str(), FONT_SMALL));
-        DrawText("|", cursorX, (int)(noteBox.y + 8), FONT_SMALL, NEON_CYAN);
+        int cursorX = (int)(noteBox.x + 8 + MT(noteText.c_str(), FONT_SMALL));
+        DT("|", cursorX, (int)(noteBox.y + 8), FONT_SMALL, NEON_CYAN);
     }
     if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
         if (CheckCollisionPointRec(GetMousePosition(), noteBox)) noteFocused = true;
@@ -320,6 +327,12 @@ int main() {
     SetTargetFPS(60);
     SetExitKey(KEY_NULL);
     SetWindowFocused();
+    gFontOK=false;
+    if(FileExists("assets/fonts/DejaVuSans-Bold.ttf")){
+        gFont=LoadFontEx("assets/fonts/DejaVuSans-Bold.ttf",20,nullptr,0);
+        gFontOK=(gFont.texture.id>0);
+        if(gFontOK)SetTextureFilter(gFont.texture,TEXTURE_FILTER_BILINEAR);
+    }
 
     LoadState();
     EnsureCurrentDate();
@@ -342,6 +355,7 @@ int main() {
     }
 
     if (stateDirty) SaveState();
+    if(gFontOK)UnloadFont(gFont);
     ReleaseResources(APP_NAME, RAM_MB, HDD_MB);
     CloseWindow();
     return 0;
