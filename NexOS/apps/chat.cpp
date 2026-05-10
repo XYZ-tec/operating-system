@@ -62,6 +62,7 @@ struct Msg {
     std::string ts;
     bool mine;
     bool sys;
+    bool hist = false; 
 };
 static std::vector<Msg> msgs;
 static std::mutex       msgMtx;
@@ -73,10 +74,67 @@ static std::string NowHHMM() {
     char b[8]; snprintf(b,sizeof(b),"%02d:%02d",lt->tm_hour,lt->tm_min);
     return b;
 }
+// ── Persistence ───────────────────────────────────────────
+#define HIST_FILE    "hdd/chat_history.txt"
+#define HIST_DELIM   '\x01'
+#define MAX_HIST_LOAD 150
+static void SaveMsg(const Msg& m){
+    FILE* f=fopen(HIST_FILE,"a");
+    if(!f) return;
+    std::string safeText=m.text, safeName=m.name;
+    for(char& c:safeText) if(c==HIST_DELIM||c=='\n'||c=='\r') c=' ';
+    for(char& c:safeName) if(c==HIST_DELIM||c=='\n'||c=='\r') c=' ';
+    char type=m.sys?'S':(m.mine?'M':'T');
+    fprintf(f,"%c%c%s%c%s%c%s\n",
+            type,HIST_DELIM,
+            safeName.c_str(),HIST_DELIM,
+            m.ts.c_str(),HIST_DELIM,
+            safeText.c_str());
+    fclose(f);
+}
+static void LoadHistory(){
+    FILE* f=fopen(HIST_FILE,"r");
+    if(!f) return;
+    std::vector<std::string> lines;
+    char buf[1024];
+    while(fgets(buf,sizeof(buf),f)){
+        size_t len=strlen(buf);
+        while(len>0&&(buf[len-1]=='\n'||buf[len-1]=='\r')) buf[--len]='\0';
+        if(len>0) lines.push_back(buf);
+    }
+    fclose(f);
+    if(lines.empty()) return;
+        if((int)lines.size()>MAX_HIST_LOAD)
+        lines.erase(lines.begin(),lines.begin()+(int)lines.size()-MAX_HIST_LOAD);
+    for(const auto& line:lines){
+        // split on HIST_DELIM into 4 parts: TYPE, NAME, TS, TEXT
+        std::vector<std::string> parts;
+        std::string cur;
+        for(char c:line){
+            if(c==HIST_DELIM){ parts.push_back(cur); cur.clear(); }
+            else cur+=c;
+        }
+        parts.push_back(cur);
+        if((int)parts.size()<4) continue;
+        char type=parts[0].empty()?'T':parts[0][0];
+        Msg m;
+        m.name=parts[1]; m.ts=parts[2]; m.text=parts[3];
+        m.sys=(type=='S'); m.mine=(type=='M'); m.hist=true;
+        msgs.push_back(m);
+    }
+    // separator between history and new session
+    Msg sep;
+    sep.text="session started "+NowHHMM();
+    sep.sys=true; sep.mine=false; sep.hist=false;
+    msgs.push_back(sep);
+    scrollOff=0;
+}
 static void PushRaw(const std::string& name,const std::string& text,bool mine,bool sys){
     std::lock_guard<std::mutex> lk(msgMtx);
     if((int)msgs.size()>=MAX_MSGS) msgs.erase(msgs.begin());
-    msgs.push_back({name,text,NowHHMM(),mine,sys});
+        Msg m; m.name=name; m.text=text; m.ts=NowHHMM(); m.mine=mine; m.sys=sys; m.hist=false;
+    msgs.push_back(m);
+    if(!sys) SaveMsg(m);
     int total=(int)msgs.size();
     if(scrollOff==0||(total>1&&scrollOff==(total-2))) scrollOff=0;
 }
@@ -431,26 +489,33 @@ static void DrawChatScreen(int sw,int sh){
             int my=chatY+(i-startIdx)*lineH+4;
             if(m.sys){
                 std::string lab="— "+m.text+" —";
-                DT(lab.c_str(),sw/2-MT(lab.c_str(),FONT_SMALL)/2,my+14,FONT_SMALL,TEXT_DIM);
+              Color sc=m.hist?TEXT_DIM:TEXT_MUTED;
+                DT(lab.c_str(),sw/2-MT(lab.c_str(),FONT_SMALL)/2,my+14,FONT_SMALL,sc);
                 continue;
             }
             int textW=MT(m.text.c_str(),FONT_NORMAL);
             int nameW=MT(m.name.c_str(),FONT_TINY);
             int tsW  =MT(m.ts.c_str(),FONT_TINY);
             int bubW =std::min(std::max(textW,nameW)+24,sw-80);
+            Color txtCol  = m.hist ? TEXT_MUTED   : TEXT_PRIMARY;
+            Color metaCol = m.hist ? TEXT_DIM      : TEXT_DIM;
             if(m.mine){
                 int bx=sw-bubW-16;
-                DrawRectangleRounded({(float)bx,(float)(my+2),(float)bubW,36},0.2f,8,Color{0,100,80,130});
-                DrawRectangleLinesEx({(float)bx,(float)(my+2),(float)bubW,36},1.0f,Color{0,220,180,110});
-                DT(m.text.c_str(),bx+10,my+8,FONT_NORMAL,TEXT_PRIMARY);
-                DT(m.name.c_str(),bx+10,my+28,FONT_TINY,TEXT_DIM);
-                DT(m.ts.c_str(),bx+bubW-tsW-8,my+28,FONT_TINY,TEXT_DIM);
+                                Color fill = m.hist ? Color{0,50,40,80}  : Color{0,100,80,130};
+                Color edge = m.hist ? Color{0,120,100,60}: Color{0,220,180,110};
+                DrawRectangleRounded({(float)bx,(float)(my+2),(float)bubW,36},0.2f,8,fill);
+                DrawRectangleLinesEx({(float)bx,(float)(my+2),(float)bubW,36},1.0f,edge);
+                DT(m.text.c_str(),bx+10,my+8,FONT_NORMAL,txtCol);
+                DT(m.name.c_str(),bx+10,my+28,FONT_TINY,metaCol);
+                DT(m.ts.c_str(),bx+bubW-tsW-8,my+28,FONT_TINY,metaCol);
             } else {
-                DrawRectangleRounded({16.0f,(float)(my+2),(float)bubW,36},0.2f,8,Color{60,0,100,130});
-                DrawRectangleLinesEx({16.0f,(float)(my+2),(float)bubW,36},1.0f,Color{180,60,220,110});
-                DT(m.text.c_str(),26,my+8,FONT_NORMAL,TEXT_PRIMARY);
-                DT(m.name.c_str(),26,my+28,FONT_TINY,TEXT_DIM);
-                DT(m.ts.c_str(),bubW+22,my+28,FONT_TINY,TEXT_DIM);
+                                Color fill = m.hist ? Color{25,0,45,80}   : Color{60,0,100,130};
+                Color edge = m.hist ? Color{100,30,140,60} : Color{180,60,220,110};
+                DrawRectangleRounded({16.0f,(float)(my+2),(float)bubW,36},0.2f,8,fill);
+                DrawRectangleLinesEx({16.0f,(float)(my+2),(float)bubW,36},1.0f,edge);
+                DT(m.text.c_str(),26,my+8,FONT_NORMAL,txtCol);
+                DT(m.name.c_str(),26,my+28,FONT_TINY,metaCol);
+                DT(m.ts.c_str(),bubW+22,my+28,FONT_TINY,metaCol);
             }
         }
         if(scrollOff>0){
@@ -498,7 +563,8 @@ int main(){
         gFontOK=(gFont.texture.id>0);
         if(gFontOK) SetTextureFilter(gFont.texture,TEXTURE_FILTER_BILINEAR);
     }
-
+    mkdir("hdd",0755);
+    LoadHistory();
     while(!WindowShouldClose()&&appRunning){
         int sw=GetScreenWidth(), sh=GetScreenHeight();
         ConnState cs=connState.load();
