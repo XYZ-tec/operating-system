@@ -544,7 +544,7 @@ static void DrawMainMenu(int sw, int sh) {
     DrawText(title, (sw - tw) / 2, py + 28, titleSize, NEON_CYAN);
 
     // Subtitle
-    const char* sub = "NexOS Edition";
+    const char* sub = "RayVerve Edition";
     int sw2 = MeasureText(sub, FONT_SMALL);
     DrawText(sub, (sw - sw2) / 2, py + 102, FONT_SMALL, Color{0, 200, 160, 200});
 

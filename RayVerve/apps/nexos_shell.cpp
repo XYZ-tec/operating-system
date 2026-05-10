@@ -91,7 +91,7 @@ static std::vector<std::string> history;
 static int                      histIdx    = -1;
 
 static std::string BuildPrompt(){
-    return GetUserName() + "@NexOS:" + currentDir + "$ ";
+    return GetUserName() + "@RayVerve:" + currentDir + "$ ";
 }
 
 // ============================================================
@@ -271,7 +271,7 @@ static void ExecuteCommand(const std::string& raw){
     }
 
     if(cmd=="help"){
-        PushLine("NexOS Shell - Available Commands:",TERM_PROMPT);
+        PushLine("RayVerve Shell - Available Commands:",TERM_PROMPT);
         PushLine("",TERM_OUTPUT);
         PushLine("  Navigation:",TERM_SUCCESS);
         PushLine("    cd <dir>         Change directory",TERM_OUTPUT);
@@ -436,7 +436,7 @@ static void ExecuteCommand(const std::string& raw){
     }
 
     if(cmd=="uname"){
-        PushLine("NexOS 1.0 (Multi-Process OS Simulator)",TERM_OUTPUT);
+        PushLine("RayVerve 1.0 (Multi-Process OS Simulator)",TERM_OUTPUT);
         PushPrompt();
         return;
     }
@@ -673,7 +673,7 @@ static void DrawInputBar(int sw,int sh){
 
     // Prompt (segmented + colored): user@host : dir $ 
     std::string user = GetUserName();
-    const char* atHost = "@NexOS";
+    const char* atHost = "@RayVerve";
     const char* colon = ":";
     const char* dollar = "$";
     const char* space = " ";
@@ -781,7 +781,7 @@ int main(){
     }
 
     SetConfigFlags(FLAG_WINDOW_RESIZABLE);
-    InitWindow(860,580,"NexOS Shell");
+    InitWindow(860,580,"RayVerve Shell");
     SetTargetFPS(60);SetExitKey(KEY_NULL);
     SetWindowFocused();
 
@@ -805,7 +805,7 @@ int main(){
     PushLine("  |                                                  |", NEON_CYAN);
     PushLine("  +----------------------------------------------+", UI_ACCENT_A);
     PushLine("",TERM_OUTPUT);
-    PushLine("  Connected to NexOS kernel -- TTY/1",TERM_PROMPT);
+    PushLine("  Connected to RayVerve kernel -- TTY/1",TERM_PROMPT);
     PushLine("",TERM_OUTPUT);
     PushLine("  Type  help   to list all commands",TEXT_MUTED);
     PushLine("  Type  exit   to close this shell",TEXT_MUTED);

@@ -1,5 +1,5 @@
 // ============================================================
-//  NexOS — Weather App
+//  RayVerve — Weather App
 //  Simulated weather with realistic data, animated visuals,
 //  7-day forecast, hourly breakdown, and multi-city support.
 //  Follows the exact same IPC + theme pattern as notepad/alarm.
@@ -583,7 +583,7 @@ int main() {
     }
 
     SetConfigFlags(FLAG_WINDOW_RESIZABLE);
-    InitWindow(WIN_W, WIN_H, "NexOS Weather");
+    InitWindow(WIN_W, WIN_H, "RayVerve Weather");
     SetTargetFPS(60);
     SetExitKey(KEY_NULL);
     SetWindowFocused();

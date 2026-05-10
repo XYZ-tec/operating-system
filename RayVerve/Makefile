@@ -1,5 +1,5 @@
 # ============================================================
-#  NexOS Makefile
+#  RayVerve Makefile
 #  Usage:
 #    make          -> build everything
 #    make run      -> build + run with default hardware
@@ -30,12 +30,12 @@ APPS = \
   apps/weather
 
 # Default: build OS + all apps
-all: NexOS $(APPS)
+all: RayVerve $(APPS)
 
 # Main OS binary
-NexOS: os.cpp include/theme.h include/resources.h include/ipc.h
-	$(CXX) $(CXXFLAGS) os.cpp -o NexOS $(LDFLAGS)
-	@echo "[OK] NexOS compiled"
+RayVerve: os.cpp include/theme.h include/resources.h include/ipc.h
+	$(CXX) $(CXXFLAGS) os.cpp -o RayVerve $(LDFLAGS)
+	@echo "[OK] RayVerve compiled"
 
 # Each app binary (pattern rule)
 apps/%: apps/%.cpp include/theme.h include/resources.h include/ipc.h
@@ -43,12 +43,12 @@ apps/%: apps/%.cpp include/theme.h include/resources.h include/ipc.h
 	@echo "[OK] $@ compiled"
 
 # Run with default hardware: 2048MB RAM, 256GB HDD, 8 cores
-run: NexOS
-	./NexOS 2048 262144 8
+run: RayVerve
+	./RayVerve 2048 262144 8
 
 # Clean all binaries
 clean:
-	rm -f NexOS $(APPS)
+	rm -f RayVerve $(APPS)
 	@echo "[OK] Cleaned"
 
 # Create required directories if missing

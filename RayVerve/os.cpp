@@ -335,11 +335,11 @@ static bool RunHardwareInputScreen(int& outRam, int& outHdd, int& outCores)
         DrawCyberpunkGrid(sw,sh);
 
         // Title
-        const char* title = "NexOS Hardware Configuration";
+        const char* title = "RayVerve Hardware Configuration";
         int tw = MeasureT(title, FONT_LARGE);
         DrawT(title,(sw-tw)/2, sh/2-220, FONT_LARGE, NEON_CYAN);
 
-        const char* sub = "Configure your system resources before starting NexOS";
+        const char* sub = "Configure your system resources before starting RayVerve";
         int sw2 = MeasureT(sub, FONT_SMALL);
         DrawT(sub,(sw-sw2)/2, sh/2-185, FONT_SMALL, TEXT_MUTED);
 
@@ -395,7 +395,7 @@ static bool RunHardwareInputScreen(int& outRam, int& outHdd, int& outCores)
         bool hov = CheckCollisionPointRec(GetMousePosition(),startBtn);
         DrawRectangleRec(startBtn, hov?NEON_CYAN:BG_HOVER);
         DrawGlowRect(startBtn, NEON_CYAN, hov?5:2);
-        const char* btnLabel="Start NexOS";
+        const char* btnLabel="Start RayVerve";
         int blw = MeasureT(btnLabel, FONT_NORMAL);
         DrawT(btnLabel,(int)(startBtn.x+(startBtn.width-blw)/2),
               (int)(startBtn.y+13), FONT_NORMAL, hov?BG_DEEP:NEON_CYAN);
@@ -537,7 +537,7 @@ static void DrawTaskbar(int sw,int sh,float ramFrac,float hddFrac,int ramMB,int 
     DrawLine(0,y,sw,y,NEON_CYAN);
 
     // Logo
-    DrawT("NexOS",10,y+12,FONT_NORMAL,NEON_CYAN);
+    DrawT("RayVerve",10,y+12,FONT_NORMAL,NEON_CYAN);
 
     // Search button
     Rectangle sb={86,(float)(y+8),160,(float)(TASKBAR_H-16)};
@@ -849,7 +849,7 @@ static void RunBootAnimation(int& sw,int& sh)
         "Setting up IPC message queues...",
         "Mounting virtual file system...",
         "Starting background daemons...",
-        "NexOS ready."
+        "RayVerve ready."
     };
     int lineCount=6,shownLines=0,frame=0;
     float progress=0,alpha=0;
@@ -858,7 +858,7 @@ static void RunBootAnimation(int& sw,int& sh)
         if(frame%38==0&&shownLines<lineCount)shownLines++;
         if(IsWindowResized()){sw=GetScreenWidth();sh=GetScreenHeight();}
         BeginDrawing(); ClearBackground(BG_DEEP); DrawCyberpunkGrid(sw,sh);
-        const char* osn="NexOS"; int nw=MeasureT(osn,80);
+        const char* osn="RayVerve"; int nw=MeasureT(osn,80);
         // Glow behind text
         DrawRectangle((sw-nw)/2-20,sh/2-166,nw+40,90,{0,255,200,8});
         DrawT(osn,(sw-nw)/2,sh/2-158,80,{0,255,200,(unsigned char)(int)(alpha*255)});
@@ -894,7 +894,7 @@ static void RunShutdown(int& sw,int& sh)
 
 static void Shutdown()
 {
-    Log("NexOS shutting down");
+    Log("RayVerve shutting down");
     for(auto& ra:runningApps)kill(ra.pid,SIGTERM);
     for(auto& ra:runningApps)waitpid(ra.pid,nullptr,0);
     if(sharedRes)sharedRes->shutdown_requested=true; sleep(1);
@@ -911,7 +911,7 @@ int main()
 {
     // Open window first so we can show the input screen
     SetConfigFlags(FLAG_WINDOW_RESIZABLE);
-    InitWindow(1280,720,"NexOS - Hardware Setup");
+    InitWindow(1280,720,"RayVerve - Hardware Setup");
     SetTargetFPS(60);
     SetExitKey(KEY_NULL);
 
@@ -940,7 +940,7 @@ int main()
         CloseWindow(); return 0; // user closed window
     }
 
-    SetWindowTitle("NexOS");
+    SetWindowTitle("RayVerve");
 
     // ── STEP 2: Init log, shared memory, IPC ───────────────
     logFile=fopen("logs/nexos.log","a");
@@ -958,7 +958,7 @@ int main()
     msgctl(msgget(MSG_KEY,0666),IPC_RMID,nullptr);
     mqid=msgget(MSG_KEY,IPC_CREAT|0666);
 
-    Log("NexOS booting. RAM:%dMB HDD:%dMB Cores:%d",ramMB,hddMB,cores);
+    Log("RayVerve booting. RAM:%dMB HDD:%dMB Cores:%d",ramMB,hddMB,cores);
 
     // ── STEP 3: Start background threads ───────────────────
     pthread_t tR,tS,tA,tD;

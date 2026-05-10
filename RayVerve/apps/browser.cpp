@@ -1,8 +1,8 @@
 // ============================================================
-//  NexOS — Browser Launcher
+//  RayVerve — Browser Launcher
 //  Detects installed browsers, launches them via fork/exec,
 //  URL bar, quick bookmarks, history saved to hdd/
-//  Fully follows NexOS IPC + theme pattern.
+//  Fully follows RayVerve IPC + theme pattern.
 // ============================================================
 #include "raylib.h"
 #include "../include/theme.h"
@@ -219,7 +219,7 @@ static void LaunchUrl(const std::string& url) {
     }
     if (pid == 0) {
         // Child: exec the browser
-        // Detach from parent process group so it survives NexOS exit
+        // Detach from parent process group so it survives RayVerve exit
         setsid();
         const char* args[] = { br.binary.c_str(), url.c_str(), nullptr };
         execvp(br.binary.c_str(), (char* const*)args);
@@ -501,7 +501,7 @@ static void DrawHeader(int sw) {
 // ============================================================
 int main() {
     if(!RequestResources(APP_NAME,RAM_MB,HDD_MB,PRIORITY_NORMAL,1)){
-        InitWindow(440,120,"Browser — Denied"); SetTargetFPS(30);
+        InitWindow(440,120,"RayVerve Browser — Denied"); SetTargetFPS(30);
         double t=GetTime();
         while(!WindowShouldClose()&&GetTime()-t<3.5){
             BeginDrawing();ClearBackground(BG_DEEP);
@@ -512,7 +512,7 @@ int main() {
     }
 
     SetConfigFlags(FLAG_WINDOW_RESIZABLE);
-    InitWindow(WIN_W, WIN_H, "NexOS Browser");
+    InitWindow(WIN_W, WIN_H, "RayVerve Browser");
     SetTargetFPS(60);
     SetExitKey(KEY_NULL);
     SetWindowFocused();

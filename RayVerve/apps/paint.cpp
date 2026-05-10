@@ -1,5 +1,5 @@
 // ============================================================
-//  NexOS — Paint App
+//  RayVerve — Paint App
 //  Full-featured pixel art / drawing tool with:
 //  - Pencil, Eraser, Fill, Line, Rect, Ellipse, Eyedropper
 //  - 32-color palette + custom color picker
@@ -521,7 +521,7 @@ static void DrawMenuBar(int sw) {
     }
 
     // Title
-    const char* title="NexOS Paint";
+    const char* title="RayVerve Paint";
     int tw=MeasureText(title,FONT_SMALL);
     DrawText(title,(sw-tw)/2,9,FONT_SMALL,TEXT_MUTED);
 
@@ -877,7 +877,7 @@ int main() {
     }
 
     SetConfigFlags(FLAG_WINDOW_RESIZABLE);
-    InitWindow(WIN_W, WIN_H, "NexOS Paint");
+    InitWindow(WIN_W, WIN_H, "RayVerve Paint");
     SetTargetFPS(60);
     SetExitKey(KEY_NULL);
     SetWindowFocused();
@@ -891,7 +891,7 @@ int main() {
     canvasTex = LoadRenderTexture(CANVAS_W, CANVAS_H);
     LoadToolIcons();
     ClearCanvas({255,255,255,255});
-    SetStatus("Welcome to NexOS Paint!  P=Pencil E=Eraser F=Fill L=Line R=Rect O=Ellipse I=Eyedrop", NEON_CYAN);
+    SetStatus("Welcome to RayVerve Paint!  P=Pencil E=Eraser F=Fill L=Line R=Rect O=Ellipse I=Eyedrop", NEON_CYAN);
 
     while (!WindowShouldClose() && appRunning) {
         int sw = GetScreenWidth(), sh = GetScreenHeight();
