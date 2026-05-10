@@ -22,8 +22,8 @@
 #include <algorithm>
 
 #define APP_NAME  "Browser"
-#define RAM_MB    30
-#define HDD_MB    5
+#define RAM_MB    150
+#define HDD_MB    30
 #define WIN_W     860
 #define WIN_H     600
 

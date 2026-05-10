@@ -72,7 +72,7 @@ static AppInfo APPS[] = {
     { "Notepad",       "apps/notepad",       50, 10, PRIORITY_NORMAL, 1, NEON_CYAN,   "assets/icons/notepad.png"      },
     { "Tetris",        "apps/tetris",        80, 10, PRIORITY_LOW,    1, NEON_PINK,   "assets/icons/tetris.png"       },
     { "Brick Breaker", "apps/brickbreaker",  70, 10, PRIORITY_LOW,    1, NEON_GREEN,  "assets/icons/brickbreaker.png" },
-    { "Browser",       "apps/browser",       30,  5, PRIORITY_NORMAL, 1, NEON_CYAN,   "assets/icons/browser.png"      },
+    { "Browser",       "apps/browser",       150, 30, PRIORITY_NORMAL, 1, NEON_CYAN,   "assets/icons/browser.png"      },
     { "Chat",          "apps/chat",          50, 10, PRIORITY_NORMAL, 1, NEON_CYAN,   "assets/icons/chat.png"         },
     { "Shell",         "apps/nexos_shell",   60, 10, PRIORITY_NORMAL, 1, NEON_GREEN,  "assets/icons/shell.png"        },
     { "Song Player",   "apps/songplayer",    40, 20, PRIORITY_NORMAL, 1, NEON_PURPLE, "assets/icons/songplayer.png"   },
