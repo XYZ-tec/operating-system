@@ -63,7 +63,7 @@ struct AppInfo {
 };
 
 // ============================================================
-//  13 apps (Kernel Monitor removed from user desktop —
+//  14 apps (Kernel Monitor removed from user desktop —
 //  it lives inside Kernel Mode panel now)
 // ============================================================
 static AppInfo APPS[] = {
@@ -72,6 +72,7 @@ static AppInfo APPS[] = {
     { "Notepad",       "apps/notepad",       50, 10, PRIORITY_NORMAL, 1, NEON_CYAN,   "assets/icons/notepad.png"      },
     { "Tetris",        "apps/tetris",        80, 10, PRIORITY_LOW,    1, NEON_PINK,   "assets/icons/tetris.png"       },
     { "Brick Breaker", "apps/brickbreaker",  70, 10, PRIORITY_LOW,    1, NEON_GREEN,  "assets/icons/brickbreaker.png" },
+    { "Browser",       "apps/browser",       30,  5, PRIORITY_NORMAL, 1, NEON_CYAN,   "assets/icons/browser.png"      },
     { "Chat",          "apps/chat",          50, 10, PRIORITY_NORMAL, 1, NEON_CYAN,   "assets/icons/chat.png"         },
     { "Shell",         "apps/nexos_shell",   60, 10, PRIORITY_NORMAL, 1, NEON_GREEN,  "assets/icons/shell.png"        },
     { "Song Player",   "apps/songplayer",    40, 20, PRIORITY_NORMAL, 1, NEON_PURPLE, "assets/icons/songplayer.png"   },
@@ -80,10 +81,10 @@ static AppInfo APPS[] = {
     { "File Manager",  "apps/file_manager",  60, 30, PRIORITY_NORMAL, 1, NEON_GOLD,   "assets/icons/file_manager.png" },
     { "Calendar",      "apps/calendar",      20,  1, PRIORITY_HIGH,   0, NEON_CYAN,   "assets/icons/calendar.png"     },
 };
-static const int APP_COUNT = 12;
+static const int APP_COUNT = 13;
 
-static Texture2D iconTextures[12];
-static bool      iconLoaded[12];
+static Texture2D iconTextures[13];
+static bool      iconLoaded[13];
 
 struct RunningApp { int appIndex; pid_t pid; bool minimized; };
 static std::vector<RunningApp> runningApps;
@@ -977,8 +978,8 @@ int main()
 
     // ── STEP 4b: Load wallpaper ────────────────────────────
     gWallpaperLoaded = false;
-    if (FileExists("assets/wallpaper.png")) {
-        gWallpaper = LoadTexture("assets/wallpaper.png");
+    if (FileExists("assets/wallpaper1.png")) {
+        gWallpaper = LoadTexture("assets/wallpaper1.png");
         gWallpaperLoaded = (gWallpaper.id > 0);
         if (gWallpaperLoaded) SetTextureFilter(gWallpaper, TEXTURE_FILTER_BILINEAR);
     }

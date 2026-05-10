@@ -15,6 +15,7 @@ APPS = \
   apps/alarm \
   apps/app_template \
   apps/brickbreaker \
+  apps/browser \
   apps/calculator \
   apps/calendar \
   apps/chat \
