@@ -256,27 +256,26 @@ static void DrawTxtC(const char* t,int cx,int y,int sz,Color c){
 
 static bool NiceButton(Rectangle r, const char* label, Color accent) {
     bool hov = CheckCollisionPointRec(GetMousePosition(), r);
-    Color bg  = hov ? Color{(unsigned char)std::min(255,(int)accent.r/3+20),
-                            (unsigned char)std::min(255,(int)accent.g/3+20),
-                            (unsigned char)std::min(255,(int)accent.b/3+20),255}
-                    : Color{14,18,30,255};
+    Color bg  = hov ? Color{(unsigned char)std::min(255,(int)accent.r+40),
+                            (unsigned char)std::min(255,(int)accent.g+40),
+                            (unsigned char)std::min(255,(int)accent.b+40),255}
+                    : Color{accent.r, accent.g, accent.b, 200};
     DrawRectangleRounded(r, 0.25f, 8, bg);
-    DrawRectangleLinesEx(r, hov?1.6f:1.0f,
-        {accent.r,accent.g,accent.b,(unsigned char)(hov?220:120)});
+    DrawRectangleLinesEx(r, hov?2.0f:1.5f, {255,255,255,(unsigned char)(hov?255:200)});
     int tw = MeasureText(label, FONT_SMALL);
     DrawText(label,(int)(r.x+(r.width-tw)/2),(int)(r.y+(r.height-FONT_SMALL)/2),
-             FONT_SMALL, hov?Color{240,245,250,255}:Color{160,180,195,230});
+             FONT_SMALL, Color{255,255,255,255});
     return hov && IsMouseButtonPressed(MOUSE_LEFT_BUTTON);
 }
 
 // ── Sections ──────────────────────────────────────────────
 static void DrawBrowserPicker(int sw, int topY) {
     // Label
-    DrawText("Browser", 20, topY, FONT_TINY, {80,105,120,200});
+    DrawText("Browser", 20, topY, FONT_SMALL, {100, 100, 100, 255});
 
     if (installed.empty()) {
-        DrawText("No supported browser found on this system.",
-                 20, topY+18, FONT_SMALL, {160,80,80,220});
+        DrawText("No supported browser found. Install Chromium, Firefox, or Brave.",
+                 20, topY+30, FONT_SMALL, {220,100,100,255});
         return;
     }
 
@@ -284,46 +283,42 @@ static void DrawBrowserPicker(int sw, int topY) {
     for (int i=0;i<(int)installed.size();i++) {
         auto& b = installed[i];
         bool sel = (i==selectedBrowser);
-        int bw = MeasureText(b.name.c_str(),FONT_SMALL)+24;
-        Rectangle r={(float)bx,(float)(topY+14),(float)bw,28};
+        int bw = MeasureText(b.name.c_str(),FONT_NORMAL)+24;
+        Rectangle r={(float)bx,(float)(topY+26),(float)bw,36};
         Color ac = b.color;
-        Color bg = sel ? Color{(unsigned char)(ac.r/4+10),(unsigned char)(ac.g/4+10),(unsigned char)(ac.b/4+10),255}
-                       : Color{14,18,30,255};
-        DrawRectangleRounded(r,0.3f,8,bg);
-        DrawRectangleLinesEx(r,sel?1.8f:1.0f,{ac.r,ac.g,ac.b,(unsigned char)(sel?230:100)});
-        if(sel) DrawRectangle((int)r.x,(int)(r.y+r.height-2),(int)r.width,2,{ac.r,ac.g,ac.b,160});
-        DrawText(b.name.c_str(),(int)(r.x+10),(int)(r.y+7),FONT_SMALL,
-            sel?Color{230,240,248,255}:Color{130,155,170,220});
+        Color bg = sel ? ac : Color{200, 200, 200, 220};
+        DrawRectangleRounded(r,0.4f,8,bg);
+        DrawRectangleLinesEx(r,sel?2.5f:1.5f,{255,255,255,(unsigned char)(sel?255:180)});
+        DrawText(b.name.c_str(),(int)(r.x+12),(int)(r.y+8),FONT_NORMAL,
+            Color{255,255,255,255});
         if(CheckCollisionPointRec(GetMousePosition(),r)&&IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
             selectedBrowser=i;
-        bx+=bw+8;
+        bx+=bw+10;
     }
 }
 
 static void DrawUrlBar(int sw, int topY) {
     // Label
-    DrawText("URL", 20, topY, FONT_TINY, {80,105,120,200});
+    DrawText("URL", 20, topY, FONT_SMALL, {100, 100, 100, 255});
 
     int barW = sw - 130;
-    Rectangle box={20,(float)(topY+14),(float)barW,38};
+    Rectangle box={20,(float)(topY+26),(float)barW,40};
 
-    // Background
-    DrawRectangleRec(box, {10,14,24,255});
-    DrawRectangleLinesEx(box, urlFocused?1.8f:1.0f,
-        urlFocused?Color{80,160,200,220}:Color{35,50,68,200});
-    if(urlFocused)
-        DrawRectangle((int)box.x,(int)(box.y+box.height-2),(int)box.width,2,{60,140,180,120});
+    // Background - light with subtle border
+    DrawRectangleRounded(box, 0.3f, 8, {240, 242, 245, 255});
+    DrawRectangleLinesEx(box, urlFocused?2.5f:1.5f,
+        urlFocused?Color{100,180,255,255}:Color{180,180,180,255});
 
     // URL text (truncate display if too long)
     std::string display(urlBuf);
-    while(display.size()>1 && MeasureText(display.c_str(),FONT_SMALL)>barW-20)
+    while(display.size()>1 && MeasureText(display.c_str(),FONT_NORMAL)>barW-20)
         display = display.substr(1);
-    DrawText(display.c_str(),(int)box.x+10,(int)box.y+10,FONT_SMALL,{190,215,230,240});
+    DrawText(display.c_str(),(int)box.x+12,(int)box.y+10,FONT_NORMAL,{50,50,50,255});
 
     // Blinking cursor
     if(urlFocused&&(int)(GetTime()*2)%2==0){
-        int cw=MeasureText(display.c_str(),FONT_SMALL);
-        DrawText("|",(int)box.x+12+cw,(int)box.y+10,FONT_SMALL,{80,160,200,255});
+        int cw=MeasureText(display.c_str(),FONT_NORMAL);
+        DrawText("|",(int)box.x+14+cw,(int)box.y+9,FONT_NORMAL,{100,180,255,255});
     }
 
     // Click to focus
@@ -331,12 +326,12 @@ static void DrawUrlBar(int sw, int topY) {
         urlFocused = CheckCollisionPointRec(GetMousePosition(), box);
 
     // Go button
-    Rectangle goBtn={(float)(sw-102),(float)(topY+14),80,38};
-    Color goBg={20,50,60,255};
+    Rectangle goBtn={(float)(sw-102),(float)(topY+26),80,40};
     bool goHov=CheckCollisionPointRec(GetMousePosition(),goBtn);
-    DrawRectangleRounded(goBtn,0.25f,8,goHov?Color{30,80,100,255}:goBg);
-    DrawRectangleLinesEx(goBtn,goHov?1.8f:1.2f,{70,170,200,(unsigned char)(goHov?230:160)});
-    DrawTxtC("GO",(int)(goBtn.x+goBtn.width/2),(int)(goBtn.y+10),FONT_NORMAL,{120,210,230,255});
+    Color goBg = goHov ? Color{100,180,255,255} : Color{80,160,255,255};
+    DrawRectangleRounded(goBtn,0.3f,8,goBg);
+    DrawRectangleLinesEx(goBtn,2.0f,{255,255,255,255});
+    DrawTxtC("GO",(int)(goBtn.x+goBtn.width/2),(int)(goBtn.y+12),FONT_NORMAL,{255,255,255,255});
     if(goHov&&IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
         LaunchUrl(NormaliseUrl(std::string(urlBuf)));
 
@@ -358,45 +353,43 @@ static void DrawUrlBar(int sw, int topY) {
 }
 
 static void DrawBookmarks(int sw, int topY) {
-    DrawText("Quick Access", 20, topY, FONT_TINY, {80,105,120,200});
+    DrawText("Quick Access", 20, topY, FONT_SMALL, {100, 100, 100, 255});
 
-    int bx=20, by=topY+16;
+    int bx=20, by=topY+26;
     int maxW=sw-24;
 
     for(int i=0;i<BOOKMARK_COUNT;i++){
-        int bw=MeasureText(BOOKMARKS[i].label,FONT_SMALL)+20;
-        if(bx+bw>maxW){ bx=20; by+=34; }
-        Rectangle r={(float)bx,(float)by,(float)bw,26};
+        int bw=MeasureText(BOOKMARKS[i].label,FONT_NORMAL)+22;
+        if(bx+bw>maxW){ bx=20; by+=40; }
+        Rectangle r={(float)bx,(float)by,(float)bw,32};
         Color ac=BOOKMARKS[i].color;
         bool hov=CheckCollisionPointRec(GetMousePosition(),r);
-        DrawRectangleRounded(r,0.35f,8,
-            hov?Color{(unsigned char)(ac.r/4+12),(unsigned char)(ac.g/4+12),(unsigned char)(ac.b/4+12),255}
-               :Color{12,16,26,255});
-        DrawRectangleLinesEx(r,hov?1.5f:1.0f,{ac.r,ac.g,ac.b,(unsigned char)(hov?200:90)});
-        DrawText(BOOKMARKS[i].label,(int)(r.x+10),(int)(r.y+6),FONT_SMALL,
-            hov?Color{230,240,248,255}:Color{ac.r,ac.g,ac.b,200});
+        Color bg = hov ? ac : Color{200, 200, 200, 220};
+        DrawRectangleRounded(r,0.35f,8,bg);
+        DrawRectangleLinesEx(r,hov?2.0f:1.5f,{255,255,255,200});
+        DrawText(BOOKMARKS[i].label,(int)(r.x+11),(int)(r.y+7),FONT_NORMAL,Color{255,255,255,255});
         if(hov&&IsMouseButtonPressed(MOUSE_LEFT_BUTTON)){
             strncpy(urlBuf,BOOKMARKS[i].url,511);
             urlLen=(int)strlen(urlBuf);
             LaunchUrl(std::string(BOOKMARKS[i].url));
         }
-        bx+=bw+8;
+        bx+=bw+10;
     }
 }
 
 static void DrawHistory(int sw, int topY, int botY) {
     int h=botY-topY;
-    DrawRectangle(0,topY,sw,1,{30,42,58,200});
-    DrawText("Recent", 20, topY+10, FONT_TINY, {80,105,120,200});
+    DrawRectangle(0,topY,sw,1,{200,200,200,150});
+    DrawText("Recent Launches", 20, topY+8, FONT_SMALL, {100, 100, 100, 255});
 
     if(history.empty()){
-        DrawText("No history yet — launch a site to get started.",
-                 20,topY+30,FONT_SMALL,{55,75,90,180});
+        DrawText("No history yet. Click a bookmark or enter a URL to get started.",
+                 20,topY+40,FONT_NORMAL,{150,150,150,255});
         return;
     }
 
-    int itemH=44;
-    int visCount=(h-36)/itemH;
+    int itemH=48;
+    int visCount=(h-50)/itemH;
     int maxScroll=std::max(0,(int)history.size()-visCount);
     histScroll=std::max(0,std::min(histScroll,maxScroll));
 
@@ -408,36 +401,34 @@ static void DrawHistory(int sw, int topY, int botY) {
     }
 
     for(int i=histScroll;i<(int)history.size()&&i<histScroll+visCount;i++){
-        int iy=topY+30+(i-histScroll)*itemH;
+        int iy=topY+40+(i-histScroll)*itemH;
         auto& e=history[i];
 
-        Rectangle row={8,(float)iy,(float)(sw-16),(float)(itemH-4)};
+        Rectangle row={12,(float)iy,(float)(sw-24),(float)(itemH-4)};
         bool hov=CheckCollisionPointRec(mouse,row);
-        DrawRectangleRounded(row,0.1f,6,
-            hov?Color{18,26,42,255}:Color{11,15,26,255});
-        DrawRectangleLinesEx(row,1.0f,{30,42,60,(unsigned char)(hov?140:70)});
+        DrawRectangleRounded(row,0.2f,6, hov?Color{230,235,240,255}:Color{245,245,248,255});
+        DrawRectangleLinesEx(row,1.5f,{200,200,200,(unsigned char)(hov?255:150)});
 
         // Favicon-style colored dot
-        Color dot={80,140,180,255};
+        Color dot={100,140,200,255};
         for(auto& b:installed) if(b.name==e.browser){dot=b.color;break;}
-        DrawCircle((int)(row.x+18),(int)(iy+itemH/2-2),5,{dot.r,dot.g,dot.b,180});
+        DrawCircle((int)(row.x+22),(int)(iy+itemH/2-2),6,dot);
 
         // URL (truncate)
         std::string disp=e.url;
-        int maxUrlW=sw-230;
-        while(disp.size()>4&&MeasureText(disp.c_str(),FONT_SMALL)>maxUrlW)
+        int maxUrlW=sw-250;
+        while(disp.size()>4&&MeasureText(disp.c_str(),FONT_NORMAL)>maxUrlW)
             disp.pop_back();
         if(disp!=e.url) disp+="...";
-        DrawText(disp.c_str(),(int)(row.x+32),(int)(iy+6),FONT_SMALL,
-            hov?Color{190,215,230,240}:Color{130,160,180,200});
+        DrawText(disp.c_str(),(int)(row.x+40),(int)(iy+8),FONT_NORMAL,{30,30,30,255});
 
         // Time + browser
         char meta[48]; snprintf(meta,48,"%s  •  %s",e.timeStr.c_str(),e.browser.c_str());
-        DrawText(meta,(int)(row.x+32),(int)(iy+24),FONT_TINY,{65,90,110,180});
+        DrawText(meta,(int)(row.x+40),(int)(iy+26),FONT_TINY,{120,120,120,255});
 
         // Re-open button
-        Rectangle openBtn={(float)(sw-80),(float)(iy+8),68,26};
-        if(NiceButton(openBtn,"Open",{80,160,200,255})){
+        Rectangle openBtn={(float)(sw-90),(float)(iy+10),76,28};
+        if(NiceButton(openBtn,"Open",{80,160,255,255})){
             strncpy(urlBuf,e.url.c_str(),511);
             urlLen=(int)strlen(urlBuf);
             LaunchUrl(e.url);
@@ -447,15 +438,15 @@ static void DrawHistory(int sw, int topY, int botY) {
     // Scrollbar
     if((int)history.size()>visCount&&maxScroll>0){
         float frac=(float)histScroll/maxScroll;
-        int sbH=std::max(24,(int)((float)visCount/history.size()*(h-36)));
-        int sbY=topY+30+(int)(frac*(h-36-sbH));
-        DrawRectangle(sw-4,topY+30,4,h-36,{18,24,38,200});
-        DrawRectangle(sw-4,sbY,4,sbH,{70,110,140,200});
+        int sbH=std::max(24,(int)((float)visCount/history.size()*(h-50)));
+        int sbY=topY+40+(int)(frac*(h-50-sbH));
+        DrawRectangle(sw-6,topY+40,6,h-50,{220,220,220,150});
+        DrawRectangle(sw-6,sbY,6,sbH,{100,160,255,255});
     }
 
     // Clear history button
-    Rectangle clrBtn={(float)(sw-90),(float)(topY+6),82,22};
-    if(NiceButton(clrBtn,"Clear",{180,80,90,255})){
+    Rectangle clrBtn={(float)(sw-90),(float)(topY+8),76,28};
+    if(NiceButton(clrBtn,"Clear",{220,100,80,255})){
         history.clear();
         remove(HISTORY_PATH);
         SetStatus("History cleared.",{180,140,100,255});
@@ -463,15 +454,15 @@ static void DrawHistory(int sw, int topY, int botY) {
 }
 
 static void DrawStatusBar(int sw, int sh) {
-    DrawRectangle(0,sh-22,sw,22,{8,11,20,230});
-    DrawLine(0,sh-22,sw,22,{30,42,58,160});
+    DrawRectangle(0,sh-24,sw,24,{240,240,242,255});
+    DrawLine(0,sh-24,sw,24,{200,200,200,150});
 
     // Status message
     double age=GetTime()-statusAt;
     if(age<5.0){
         unsigned char a=(age>4.0)?(unsigned char)((5.0-age)*255):255;
         Color mc=statusColor; mc.a=a;
-        DrawText(statusMsg,14,sh-16,FONT_TINY,mc);
+        DrawText(statusMsg,16,sh-18,FONT_SMALL,mc);
     }
 
     // Launch flash indicator
@@ -480,30 +471,28 @@ static void DrawStatusBar(int sw, int sh) {
         unsigned char a=(la>2.0)?(unsigned char)((3.0-la)*255):255;
         std::string lbl="↗ Opened in "+
             (selectedBrowser<(int)installed.size()?installed[selectedBrowser].name:std::string("browser"));
-        int lw=MeasureText(lbl.c_str(),FONT_TINY);
-        DrawText(lbl.c_str(),sw-lw-14,sh-16,FONT_TINY,{100,210,180,(unsigned char)a});
+        int lw=MeasureText(lbl.c_str(),FONT_SMALL);
+        DrawText(lbl.c_str(),sw-lw-16,sh-18,FONT_SMALL,{100,200,150,(unsigned char)a});
     }
 
     // Keyboard hints on right
-    const char* hints="Enter to go   Ctrl+A clear bar";
+    const char* hints="Enter to go   Ctrl+A clear";
     int hw=MeasureText(hints,FONT_TINY);
     if(age>=5.0||GetTime()-statusAt<0)
-        DrawText(hints,sw-hw-14,sh-16,FONT_TINY,{50,70,85,180});
+        DrawText(hints,sw-hw-16,sh-18,FONT_TINY,{150,150,150,200});
 }
 
 // ── Top header ────────────────────────────────────────────
 static void DrawHeader(int sw) {
-    DrawRectangle(0,0,sw,36,{10,12,24,255});
-    DrawLine(0,36,sw,36,{30,44,60,180});
+    DrawRectangle(0,0,sw,46,{30,80,180,255});
+    DrawLine(0,46,sw,46,{20,60,160,255});
     // Logo
-    DrawText("NexOS",14,10,FONT_NORMAL,{80,150,180,230});
-    DrawText("Browser",14+MeasureText("NexOS",FONT_NORMAL)+8,10,FONT_NORMAL,{50,90,110,180});
+    DrawText("NexOS Browser",16,12,FONT_LARGE,{255,255,255,255});
     // Animated dot when browser is running
     double la=GetTime()-lastLaunchAt;
     if(la<4.0){
         float pulse=sinf(animTime*4.0f)*0.4f+0.6f;
-        DrawCircle(sw-20,18,5,{100,220,180,(unsigned char)(int)(pulse*200)});
-        DrawText("Running",sw-95,10,FONT_TINY,{100,200,170,200});
+        DrawCircle(sw-25,23,5,{100,255,180,(unsigned char)(int)(pulse*255)});
     }
 }
 
@@ -548,39 +537,38 @@ int main() {
         waitpid(-1,nullptr,WNOHANG);
 
         BeginDrawing();
-        ClearBackground({8,10,20,255});
-
-        // Subtle background grid
-        for(int x=0;x<sw;x+=44) DrawLine(x,0,x,sh,{14,18,30,55});
-        for(int y=0;y<sh;y+=44) DrawLine(0,y,sw,y,{14,18,30,55});
+        ClearBackground({250,250,252,255});
 
         // Layout (all Y positions relative to sections)
         int y = 0;
 
         // Header bar
         DrawHeader(sw);
-        y = 44;
+        y = 46;
 
-        // Browser picker
-        DrawRectangle(0,y,sw,60,{9,12,22,255});
-        DrawBrowserPicker(sw,y+6);
-        y+=60;
-        DrawLine(0,y,sw,y,{28,40,56,200});
+        // Browser picker section
+        DrawRectangle(0,y,sw,1,{200,200,200,100});
+        DrawRectangle(0,y+1,sw,74,{255,255,255,255});
+        DrawBrowserPicker(sw,y+8);
+        y+=75;
 
-        // URL bar
-        DrawRectangle(0,y,sw,66,{9,11,21,255});
-        DrawUrlBar(sw,y+6);
-        y+=66;
-        DrawLine(0,y,sw,y,{28,40,56,200});
+        // URL bar section
+        DrawRectangle(0,y,sw,1,{200,200,200,100});
+        DrawRectangle(0,y+1,sw,78,{255,255,255,255});
+        DrawUrlBar(sw,y+8);
+        y+=79;
 
-        // Bookmarks
-        DrawRectangle(0,y,sw,66,{8,10,20,255});
-        DrawBookmarks(sw,y+6);
-        y+=66;
-        DrawLine(0,y,sw,y,{28,40,56,200});
+        // Bookmarks section
+        DrawRectangle(0,y,sw,1,{200,200,200,100});
+        DrawRectangle(0,y+2,sw,1,{200,200,200,100});
+        int bkHeight = (sh-24-y > 200) ? 130 : 100;
+        DrawRectangle(0,y+2,sw,bkHeight,{255,255,255,255});
+        DrawBookmarks(sw,y+8);
+        y+=bkHeight+2;
 
         // History (fills remaining space)
-        DrawHistory(sw,y,sh-22);
+        DrawRectangle(0,y,sw,1,{200,200,200,100});
+        DrawHistory(sw,y+1,sh-24);
 
         // Status bar
         DrawStatusBar(sw,sh);
