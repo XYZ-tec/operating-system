@@ -271,11 +271,11 @@ static bool NiceButton(Rectangle r, const char* label, Color accent) {
 // ── Sections ──────────────────────────────────────────────
 static void DrawBrowserPicker(int sw, int topY) {
     // Label
-    DrawText("Browser", 20, topY, FONT_SMALL, {100, 100, 100, 255});
+    DrawText("Browser", 20, topY, FONT_NORMAL, {20, 20, 20, 255});
 
     if (installed.empty()) {
         DrawText("No supported browser found. Install Chromium, Firefox, or Brave.",
-                 20, topY+30, FONT_SMALL, {220,100,100,255});
+                 20, topY+18, FONT_NORMAL, {160,80,80,255});
         return;
     }
 
@@ -299,7 +299,7 @@ static void DrawBrowserPicker(int sw, int topY) {
 
 static void DrawUrlBar(int sw, int topY) {
     // Label
-    DrawText("URL", 20, topY, FONT_SMALL, {100, 100, 100, 255});
+    DrawText("URL", 20, topY, FONT_NORMAL, {20, 20, 20, 255});
 
     int barW = sw - 130;
     Rectangle box={20,(float)(topY+26),(float)barW,40};
@@ -313,7 +313,7 @@ static void DrawUrlBar(int sw, int topY) {
     std::string display(urlBuf);
     while(display.size()>1 && MeasureText(display.c_str(),FONT_NORMAL)>barW-20)
         display = display.substr(1);
-    DrawText(display.c_str(),(int)box.x+12,(int)box.y+10,FONT_NORMAL,{50,50,50,255});
+    DrawText(display.c_str(),(int)box.x+12,(int)box.y+10,FONT_NORMAL,{20,20,20,255});
 
     // Blinking cursor
     if(urlFocused&&(int)(GetTime()*2)%2==0){
@@ -353,7 +353,7 @@ static void DrawUrlBar(int sw, int topY) {
 }
 
 static void DrawBookmarks(int sw, int topY) {
-    DrawText("Quick Access", 20, topY, FONT_SMALL, {100, 100, 100, 255});
+    DrawText("Quick Access", 20, topY, FONT_NORMAL, {20, 20, 20, 255});
 
     int bx=20, by=topY+26;
     int maxW=sw-24;
@@ -380,7 +380,7 @@ static void DrawBookmarks(int sw, int topY) {
 static void DrawHistory(int sw, int topY, int botY) {
     int h=botY-topY;
     DrawRectangle(0,topY,sw,1,{200,200,200,150});
-    DrawText("Recent Launches", 20, topY+8, FONT_SMALL, {100, 100, 100, 255});
+    DrawText("Recent Launches", 20, topY+8, FONT_NORMAL, {20, 20, 20, 255});
 
     if(history.empty()){
         DrawText("No history yet. Click a bookmark or enter a URL to get started.",
@@ -455,7 +455,7 @@ static void DrawHistory(int sw, int topY, int botY) {
 
 static void DrawStatusBar(int sw, int sh) {
     DrawRectangle(0,sh-24,sw,24,{240,240,242,255});
-    DrawLine(0,sh-24,sw,24,{200,200,200,150});
+    DrawLine(0,sh-24,sw,sh-24,{200,200,200,150});
 
     // Status message
     double age=GetTime()-statusAt;
