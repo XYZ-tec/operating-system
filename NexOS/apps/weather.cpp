@@ -26,7 +26,13 @@
 #define HDD_MB     5
 #define WIN_W     960
 #define WIN_H     660
-
+static Font gFont; static bool gFontOK=false;
+static void DT(const char* t,int x,int y,int sz,Color c){
+    if(gFontOK)DrawTextEx(gFont,t,{(float)x,(float)y},(float)sz,1.2f,c);
+    else DrawText(t,x,y,sz,c);}
+static int MT(const char* t,int sz){
+    if(gFontOK)return(int)MeasureTextEx(gFont,t,(float)sz,1.2f).x;
+    return MeasureText(t,sz);}
 // ── City data ─────────────────────────────────────────────
 struct CityWeather {
     std::string name;
@@ -581,7 +587,12 @@ int main() {
     SetTargetFPS(60);
     SetExitKey(KEY_NULL);
     SetWindowFocused();
-
+    gFontOK=false;
+    if(FileExists("assets/fonts/DejaVuSans-Bold.ttf")){
+        gFont=LoadFontEx("assets/fonts/DejaVuSans-Bold.ttf",20,nullptr,0);
+        gFontOK=(gFont.texture.id>0);
+        if(gFontOK)SetTextureFilter(gFont.texture,TEXTURE_FILTER_BILINEAR);
+    }
     srand((unsigned)time(nullptr));
 
     // Default cities
@@ -638,6 +649,7 @@ int main() {
     }
 
     appRunning = false;
+      if(gFontOK)UnloadFont(gFont);
     ReleaseResources(APP_NAME, RAM_MB, HDD_MB);
     CloseWindow();
     return 0;

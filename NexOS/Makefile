@@ -23,7 +23,6 @@ APPS = \
   apps/nexos_shell \
   apps/notepad \
   apps/paint \
-  apps/snipingtool \
   apps/songplayer \
   apps/tetris \
   apps/visualization \

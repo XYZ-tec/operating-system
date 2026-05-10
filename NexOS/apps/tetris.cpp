@@ -22,6 +22,9 @@ static constexpr int BOARD_W = 10;
 static constexpr int BOARD_H = 20;
 enum PieceType { I = 0, O, T, S, Z, J, L };
 
+enum GameState { MENU, CONTROLS, PLAYING };
+static GameState gameState = MENU;
+
 struct Piece {
     int type = I;
     int rot = 0;
@@ -138,7 +141,6 @@ static void EnsureQueueFilled() {
 }
 
 static double FallInterval() {
-    // Faster drop with higher levels.
     double base = 0.72 - (level - 1) * 0.055;
     if (base < 0.08) base = 0.08;
     return base;
@@ -196,7 +198,7 @@ static int ClearLines() {
         }
         for (int x = 0; x < BOARD_W; x++) board[0][x] = 0;
         cleared++;
-        y++; // re-check same row after collapse
+        y++;
     }
     return cleared;
 }
@@ -227,7 +229,6 @@ static void RotatePiece(int dir) {
         return;
     }
 
-    // Basic wall kicks.
     const int kicks[] = {-1, 1, -2, 2};
     for (int dx : kicks) {
         test = current;
@@ -256,7 +257,7 @@ static bool SoftDropOne() {
 static void HardDrop() {
     int dropped = 0;
     while (SoftDropOne()) dropped++;
-    score += dropped; // extra reward on top of soft drop points already applied
+    score += dropped;
     LockPiece();
     int lines = ClearLines();
     ApplyLineScore(lines);
@@ -344,7 +345,6 @@ static void DrawBoard(Rectangle area, int cellSize) {
     DrawRectangleRec(boardRect, Color{40, 42, 62, 255});
     DrawRectangleLinesEx(boardRect, 1.0f, BORDER_DIM);
 
-    // Grid lines
     for (int x = 1; x < BOARD_W; x++) {
         DrawLine((int)(boardRect.x + x * cellSize), (int)boardRect.y,
                  (int)(boardRect.x + x * cellSize), (int)(boardRect.y + boardRect.height), Color{70, 76, 108, 120});
@@ -354,7 +354,6 @@ static void DrawBoard(Rectangle area, int cellSize) {
                  (int)(boardRect.x + boardRect.width), (int)(boardRect.y + y * cellSize), Color{70, 76, 108, 120});
     }
 
-    // Locked cells
     for (int y = 0; y < BOARD_H; y++) {
         for (int x = 0; x < BOARD_W; x++) {
             int v = board[y][x];
@@ -370,7 +369,6 @@ static void DrawBoard(Rectangle area, int cellSize) {
         }
     }
 
-    // Ghost piece
     for (int r = 0; r < 4; r++) {
         for (int c = 0; c < 4; c++) {
             if (!SHAPES[ghost.type][ghost.rot][r][c]) continue;
@@ -390,7 +388,6 @@ static void DrawBoard(Rectangle area, int cellSize) {
         }
     }
 
-    // Current piece
     for (int r = 0; r < 4; r++) {
         for (int c = 0; c < 4; c++) {
             if (!SHAPES[current.type][current.rot][r][c]) continue;
@@ -415,11 +412,16 @@ static void DrawBoard(Rectangle area, int cellSize) {
         DrawText(msg, (int)(boardRect.x + (boardRect.width - tw) * 0.5f),
                  (int)(boardRect.y + boardRect.height * 0.45f), FONT_TITLE, gameOver ? NEON_PINK : NEON_CYAN);
         if (gameOver) {
-            DrawText("Press R to restart", (int)(boardRect.x + 90), (int)(boardRect.y + boardRect.height * 0.55f),
-                     FONT_NORMAL, TEXT_PRIMARY);
+            const char* r1 = "Press R to restart";
+            const char* r2 = "Press M for menu";
+            DrawText(r1, (int)(boardRect.x + (boardRect.width - MeasureText(r1, FONT_NORMAL)) * 0.5f),
+                     (int)(boardRect.y + boardRect.height * 0.55f), FONT_NORMAL, TEXT_PRIMARY);
+            DrawText(r2, (int)(boardRect.x + (boardRect.width - MeasureText(r2, FONT_NORMAL)) * 0.5f),
+                     (int)(boardRect.y + boardRect.height * 0.63f), FONT_NORMAL, TEXT_MUTED);
         } else {
-            DrawText("Press P to resume", (int)(boardRect.x + 94), (int)(boardRect.y + boardRect.height * 0.55f),
-                     FONT_NORMAL, TEXT_PRIMARY);
+            const char* r1 = "Press P to resume";
+            DrawText(r1, (int)(boardRect.x + (boardRect.width - MeasureText(r1, FONT_NORMAL)) * 0.5f),
+                     (int)(boardRect.y + boardRect.height * 0.55f), FONT_NORMAL, TEXT_PRIMARY);
         }
     }
 }
@@ -466,6 +468,10 @@ static void DrawUI(Rectangle content) {
     if (DrawButton({right.x + right.width - 106, right.y + 10, 94, 28}, "Reset", BG_HOVER, NEON_PINK, FONT_SMALL)) {
         ResetGame();
     }
+    // Menu button
+    if (DrawButton({right.x + right.width - 106, right.y + 44, 94, 28}, "Menu", BG_HOVER, NEON_CYAN, FONT_SMALL)) {
+        gameState = MENU;
+    }
     y += 98.0f;
 
     float holdBoxH = std::clamp(right.height * 0.14f, 58.0f, 92.0f);
@@ -474,7 +480,6 @@ static void DrawUI(Rectangle content) {
     DrawPieceMini(holdType, {right.x + 12, y, right.width - 24, holdBoxH});
     y += holdBoxH + 14.0f;
 
-    // Controls block adapts first, then "next" uses the remaining space.
     bool compact = right.height < 620.0f;
     int controlsLines = compact ? 4 : 5;
     int controlsBlockH = compact ? 94 : 118;
@@ -512,11 +517,148 @@ static void DrawUI(Rectangle content) {
     }
 }
 
+// ============================================================
+//  MAIN MENU
+// ============================================================
+static void DrawMainMenu(int sw, int sh) {
+    ClearBackground(BG_DEEP);
+    DrawCyberpunkGrid(sw, sh);
+
+    // Animated falling pieces in background (decorative mini-board strip)
+    // Dark overlay panel
+    int panelW = 440, panelH = 460;
+    int px = (sw - panelW) / 2;
+    int py = (sh - panelH) / 2 - 10;
+    DrawRectangle(px, py, panelW, panelH, Color{28, 30, 48, 230});
+    DrawGlowRect({(float)px, (float)py, (float)panelW, (float)panelH}, NEON_CYAN, 8);
+
+    // Title glow
+    DrawRectangle(px + 10, py + 18, panelW - 20, 80, Color{0, 255, 200, 14});
+
+    // Title text
+    const char* title = "TETRIS";
+    int titleSize = 64;
+    int tw = MeasureText(title, titleSize);
+    // Shadow
+    DrawText(title, (sw - tw) / 2 + 3, py + 28 + 3, titleSize, Color{0, 100, 80, 180});
+    DrawText(title, (sw - tw) / 2, py + 28, titleSize, NEON_CYAN);
+
+    // Subtitle
+    const char* sub = "NexOS Edition";
+    int sw2 = MeasureText(sub, FONT_SMALL);
+    DrawText(sub, (sw - sw2) / 2, py + 102, FONT_SMALL, Color{0, 200, 160, 200});
+
+    // Divider
+    DrawLine(px + 30, py + 126, px + panelW - 30, py + 126, Color{0, 255, 200, 60});
+
+    // Buttons
+    float btnW = 280, btnH = 48;
+    float btnX = (sw - btnW) / 2.0f;
+
+    struct MenuBtn { const char* label; Color fg; float yOff; };
+    MenuBtn btns[] = {
+        { "PLAY GAME",  NEON_CYAN,   150.0f },
+        { "CONTROLS",  NEON_GOLD,   216.0f },
+        { "QUIT",      NEON_PINK,   282.0f },
+    };
+
+    for (int i = 0; i < 3; i++) {
+        Rectangle r = { btnX, (float)(py + btns[i].yOff), btnW, btnH };
+        bool hov = CheckCollisionPointRec(GetMousePosition(), r);
+        Color fill = hov ? Color{btns[i].fg.r, btns[i].fg.g, btns[i].fg.b, 40} : Color{30, 32, 52, 220};
+        DrawRectangleRec(r, fill);
+        DrawRectangleLinesEx(r, hov ? 1.8f : 1.0f, hov ? btns[i].fg : BORDER_DIM);
+        if (hov) {
+            // Left accent bar
+            DrawRectangle((int)r.x, (int)r.y, 4, (int)btnH, btns[i].fg);
+        }
+        int lw = MeasureText(btns[i].label, FONT_LARGE);
+        DrawText(btns[i].label, (int)(r.x + (btnW - lw) / 2), (int)(r.y + (btnH - FONT_LARGE) / 2), FONT_LARGE,
+                 hov ? btns[i].fg : TEXT_PRIMARY);
+
+        if (hov && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
+            if (i == 0) { ResetGame(); gameState = PLAYING; }
+            else if (i == 1) { gameState = CONTROLS; }
+            else if (i == 2) { appRunning = false; }
+        }
+    }
+
+    // Footer
+    const char* hint = "Double-click or press ENTER to play";
+    int hw = MeasureText(hint, FONT_TINY);
+    DrawText(hint, (sw - hw) / 2, py + panelH - 22, FONT_TINY, TEXT_DIM);
+
+    // ENTER shortcut
+    if (IsKeyPressed(KEY_ENTER)) { ResetGame(); gameState = PLAYING; }
+}
+
+// ============================================================
+//  CONTROLS SCREEN
+// ============================================================
+static void DrawControlsScreen(int sw, int sh) {
+    ClearBackground(BG_DEEP);
+    DrawCyberpunkGrid(sw, sh);
+
+    int panelW = 480, panelH = 420;
+    int px = (sw - panelW) / 2;
+    int py = (sh - panelH) / 2;
+    DrawRectangle(px, py, panelW, panelH, Color{28, 30, 48, 230});
+    DrawGlowRect({(float)px, (float)py, (float)panelW, (float)panelH}, NEON_GOLD, 6);
+
+    // Title
+    const char* title = "CONTROLS";
+    int tw = MeasureText(title, FONT_TITLE);
+    DrawText(title, (sw - tw) / 2, py + 20, FONT_TITLE, NEON_GOLD);
+    DrawLine(px + 24, py + 60, px + panelW - 24, py + 60, Color{255, 210, 0, 60});
+
+    struct CtrlRow { const char* key; const char* action; };
+    CtrlRow rows[] = {
+        { "Left / Right Arrow", "Move piece" },
+        { "Down Arrow",         "Soft drop" },
+        { "Up Arrow / X",       "Rotate clockwise" },
+        { "Z",                  "Rotate counter-clockwise" },
+        { "Space",              "Hard drop" },
+        { "C",                  "Hold piece" },
+        { "P",                  "Pause / Resume" },
+        { "R",                  "Restart (game over)" },
+        { "M",                  "Return to menu" },
+    };
+
+    int rowCount = 9;
+    int startY = py + 76;
+    for (int i = 0; i < rowCount; i++) {
+        int ry = startY + i * 34;
+        Color rowBg = i % 2 == 0 ? Color{36, 38, 58, 180} : Color{44, 46, 68, 120};
+        DrawRectangle(px + 16, ry, panelW - 32, 30, rowBg);
+        // Key column
+        int kw = MeasureText(rows[i].key, FONT_SMALL);
+        DrawText(rows[i].key, px + 20, ry + 7, FONT_SMALL, NEON_CYAN);
+        // Separator dot
+        DrawText("—", px + 24 + kw, ry + 7, FONT_SMALL, TEXT_DIM);
+        // Action
+        DrawText(rows[i].action, px + 40 + kw, ry + 7, FONT_SMALL, TEXT_PRIMARY);
+    }
+
+    // Back button
+    Rectangle backBtn = { (float)((sw - 160) / 2), (float)(py + panelH - 52), 160, 38 };
+    bool hov = CheckCollisionPointRec(GetMousePosition(), backBtn);
+    DrawRectangleRec(backBtn, hov ? Color{0, 255, 200, 40} : Color{30, 32, 52, 220});
+    DrawRectangleLinesEx(backBtn, hov ? 1.8f : 1.0f, hov ? NEON_CYAN : BORDER_DIM);
+    int blw = MeasureText("BACK", FONT_NORMAL);
+    DrawText("BACK", (int)(backBtn.x + (160 - blw) / 2), (int)(backBtn.y + 10), FONT_NORMAL, hov ? NEON_CYAN : TEXT_PRIMARY);
+
+    if ((hov && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) || IsKeyPressed(KEY_ESCAPE) || IsKeyPressed(KEY_BACKSPACE)) {
+        gameState = MENU;
+    }
+}
+
 static void HandleInput(double dt) {
     if (IsKeyPressed(KEY_P)) paused = !paused;
+    if (IsKeyPressed(KEY_M)) { gameState = MENU; return; }
 
     if (gameOver) {
         if (IsKeyPressed(KEY_R)) ResetGame();
+        if (IsKeyPressed(KEY_M)) gameState = MENU;
         return;
     }
 
@@ -576,22 +718,31 @@ int main() {
     SetExitKey(KEY_NULL);
     SetWindowFocused();
 
-    ResetGame();
+    gameState = MENU;
 
     while (!WindowShouldClose() && appRunning) {
         double dt = GetFrameTime();
-        HandleInput(dt);
-
         int sw = GetScreenWidth();
         int sh = GetScreenHeight();
-        Rectangle content = {20, 40, (float)(sw - 40), (float)(sh - 60)};
 
         BeginDrawing();
-        ClearBackground(BG_DEEP);
-        DrawCyberpunkGrid(sw, sh);
-        DrawRectangleRounded(content, 0.05f, 8, BG_PANEL);
-        DrawRectangleLinesEx(content, 1.0f, BORDER_DIM);
-        DrawUI(content);
+
+        if (gameState == MENU) {
+            DrawMainMenu(sw, sh);
+        } else if (gameState == CONTROLS) {
+            DrawControlsScreen(sw, sh);
+        } else {
+            // PLAYING
+            HandleInput(dt);
+
+            Rectangle content = {20, 40, (float)(sw - 40), (float)(sh - 60)};
+            ClearBackground(BG_DEEP);
+            DrawCyberpunkGrid(sw, sh);
+            DrawRectangleRounded(content, 0.05f, 8, BG_PANEL);
+            DrawRectangleLinesEx(content, 1.0f, BORDER_DIM);
+            DrawUI(content);
+        }
+
         EndDrawing();
     }
 

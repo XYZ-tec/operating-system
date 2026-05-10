@@ -25,12 +25,12 @@
 #define HDD_MB    10
 
 // ── Terminal layout ───────────────────────────────────────
-#define TERM_FONT_SIZE  15
-#define TERM_LINE_H     18
-#define TERM_PAD_X      10
+#define TERM_FONT_SIZE  16
+#define TERM_LINE_H     21
+#define TERM_PAD_X      14
 #define TERM_PAD_Y       8
-#define INPUT_H          28
-#define TOPBAR_H         32
+#define INPUT_H          32
+#define TOPBAR_H         52
 
 // ── Terminal colours ──────────────────────────────────────
 static const Color TERM_BG       = { 44, 46, 66, 255};
@@ -549,30 +549,63 @@ static void DoTabComplete(){
 }
 
 // ============================================================
-//  Draw top bar
+//  Draw top bar  — Claude-code-style terminal header
 // ============================================================
 static void DrawTopBar(int sw){
-    // Subtle "neon" gradient.
+    // Base fill — slightly lighter than terminal body
+    DrawRectangle(0,0,sw,TOPBAR_H,{32,34,52,255});
+
+    // Subtle vertical gradient overlay
     for(int y=0;y<TOPBAR_H;y++){
-        float t = (float)y/(float)std::max(1,TOPBAR_H-1);
-        unsigned char r = (unsigned char)(42 + (54-42)*t);
-        unsigned char g = (unsigned char)(44 + (52-44)*t);
-        unsigned char b = (unsigned char)(62 + (80-62)*t);
-        DrawRectangle(0,y,sw,1,{r,g,b,255});
+        float t=(float)y/std::max(1,TOPBAR_H-1);
+        unsigned char a=(unsigned char)(18*(1.0f-t));
+        DrawRectangle(0,y,sw,1,{255,255,255,a});
     }
-    float pulse = 0.55f + 0.45f*(float)sin(GetTime()*2.2);
-    DrawLine(0,TOPBAR_H,sw,TOPBAR_H,{UI_ACCENT_B.r,UI_ACCENT_B.g,UI_ACCENT_B.b,(unsigned char)(40 + 90*pulse)});
 
-    // Shell title
-    DrawText("NexOS Shell",10,9,FONT_NORMAL,NEON_CYAN);
+    // Left accent bar  ▌
+    DrawRectangle(0,0,3,TOPBAR_H,NEON_CYAN);
 
-    // Current dir
-    std::string dirInfo="  ["+currentDir+"]";
-    DrawText(dirInfo.c_str(),MeasureText("NexOS Shell",FONT_NORMAL)+12,10,FONT_SMALL,TEXT_MUTED);
+    // >_ icon pill
+    int iconX=12, iconY=12;
+    DrawRectangle(iconX,iconY,36,28,{0,255,200,22});
+    DrawRectangleLinesEx({(float)iconX,(float)iconY,36,28},1.0f,{0,255,200,90});
+    DT(">_",iconX+5,iconY+6,{0,255,200,255});
 
-    // Shortcuts hint
-    const char* hint="UP/DOWN history  Tab autocomplete  help  exit";
-    DrawText(hint,sw-MeasureText(hint,FONT_TINY)-10,11,FONT_TINY,TEXT_DIM);
+    // Title: "NexOS" bright + "Shell" muted
+    int tx=iconX+44;
+    DT("NexOS",tx,11,NEON_CYAN);
+    int nw=MT("NexOS");
+    DT(" Shell",tx+nw,11,TEXT_MUTED);
+
+    // Separator dot
+    int sepX=tx+nw+MT(" Shell")+10;
+    DrawCircle(sepX,TOPBAR_H/2,2,{0,255,200,80});
+
+    // Directory breadcrumb
+    std::string dirLabel=" "+currentDir;
+    DT(dirLabel.c_str(),sepX+10,11,TEXT_DIM);
+
+    // Right side: status pill + shortcuts
+    time_t now=time(nullptr);
+    struct tm* tm=localtime(&now);
+    char timeBuf[12]; strftime(timeBuf,sizeof(timeBuf),"%H:%M",tm);
+
+    // Time chip
+    int tw2=MT(timeBuf);
+    int chipX=sw-tw2-20;
+    DrawRectangle(chipX-8,13,tw2+16,22,{0,255,200,16});
+    DrawRectangleLinesEx({(float)(chipX-8),13,(float)(tw2+16),22},1.0f,{0,255,200,50});
+    DT(timeBuf,chipX,16,{0,255,200,200});
+
+    // Keyboard hint (left of time)
+    const char* hint="Tab  UP/DN  Ctrl+L  help  exit";
+    int hw=MT(hint);
+    DT(hint,chipX-hw-20,16,TEXT_DIM);
+
+    // Animated bottom glow line
+    float pulse=0.5f+0.5f*(float)sin(GetTime()*2.5f);
+    DrawRectangle(0,TOPBAR_H-2,sw,2,{0,255,200,(unsigned char)(30+60*pulse)});
+    DrawLine(0,TOPBAR_H,sw,TOPBAR_H,{92,94,128,255});
 }
 
 // ============================================================
@@ -752,18 +785,10 @@ int main(){
     SetTargetFPS(60);SetExitKey(KEY_NULL);
     SetWindowFocused();
 
-    // Same font strategy as os.cpp / file_manager: default glyph set from TTF.
-    // Terminal UI strings stay ASCII-only so they still render if only the
-    // raylib default font is available (no Unicode box-drawing, etc.).
+    // Load DejaVu Sans Bold — same font as os.cpp so the whole OS feels unified
     shFontOK=false;
-    if(FileExists("assets/fonts/JetBrainsMono-Regular.ttf")){
-        shFont=LoadFontEx("assets/fonts/JetBrainsMono-Regular.ttf",28,nullptr,0);
-        shFontOK=(shFont.texture.id>0);
-    } else if(FileExists("assets/fonts/Roboto-Regular.ttf")){
-        shFont=LoadFontEx("assets/fonts/Roboto-Regular.ttf",28,nullptr,0);
-        shFontOK=(shFont.texture.id>0);
-    } else if(FileExists("assets/fonts/Ubuntu-R.ttf")){
-        shFont=LoadFontEx("assets/fonts/Ubuntu-R.ttf",28,nullptr,0);
+    if(FileExists("assets/fonts/DejaVuSans-Bold.ttf")){
+        shFont=LoadFontEx("assets/fonts/DejaVuSans-Bold.ttf",32,nullptr,0);
         shFontOK=(shFont.texture.id>0);
     }
     if(shFontOK)SetTextureFilter(shFont.texture,TEXTURE_FILTER_BILINEAR);
@@ -774,13 +799,17 @@ int main(){
 
     // Boot message
     PushLine("",TERM_OUTPUT);
-    PushLine("  +==========================================+", UI_ACCENT_B);
-    PushLine("  |          N E X O S   S H E L L            |", NEON_CYAN);
-    PushLine("  +==========================================+", UI_ACCENT_A);
+    PushLine("  +----------------------------------------------+", NEON_CYAN);
+    PushLine("  |                                                  |", NEON_CYAN);
+    PushLine("  |   >_  N E X O S   S H E L L   v 1 . 0            |", NEON_CYAN);
+    PushLine("  |                                                  |", NEON_CYAN);
+    PushLine("  +----------------------------------------------+", UI_ACCENT_A);
     PushLine("",TERM_OUTPUT);
-    PushLine("  NexOS Shell v1.0  -  Neon TTY Mode",TERM_PROMPT);
-    PushLine("  Type 'help' to see all commands.",TEXT_MUTED);
-    PushLine("  Files are stored in: hdd/",TEXT_MUTED);
+    PushLine("  Connected to NexOS kernel -- TTY/1",TERM_PROMPT);
+    PushLine("",TERM_OUTPUT);
+    PushLine("  Type  help   to list all commands",TEXT_MUTED);
+    PushLine("  Type  exit   to close this shell",TEXT_MUTED);
+    PushLine("  Files live in:  hdd/",TEXT_DIM);
     PushLine("",TERM_OUTPUT);
     PushPrompt();
 
