@@ -978,14 +978,13 @@ int main()
 
     // ── STEP 4b: Load wallpaper ────────────────────────────
     gWallpaperLoaded = false;
-    if (FileExists("assets/wallpaper1.png")) {
-        gWallpaper = LoadTexture("assets/wallpaper1.png");
+    if (FileExists("assets/wallpaper.png")) {
+        gWallpaper = LoadTexture("assets/wallpaper.png");
         gWallpaperLoaded = (gWallpaper.id > 0);
         if (gWallpaperLoaded) SetTextureFilter(gWallpaper, TEXTURE_FILTER_BILINEAR);
     }
 
     UpdateSearch();
-
     // ── STEP 5: Boot animation ─────────────────────────────
     RunBootAnimation(sw,sh);
 

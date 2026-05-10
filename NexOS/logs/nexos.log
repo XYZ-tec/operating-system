@@ -1,0 +1,1724 @@
+[15:40:12] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[15:40:16] Launched 'Clock' (PID:45164).
+[15:40:18] Process 'Clock' (PID:45164) exited.
+[15:40:31] NexOS shutting down. Terminating all processes.
+[15:40:59] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[15:41:03] Launched 'Clock' (PID:45282).
+[15:41:05] Process 'Clock' (PID:45282) exited.
+[15:42:34] NexOS shutting down. Terminating all processes.
+[23:47:58] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[23:48:03] Launched 'Clock' (PID:63639).
+[23:48:04] Process 'Clock' (PID:63639) exited.
+[23:48:32] NexOS shutting down. Terminating all processes.
+[03:09:14] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[03:09:18] Launched 'Clock' (PID:76799).
+[03:09:19] Process 'Clock' (PID:76799) exited.
+[03:10:08] NexOS shutting down. Terminating all processes.
+[03:13:31] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[03:13:35] Launched 'Clock' (PID:77265).
+[03:13:36] Process 'Clock' (PID:77265) exited.
+[03:30:05] NexOS shutting down. Terminating all processes.
+[03:30:15] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[03:30:19] Launched 'Clock' PID:78780
+[03:30:20] PID:78780 exited
+[03:31:26] NexOS shutting down
+[03:31:41] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[03:31:46] Launched 'Clock' PID:78909
+[03:31:47] PID:78909 exited
+[03:31:51] NexOS shutting down
+[03:31:58] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[03:32:02] Launched 'Clock' PID:78988
+[03:32:03] PID:78988 exited
+[03:34:04] NexOS shutting down
+[03:34:08] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[03:34:12] Launched 'Clock' PID:79225
+[03:34:12] NexOS shutting down
+[03:34:17] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[03:34:22] Launched 'Clock' PID:79288
+[03:34:23] PID:79288 exited
+[03:34:44] NexOS shutting down
+[03:37:44] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[03:37:49] Launched 'Clock' PID:80209
+[03:37:50] PID:80209 exited
+[03:38:17] NexOS shutting down
+[03:40:12] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[03:40:16] Launched 'Clock' PID:80396
+[03:40:17] PID:80396 exited
+[03:40:22] NexOS shutting down
+[03:53:32] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[03:53:36] Launched 'Clock' PID:87718
+[03:53:37] PID:87718 exited
+[03:54:02] NexOS shutting down
+[03:57:00] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[03:57:04] Launched 'Clock' PID:88597
+[03:57:05] PID:88597 exited
+[03:58:56] NexOS shutting down
+[03:59:04] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[03:59:08] Launched 'Clock' PID:88883
+[03:59:09] PID:88883 exited
+[04:00:06] NexOS shutting down
+[04:00:12] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[04:00:17] Launched 'Clock' PID:89063
+[04:00:18] PID:89063 exited
+[04:03:16] NexOS shutting down
+[04:03:22] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[04:03:26] Launched 'Clock' PID:89536
+[04:03:28] PID:89536 exited
+[04:04:18] NexOS shutting down
+[04:04:25] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[04:04:30] Launched 'Clock' PID:89700
+[04:04:31] PID:89700 exited
+[04:04:43] Launched 'Kernel Monitor' PID:89742
+[04:04:44] PID:89742 exited
+[04:16:38] NexOS shutting down
+[04:25:35] NexOS booting. RAM:4096MB HDD:262144MB Cores:8
+[04:25:40] Launched 'Clock' PID:92278
+[04:25:41] PID:92278 exited
+[04:26:12] Kernel mode unlocked
+[04:26:52] Kernel locked
+[04:27:15] NexOS shutting down
+[04:27:54] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[04:27:59] Launched 'Clock' PID:92780
+[04:28:00] PID:92780 exited
+[04:28:09] NexOS shutting down
+[04:28:44] NexOS booting. RAM:4096MB HDD:262144MB Cores:8
+[04:28:49] Launched 'Clock' PID:93071
+[04:28:50] PID:93071 exited
+[04:30:01] NexOS shutting down
+[04:30:40] NexOS booting. RAM:4096MB HDD:262144MB Cores:8
+[04:30:44] Launched 'Clock' PID:93744
+[04:30:45] PID:93744 exited
+[04:30:57] Launched 'Tetris' PID:93923
+[04:30:58] PID:93923 exited
+[04:31:12] Kernel mode unlocked
+[04:31:16] Kernel locked
+[04:32:10] NexOS shutting down
+[04:32:55] NexOS booting. RAM:4096MB HDD:262144MB Cores:8
+[04:32:59] Launched 'Clock' PID:94695
+[04:33:00] PID:94695 exited
+[04:33:24] Kernel mode unlocked
+[04:33:27] Kernel locked
+[04:33:32] NexOS shutting down
+[04:46:18] NexOS booting. RAM:2048MB HDD:4096MB Cores:4
+[04:46:22] Launched 'Clock' PID:96679
+[04:46:23] PID:96679 exited
+[04:46:31] NexOS shutting down
+[04:47:35] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[04:47:39] Launched 'Clock' PID:96880
+[04:47:40] PID:96880 exited
+[04:48:25] Launched 'Chat' PID:96945
+[04:48:27] PID:96945 exited
+[04:48:33] NexOS shutting down
+[04:50:09] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[04:50:13] Launched 'Clock' PID:97135
+[04:50:15] PID:97135 exited
+[04:51:29] NexOS shutting down
+[04:56:35] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[04:56:39] Launched 'Clock' PID:98070
+[04:56:41] PID:98070 exited
+[04:56:51] NexOS shutting down
+[23:55:50] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[23:55:54] Launched 'Clock' PID:14376
+[23:55:56] PID:14376 exited
+[23:56:39] NexOS shutting down
+[23:56:50] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[23:56:54] Launched 'Clock' PID:14556
+[23:56:56] PID:14556 exited
+[00:04:07] NexOS shutting down
+[00:05:06] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[00:05:11] Launched 'Clock' PID:15148
+[00:05:12] PID:15148 exited
+[00:05:22] NexOS shutting down
+[00:05:50] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[00:05:55] Launched 'Clock' PID:15268
+[00:05:56] PID:15268 exited
+[00:06:08] Launched 'Notepad' PID:15298
+[00:06:08] 'Notepad' (PID:15298) granted RAM:50MB HDD:10MB
+[00:08:12] Kernel mode unlocked
+[00:08:56] Killed PID:15298
+[00:08:56] PID:15298 exited
+[00:08:58] Killed PID:15298
+[00:08:59] Killed PID:15298
+[00:08:59] Killed PID:15298
+[00:08:59] Killed PID:15298
+[00:09:22] Launched 'Notepad' PID:15462
+[00:09:22] 'Notepad' (PID:15462) granted RAM:50MB HDD:10MB
+[00:19:50] PID:15462 exited
+[00:19:58] NexOS shutting down
+[00:32:50] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[00:32:54] Launched 'Clock' PID:16319
+[00:32:56] PID:16319 exited
+[00:33:01] Launched 'Notepad' PID:16361
+[00:33:01] 'Notepad' (PID:16361) granted RAM:50MB HDD:10MB
+[00:35:10] PID:16361 exited
+[00:35:22] Launched 'Notepad' PID:16487
+[00:35:22] 'Notepad' (PID:16487) granted RAM:50MB HDD:10MB
+[00:36:59] PID:16487 exited
+[00:43:37] NexOS shutting down
+[00:54:52] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[00:54:56] Launched 'Clock' PID:17327
+[00:54:58] PID:17327 exited
+[00:55:13] Launched 'Notepad' PID:17361
+[00:55:13] 'Notepad' (PID:17361) granted RAM:50MB HDD:10MB
+[00:56:43] PID:17361 exited
+[00:57:04] NexOS shutting down
+[01:00:41] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[01:00:46] Launched 'Clock' PID:17701
+[01:00:47] PID:17701 exited
+[01:00:50] Launched 'Notepad' PID:17722
+[01:00:50] 'Notepad' (PID:17722) granted RAM:50MB HDD:10MB
+[01:02:12] PID:17722 exited
+[01:02:13] NexOS shutting down
+[01:03:18] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[01:03:22] Launched 'Clock' PID:17948
+[01:03:24] PID:17948 exited
+[01:03:29] Launched 'Notepad' PID:17985
+[01:03:29] 'Notepad' (PID:17985) granted RAM:50MB HDD:10MB
+[01:03:53] PID:17985 exited
+[01:04:26] Launched 'Notepad' PID:18058
+[01:04:26] 'Notepad' (PID:18058) granted RAM:50MB HDD:10MB
+[01:08:44] NexOS shutting down
+[01:09:16] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[01:09:20] Launched 'Clock' PID:18404
+[01:09:22] PID:18404 exited
+[01:09:24] Launched 'Notepad' PID:18423
+[01:09:24] 'Notepad' (PID:18423) granted RAM:50MB HDD:10MB
+[01:10:02] PID:18423 exited
+[01:12:12] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[01:12:16] Launched 'Clock' PID:18708
+[01:12:18] PID:18708 exited
+[01:12:24] Launched 'Notepad' PID:18734
+[01:12:24] 'Notepad' (PID:18734) granted RAM:50MB HDD:10MB
+[01:12:33] NexOS shutting down
+[01:13:43] NexOS shutting down
+[01:13:52] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[01:13:56] Launched 'Clock' PID:18918
+[01:13:58] PID:18918 exited
+[01:13:59] Launched 'Notepad' PID:18927
+[01:13:59] 'Notepad' (PID:18927) granted RAM:50MB HDD:10MB
+[01:14:22] PID:18927 exited
+[01:14:27] NexOS shutting down
+[09:07:50] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[09:07:54] Launched 'Clock' PID:5197
+[09:07:56] PID:5197 exited
+[09:08:03] Launched 'Notepad' PID:5228
+[09:08:03] 'Notepad' (PID:5228) granted RAM:50MB
+[09:24:15] NexOS shutting down
+[09:24:27] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[09:24:32] Launched 'Clock' PID:6547
+[09:24:33] PID:6547 exited
+[09:24:39] Launched 'Notepad' PID:6572
+[09:24:39] 'Notepad' (PID:6572) granted RAM:50MB
+[09:32:21] NexOS shutting down
+[09:35:35] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[09:35:40] Launched 'Clock' PID:7716
+[09:35:42] PID:7716 exited
+[09:35:44] Launched 'Notepad' PID:7742
+[09:35:44] 'Notepad' (PID:7742) granted RAM:50MB
+[09:39:39] PID:7742 exited
+[09:39:42] NexOS shutting down
+[09:39:59] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[09:40:04] Launched 'Clock' PID:7934
+[09:40:05] PID:7934 exited
+[09:40:08] Launched 'Notepad' PID:7961
+[09:40:08] 'Notepad' (PID:7961) granted RAM:50MB
+[09:43:33] PID:7961 exited
+[09:43:45] NexOS shutting down
+[09:51:38] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[09:51:42] Launched 'Clock' PID:8971
+[09:51:44] PID:8971 exited
+[09:51:49] Launched 'Notepad' PID:9001
+[09:51:49] 'Notepad' (PID:9001) granted RAM:50MB
+[09:52:19] PID:9001 exited
+[09:52:21] NexOS shutting down
+[10:06:07] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[10:06:11] Launched 'Clock' PID:9786
+[10:06:11] NexOS shutting down
+[10:06:25] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[10:06:30] Launched 'Clock' PID:9886
+[10:06:31] PID:9886 exited
+[10:06:33] Launched 'Notepad' PID:9907
+[10:06:33] 'Notepad' (PID:9907) granted RAM:50MB
+[10:07:39] PID:9907 exited
+[10:07:45] NexOS shutting down
+[10:10:42] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[10:10:47] Launched 'Clock' PID:10111
+[10:10:49] PID:10111 exited
+[10:10:52] Launched 'Notepad' PID:10139
+[10:10:52] 'Notepad' (PID:10139) granted RAM:50MB
+[10:12:30] PID:10139 exited
+[10:12:35] NexOS shutting down
+[10:20:31] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[10:20:36] Launched 'Clock' PID:10551
+[10:20:37] PID:10551 exited
+[10:20:39] Launched 'Notepad' PID:10578
+[10:20:39] 'Notepad' (PID:10578) granted RAM:50MB
+[11:09:07] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[11:09:12] Launched 'Clock' PID:3865
+[11:09:13] PID:3865 exited
+[11:12:35] Kernel unlocked
+[11:12:42] Kernel locked
+[11:12:48] Launched 'Notepad' PID:5126
+[11:12:48] 'Notepad' (PID:5126) granted RAM:50MB
+[11:14:10] Kernel unlocked
+[11:14:18] Killed PID:5126
+[11:14:18] PID:5126 exited
+[11:15:01] NexOS shutting down
+[13:42:48] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[13:42:53] Launched 'Clock' PID:6832
+[13:42:55] PID:6832 exited
+[13:43:02] NexOS shutting down
+[14:00:10] NexOS booting. RAM:4096MB HDD:262144MB Cores:4
+[14:00:14] Launched 'Clock' PID:7291
+[14:00:16] PID:7291 exited
+[14:00:57] Launched 'Notepad' PID:7322
+[14:00:58] 'Notepad' (PID:7322) granted RAM:50MB HDD:10MB
+[14:09:07] Kernel mode unlocked
+[14:09:23] Killed PID:7322
+[14:09:24] PID:7322 exited
+[14:09:41] Kernel locked
+[14:09:45] Kernel mode unlocked
+[14:13:38] Launched 'Notepad' PID:7524
+[14:13:38] 'Notepad' (PID:7524) granted RAM:50MB HDD:10MB
+[14:18:51] PID:7524 exited
+[14:19:44] NexOS shutting down
+[13:07:13] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[13:07:18] Launched 'Clock' PID:11816
+[13:07:19] PID:11816 exited
+[13:07:20] Launched 'Notepad' PID:11830
+[13:07:20] 'Notepad' (PID:11830) granted RAM:50MB HDD:10MB
+[13:08:02] PID:11830 exited
+[13:09:16] NexOS shutting down
+[13:09:29] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[13:09:34] Launched 'Clock' PID:12121
+[13:09:35] PID:12121 exited
+[13:09:36] Launched 'Notepad' PID:12142
+[13:09:36] 'Notepad' (PID:12142) granted RAM:50MB HDD:10MB
+[13:10:56] PID:12142 exited
+[13:13:35] Launched 'Notepad' PID:12358
+[13:13:35] 'Notepad' (PID:12358) granted RAM:50MB HDD:10MB
+[13:13:58] PID:12358 exited
+[13:15:00] NexOS shutting down
+[13:15:31] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[13:15:36] Launched 'Clock' PID:12696
+[13:15:37] PID:12696 exited
+[13:15:38] Launched 'Notepad' PID:12710
+[13:15:38] 'Notepad' (PID:12710) granted RAM:50MB HDD:10MB
+[13:17:09] PID:12710 exited
+[13:17:14] NexOS shutting down
+[13:21:15] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[13:21:20] Launched 'Clock' PID:13175
+[13:21:21] PID:13175 exited
+[13:21:22] Launched 'Notepad' PID:13184
+[13:21:22] 'Notepad' (PID:13184) granted RAM:50MB HDD:10MB
+[13:21:45] PID:13184 exited
+[13:21:50] Launched 'Notepad' PID:13313
+[13:21:50] 'Notepad' (PID:13313) granted RAM:50MB HDD:10MB
+[13:30:02] NexOS shutting down
+[13:30:43] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[13:30:47] Launched 'Clock' PID:13936
+[13:30:49] PID:13936 exited
+[15:19:50] NexOS shutting down
+[15:53:42] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[15:53:47] Launched 'Clock' PID:18184
+[15:53:48] PID:18184 exited
+[15:53:49] Launched 'Notepad' PID:18203
+[15:53:49] 'Notepad' (PID:18203) granted RAM:50MB HDD:10MB
+[16:06:19] Kernel mode unlocked
+[16:09:38] NexOS shutting down
+[13:50:18] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[13:50:23] Launched 'Clock' PID:3931
+[13:50:25] PID:3931 exited
+[13:50:26] Launched 'Notepad' PID:3955
+[13:50:26] 'Notepad' (PID:3955) granted RAM:50MB HDD:10MB
+[13:51:25] Launched 'Notepad' PID:3992
+[13:51:25] 'Notepad' (PID:3992) granted RAM:50MB HDD:10MB
+[13:51:53] Launched 'Notepad' PID:4042
+[13:51:53] 'Notepad' (PID:4042) granted RAM:50MB HDD:10MB
+[13:55:17] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[13:55:22] Launched 'Clock' PID:3870
+[13:55:23] PID:3870 exited
+[13:56:43] Launched 'Notepad' PID:5158
+[13:56:43] 'Notepad' (PID:5158) granted RAM:50MB HDD:10MB
+[13:56:45] Launched 'Notepad' PID:5182
+[13:56:45] 'Notepad' (PID:5182) granted RAM:50MB HDD:10MB
+[13:56:46] Launched 'Notepad' PID:5188
+[13:56:46] 'Notepad' (PID:5188) granted RAM:50MB HDD:10MB
+[13:56:47] Launched 'Notepad' PID:5194
+[13:56:47] 'Notepad' (PID:5194) granted RAM:50MB HDD:10MB
+[13:56:48] Launched 'Notepad' PID:5200
+[13:56:48] 'Notepad' (PID:5200) granted RAM:50MB HDD:10MB
+[13:56:48] Launched 'Notepad' PID:5205
+[13:56:48] 'Notepad' (PID:5205) granted RAM:50MB HDD:10MB
+[13:56:49] Launched 'Notepad' PID:5211
+[13:56:49] 'Notepad' (PID:5211) granted RAM:50MB HDD:10MB
+[13:56:49] Launched 'Notepad' PID:5231
+[13:56:49] 'Notepad' (PID:5231) granted RAM:50MB HDD:10MB
+[13:56:50] Launched 'Notepad' PID:5246
+[13:56:50] 'Notepad' (PID:5246) granted RAM:50MB HDD:10MB
+[13:56:51] Launched 'Notepad' PID:5274
+[13:56:51] 'Notepad' (PID:5274) granted RAM:50MB HDD:10MB
+[13:56:51] Launched 'Notepad' PID:5280
+[13:56:51] 'Notepad' (PID:5280) granted RAM:50MB HDD:10MB
+[13:56:52] Launched 'Notepad' PID:5285
+[13:56:52] 'Notepad' (PID:5285) granted RAM:50MB HDD:10MB
+[13:56:52] Launched 'Notepad' PID:5287
+[13:56:52] 'Notepad' (PID:5287) granted RAM:50MB HDD:10MB
+[13:56:53] Launched 'Notepad' PID:5295
+[13:56:53] 'Notepad' (PID:5295) granted RAM:50MB HDD:10MB
+[13:56:53] Launched 'Notepad' PID:5302
+[13:56:53] 'Notepad' (PID:5302) granted RAM:50MB HDD:10MB
+[13:56:53] Launched 'Notepad' PID:5309
+[13:56:53] 'Notepad' (PID:5309) granted RAM:50MB HDD:10MB
+[13:56:54] Launched 'Notepad' PID:5316
+[13:56:54] 'Notepad' (PID:5316) granted RAM:50MB HDD:10MB
+[13:56:54] Launched 'Notepad' PID:5336
+[13:56:54] 'Notepad' (PID:5336) granted RAM:50MB HDD:10MB
+[13:56:55] Launched 'Notepad' PID:5353
+[13:56:55] 'Notepad' (PID:5353) granted RAM:50MB HDD:10MB
+[13:56:55] Launched 'Notepad' PID:5359
+[13:56:55] 'Notepad' (PID:5359) granted RAM:50MB HDD:10MB
+[13:56:55] Launched 'Notepad' PID:5377
+[13:56:55] 'Notepad' (PID:5377) granted RAM:50MB HDD:10MB
+[13:56:56] Launched 'Notepad' PID:5410
+[13:56:56] 'Notepad' (PID:5410) granted RAM:50MB HDD:10MB
+[13:56:56] Launched 'Notepad' PID:5414
+[13:56:56] 'Notepad' (PID:5414) granted RAM:50MB HDD:10MB
+[13:56:57] Launched 'Notepad' PID:5422
+[13:56:57] 'Notepad' (PID:5422) granted RAM:50MB HDD:10MB
+[13:56:57] Launched 'Notepad' PID:5426
+[13:56:57] 'Notepad' (PID:5426) granted RAM:50MB HDD:10MB
+[13:56:58] Launched 'Notepad' PID:5435
+[13:56:58] 'Notepad' (PID:5435) granted RAM:50MB HDD:10MB
+[13:56:58] Launched 'Notepad' PID:5441
+[13:56:58] 'Notepad' (PID:5441) granted RAM:50MB HDD:10MB
+[13:56:59] Launched 'Notepad' PID:5443
+[13:56:59] 'Notepad' (PID:5443) granted RAM:50MB HDD:10MB
+[13:56:59] Launched 'Notepad' PID:5452
+[13:56:59] 'Notepad' (PID:5452) granted RAM:50MB HDD:10MB
+[13:56:59] Launched 'Notepad' PID:5469
+[13:56:59] 'Notepad' (PID:5469) granted RAM:50MB HDD:10MB
+[13:57:00] Launched 'Notepad' PID:5495
+[13:57:00] 'Notepad' (PID:5495) granted RAM:50MB HDD:10MB
+[13:57:01] Launched 'Notepad' PID:5506
+[13:57:01] 'Notepad' (PID:5506) granted RAM:50MB HDD:10MB
+[13:57:01] Launched 'Notepad' PID:5572
+[13:57:01] 'Notepad' (PID:5572) granted RAM:50MB HDD:10MB
+[13:57:02] Aging PID:5246 prio->1
+[13:57:02] Aging PID:5274 prio->1
+[13:57:02] Aging PID:5280 prio->1
+[13:57:07] Aging PID:5285 prio->1
+[13:57:07] Aging PID:5287 prio->1
+[13:57:07] Aging PID:5295 prio->1
+[13:57:07] Aging PID:5302 prio->1
+[13:57:07] Aging PID:5309 prio->1
+[13:57:07] Aging PID:5316 prio->1
+[13:57:07] Aging PID:5336 prio->1
+[13:57:07] Aging PID:5353 prio->1
+[13:57:07] Aging PID:5359 prio->1
+[13:57:07] Aging PID:5377 prio->1
+[13:57:07] Aging PID:5410 prio->1
+[13:57:07] Aging PID:5414 prio->1
+[13:57:12] Aging PID:5422 prio->1
+[13:57:12] Aging PID:5426 prio->1
+[13:57:12] Aging PID:5435 prio->1
+[13:57:12] Aging PID:5441 prio->1
+[13:57:12] Aging PID:5443 prio->1
+[13:57:12] Aging PID:5452 prio->1
+[13:57:12] Aging PID:5469 prio->1
+[13:57:12] Aging PID:5495 prio->1
+[13:57:12] Aging PID:5506 prio->1
+[13:58:17] PID:5158 exited
+[13:58:22] PID:5182 exited
+[13:58:24] PID:5188 exited
+[13:58:25] PID:5194 exited
+[13:58:27] PID:5200 exited
+[13:58:28] PID:5205 exited
+[13:58:30] PID:5211 exited
+[13:58:31] PID:5295 exited
+[13:58:33] PID:5287 exited
+[13:58:36] PID:5285 exited
+[13:58:38] PID:5280 exited
+[13:58:40] PID:5274 exited
+[13:58:42] PID:5246 exited
+[13:58:44] PID:5231 exited
+[13:58:58] Kernel mode unlocked
+[13:59:37] NexOS shutting down
+[14:26:00] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[14:26:04] Launched 'Clock' PID:8502
+[14:26:04] PID:8502 exited
+[14:26:07] Launched 'Notepad' PID:8518
+[14:26:07] 'Notepad' (PID:8518) granted RAM:50MB HDD:10MB
+[14:26:09] Launched 'Notepad' PID:8524
+[14:26:09] 'Notepad' (PID:8524) granted RAM:50MB HDD:10MB
+[14:26:18] Launched 'Notepad' PID:8551
+[14:26:18] 'Notepad' (PID:8551) granted RAM:50MB HDD:10MB
+[14:26:19] Launched 'Notepad' PID:8557
+[14:26:19] 'Notepad' (PID:8557) granted RAM:50MB HDD:10MB
+[14:26:21] Launched 'Clock' PID:8591
+[14:26:21] PID:8591 exited
+[14:26:22] Launched 'Clock' PID:8592
+[14:26:22] PID:8592 exited
+[14:26:23] Launched 'Clock' PID:8593
+[14:26:23] PID:8593 exited
+[14:26:23] Launched 'Clock' PID:8594
+[14:26:23] PID:8594 exited
+[14:26:24] Launched 'Clock' PID:8595
+[14:26:24] PID:8595 exited
+[14:26:30] NexOS shutting down
+[14:35:06] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[14:35:10] Launched 'Clock' PID:9824
+[14:35:10] PID:9824 exited
+[14:37:07] Launched 'Notepad' PID:10005
+[14:37:07] 'Notepad' (PID:10005) granted RAM:50MB HDD:10MB
+[14:37:08] Launched 'Clock' PID:10022
+[14:37:08] PID:10022 exited
+[14:37:10] Launched 'Clock' PID:10030
+[14:37:10] PID:10030 exited
+[14:37:10] Launched 'Clock' PID:10031
+[14:37:10] PID:10031 exited
+[14:37:10] Launched 'Clock' PID:10032
+[14:37:10] PID:10032 exited
+[14:37:10] Launched 'Clock' PID:10033
+[14:37:10] PID:10033 exited
+[14:40:19] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[14:40:23] Launched 'Clock' PID:10174
+[14:40:23] PID:10174 exited
+[14:40:25] Launched 'Notepad' PID:10181
+[14:40:25] 'Notepad' (PID:10181) granted RAM:50MB HDD:10MB
+[14:40:30] Launched 'Clock' PID:10198
+[14:40:30] PID:10198 exited
+[14:40:30] Launched 'Clock' PID:10199
+[14:40:30] PID:10199 exited
+[14:40:31] Launched 'Clock' PID:10211
+[14:40:31] PID:10211 exited
+[14:40:31] Launched 'Clock' PID:10212
+[14:40:31] PID:10212 exited
+[14:40:31] Launched 'Clock' PID:10213
+[14:40:31] PID:10213 exited
+[14:40:32] Launched 'Clock' PID:10221
+[14:40:32] PID:10221 exited
+[14:40:32] Launched 'Clock' PID:10222
+[14:40:32] PID:10222 exited
+[14:40:32] Launched 'Clock' PID:10223
+[14:40:32] PID:10223 exited
+[14:40:36] Launched 'Notepad' PID:10235
+[14:40:36] 'Notepad' (PID:10235) granted RAM:50MB HDD:10MB
+[14:43:57] PID:10005 exited
+[14:43:59] PID:10235 exited
+[14:44:00] PID:10181 exited
+[14:44:01] NexOS shutting down
+[14:44:06] Launched 'Clock' PID:10414
+[14:44:06] PID:10414 exited
+[14:44:07] Launched 'Clock' PID:10415
+[14:44:07] PID:10415 exited
+[14:44:07] Launched 'Clock' PID:10416
+[14:44:07] PID:10416 exited
+[14:44:07] Launched 'Clock' PID:10417
+[14:44:07] PID:10417 exited
+[14:44:08] Launched 'Clock' PID:10418
+[14:44:08] PID:10418 exited
+[14:44:08] Launched 'Clock' PID:10428
+[14:44:09] PID:10428 exited
+[14:44:09] Launched 'Clock' PID:10429
+[14:44:09] PID:10429 exited
+[14:48:30] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[14:48:35] Launched 'Clock' PID:10651
+[14:48:35] Launched 'Notepad' PID:10652
+[14:48:35] PID:10651 exited
+[14:48:35] 'Notepad' (PID:10652) granted RAM:50MB HDD:10MB
+[14:48:39] Launched 'Clock' PID:10674
+[14:48:39] PID:10674 exited
+[14:48:40] Launched 'Clock' PID:10682
+[14:48:40] PID:10682 exited
+[14:48:40] Launched 'Clock' PID:10683
+[14:48:40] PID:10683 exited
+[14:48:41] Launched 'Clock' PID:10684
+[14:48:41] PID:10684 exited
+[14:48:41] Launched 'Clock' PID:10685
+[14:48:41] PID:10685 exited
+[14:48:41] Launched 'Clock' PID:10686
+[14:48:41] PID:10686 exited
+[14:48:42] Launched 'Clock' PID:10687
+[14:48:42] PID:10687 exited
+[14:48:42] Launched 'Clock' PID:10688
+[14:48:42] PID:10688 exited
+[14:48:42] Launched 'Clock' PID:10689
+[14:48:42] PID:10689 exited
+[14:48:43] Launched 'Clock' PID:10690
+[14:48:43] PID:10690 exited
+[14:48:43] Launched 'Clock' PID:10691
+[14:48:43] PID:10691 exited
+[14:48:43] Launched 'Clock' PID:10692
+[14:48:43] PID:10692 exited
+[14:48:44] Launched 'Clock' PID:10704
+[14:48:44] PID:10704 exited
+[14:48:44] Launched 'Clock' PID:10705
+[14:48:44] PID:10705 exited
+[14:48:45] Launched 'Clock' PID:10706
+[14:48:45] PID:10706 exited
+[14:48:51] Launched 'Clock' PID:10732
+[14:48:51] PID:10732 exited
+[20:17:45] NexOS shutting down
+[20:20:20] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[20:20:24] Launched 'Clock' PID:14882
+[20:20:24] PID:14882 exited
+[20:20:27] Launched 'Notepad' PID:14893
+[20:20:27] 'Notepad' (PID:14893) granted RAM:50MB HDD:10MB
+[20:20:29] Launched 'Notepad' PID:14904
+[20:20:29] 'Notepad' (PID:14904) granted RAM:50MB HDD:10MB
+[20:20:30] Launched 'Notepad' PID:14911
+[20:20:30] 'Notepad' (PID:14911) granted RAM:50MB HDD:10MB
+[20:20:39] PID:14911 exited
+[20:20:41] PID:14893 exited
+[20:20:43] PID:14904 exited
+[20:20:47] Launched 'Clock' PID:14976
+[20:20:47] PID:14976 exited
+[20:29:46] NexOS shutting down
+[20:29:57] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[20:30:01] Launched 'Clock' PID:15947
+[20:30:03] PID:15947 exited
+[20:30:03] Launched 'Clock' PID:15973
+[20:30:05] PID:15973 exited
+[20:30:06] Launched 'Clock' PID:15980
+[20:30:08] PID:15980 exited
+[20:30:09] Launched 'Clock' PID:16007
+[20:30:11] PID:16007 exited
+[20:30:11] Launched 'Clock' PID:16020
+[20:30:13] Launched 'Clock' PID:16070
+[20:30:13] PID:16020 exited
+[20:30:14] PID:16070 exited
+[12:18:05] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[12:18:09] Launched 'Alarm' PID:8233
+[12:18:11] PID:8233 exited
+[12:18:14] Launched 'Notepad' PID:8263
+[12:18:14] 'Notepad' (PID:8263) granted RAM:50MB HDD:10MB
+[12:18:20] Launched 'Alarm' PID:8289
+[12:18:21] PID:8289 exited
+[12:18:23] Launched 'Alarm' PID:8321
+[12:18:25] Launched 'Alarm' PID:8329
+[12:18:25] PID:8321 exited
+[12:18:26] Launched 'Alarm' PID:8349
+[12:18:26] PID:8329 exited
+[12:18:27] PID:8349 exited
+[12:18:29] Launched 'Alarm' PID:8364
+[12:18:30] PID:8364 exited
+[12:19:14] Launched 'Alarm' PID:8495
+[12:19:15] PID:8495 exited
+[12:24:09] NexOS shutting down
+[12:24:19] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[12:24:24] Launched 'Alarm' PID:9045
+[12:24:25] PID:9045 exited
+[12:24:30] Launched 'Alarm' PID:9083
+[12:24:32] PID:9083 exited
+[12:24:33] Launched 'Alarm' PID:9097
+[12:24:34] PID:9097 exited
+[12:24:35] Launched 'Alarm' PID:9116
+[12:24:37] PID:9116 exited
+[12:24:47] Launched 'Notepad' PID:9175
+[12:24:47] 'Notepad' (PID:9175) granted RAM:50MB HDD:10MB
+[12:29:40] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[12:29:44] Launched 'Alarm' PID:9999
+[12:29:44] 'Alarm' (PID:9999) granted RAM:20MB HDD:1MB
+[12:29:59] Launched 'Notepad' PID:10055
+[12:29:59] 'Notepad' (PID:10055) granted RAM:50MB HDD:10MB
+[12:31:57] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[12:32:03] Launched 'Notepad' PID:10309
+[12:32:03] 'Notepad' (PID:10309) granted RAM:50MB HDD:10MB
+[12:32:06] Launched 'Alarm' PID:10334
+[12:32:06] 'Alarm' (PID:10334) granted RAM:20MB HDD:1MB
+[12:34:17] PID:10334 exited
+[12:34:21] PID:10309 exited
+[12:34:25] NexOS shutting down
+[12:34:55] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[12:35:03] Launched 'Notepad' PID:10696
+[12:35:03] 'Notepad' (PID:10696) granted RAM:50MB HDD:10MB
+[12:35:04] Launched 'Notepad' PID:10717
+[12:35:04] 'Notepad' (PID:10717) granted RAM:50MB HDD:10MB
+[12:35:16] Launched 'Alarm' PID:10763
+[12:35:16] 'Alarm' (PID:10763) granted RAM:20MB HDD:1MB
+[12:35:52] Launched 'Alarm' PID:10827
+[12:35:52] 'Alarm' (PID:10827) granted RAM:20MB HDD:1MB
+[12:36:26] PID:10827 exited
+[12:36:28] PID:10763 exited
+[12:36:35] PID:10696 exited
+[12:36:38] PID:10717 exited
+[12:36:41] NexOS shutting down
+[13:28:13] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[13:28:25] Launched 'File Manager' PID:15162
+[13:28:25] 'File Manager' (PID:15162) granted RAM:60MB HDD:30MB
+[13:31:00] Launched 'File Manager' PID:15284
+[13:31:00] 'File Manager' (PID:15284) granted RAM:60MB HDD:30MB
+[13:31:03] Launched 'Alarm' PID:15311
+[13:31:03] 'Alarm' (PID:15311) granted RAM:20MB HDD:1MB
+[13:31:10] Launched 'Notepad' PID:15347
+[13:31:10] 'Notepad' (PID:15347) granted RAM:50MB HDD:10MB
+[13:31:13] Launched 'Alarm' PID:15382
+[13:31:13] 'Alarm' (PID:15382) granted RAM:20MB HDD:1MB
+[13:31:15] Launched 'Notepad' PID:15391
+[13:31:15] 'Notepad' (PID:15391) granted RAM:50MB HDD:10MB
+[13:33:19] Kernel mode unlocked
+[13:33:36] Killed PID:15382
+[13:33:36] PID:15382 exited
+[13:33:39] Killed PID:15391
+[13:33:39] PID:15391 exited
+[13:33:43] Killed PID:15284
+[13:33:43] PID:15284 exited
+[13:33:47] Kernel locked
+[13:33:53] Kernel mode unlocked
+[13:34:08] Kernel mode unlocked
+[13:34:38] PID:15311 exited
+[13:34:47] PID:15347 exited
+[13:35:05] PID:15162 exited
+[13:35:18] NexOS shutting down
+[13:49:32] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[13:49:58] Launched 'File Manager' PID:16413
+[13:49:58] 'File Manager' (PID:16413) granted RAM:60MB HDD:30MB
+[13:50:48] PID:16413 exited
+[13:51:20] NexOS shutting down
+[17:58:45] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[17:58:52] Launched 'Notepad' PID:7653
+[17:58:52] 'Notepad' (PID:7653) granted RAM:50MB HDD:10MB
+[17:59:01] Launched 'Alarm' PID:7679
+[17:59:02] 'Alarm' (PID:7679) granted RAM:20MB HDD:1MB
+[17:59:10] Launched 'File Manager' PID:7771
+[17:59:10] 'File Manager' (PID:7771) granted RAM:60MB HDD:30MB
+[19:09:51] NexOS shutting down
+[19:12:44] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[19:12:56] Launched 'Notepad' PID:12152
+[19:12:56] PID:12152 exited
+[19:13:01] Launched 'Alarm' PID:12170
+[19:13:01] 'Alarm' (PID:12170) granted RAM:20MB HDD:1MB
+[19:13:03] Launched 'Notepad' PID:12195
+[19:13:03] PID:12195 exited
+[19:13:06] Launched 'Notepad' PID:12196
+[19:13:06] PID:12196 exited
+[19:13:06] Launched 'Notepad' PID:12197
+[19:13:06] PID:12197 exited
+[19:13:07] Launched 'Notepad' PID:12209
+[19:13:07] PID:12209 exited
+[19:13:07] Launched 'Notepad' PID:12211
+[19:13:07] PID:12211 exited
+[19:13:08] Launched 'Notepad' PID:12212
+[19:13:08] PID:12212 exited
+[19:13:09] Launched 'Notepad' PID:12220
+[19:13:09] PID:12220 exited
+[19:13:17] Launched 'File Manager' PID:12239
+[19:13:17] PID:12239 exited
+[19:13:18] Launched 'File Manager' PID:12240
+[19:13:18] PID:12240 exited
+[19:13:27] Launched 'Notepad' PID:12242
+[19:13:27] PID:12242 exited
+[19:13:32] Launched 'Notepad' PID:12261
+[19:13:32] PID:12261 exited
+[19:18:13] Launched 'Notepad' PID:12874
+[19:18:13] 'Notepad' (PID:12874) granted RAM:50MB HDD:10MB
+[19:18:18] Launched 'Paint' PID:12913
+[19:18:18] PID:12913 exited
+[19:18:20] Launched 'Calculator' PID:12936
+[19:18:21] PID:12936 exited
+[19:18:26] Launched 'Shell' PID:12960
+[19:18:27] PID:12960 exited
+[19:18:28] Launched 'File Manager' PID:12963
+[19:18:28] 'File Manager' (PID:12963) granted RAM:60MB HDD:30MB
+[19:32:13] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[19:32:19] Launched 'Notepad' PID:15116
+[19:32:19] PID:15116 exited
+[19:32:20] Launched 'Notepad' PID:15117
+[19:32:20] PID:15117 exited
+[19:32:21] Launched 'Notepad' PID:15128
+[19:32:21] PID:15128 exited
+[19:32:22] Launched 'Notepad' PID:15129
+[19:32:22] PID:15129 exited
+[19:32:22] Launched 'Notepad' PID:15135
+[19:32:22] PID:15135 exited
+[19:32:23] Launched 'Notepad' PID:15136
+[19:32:23] PID:15136 exited
+[19:32:24] Launched 'Alarm' PID:15137
+[19:32:24] 'Alarm' (PID:15137) granted RAM:20MB HDD:1MB
+[19:32:27] PID:15137 exited
+[19:32:34] Launched 'File Manager' PID:15176
+[19:32:34] PID:15176 exited
+[19:36:00] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[19:36:08] Launched 'Notepad' PID:15686
+[19:36:08] PID:15686 exited
+[19:36:09] Launched 'Notepad' PID:15688
+[19:36:09] PID:15688 exited
+[19:36:10] Launched 'Notepad' PID:15699
+[19:36:10] PID:15699 exited
+[19:36:13] Launched 'File Manager' PID:15706
+[19:36:13] PID:15706 exited
+[19:37:36] NexOS shutting down
+[19:58:45] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[19:58:52] Launched 'Notepad' PID:18029
+[19:58:53] PID:18029 exited
+[19:58:56] Launched 'Notepad' PID:18049
+[19:58:58] PID:18049 exited
+[19:58:59] Launched 'File Manager' PID:18062
+[19:59:01] PID:18062 exited
+[19:59:02] Launched 'Alarm' PID:18087
+[19:59:02] 'Alarm' (PID:18087) granted RAM:20MB HDD:1MB
+[19:59:05] PID:18087 exited
+[19:59:06] NexOS shutting down
+[20:01:27] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[20:01:33] Launched 'Notepad' PID:18502
+[20:01:33] 'Notepad' (PID:18502) granted RAM:50MB HDD:20MB
+[20:01:36] PID:18502 exited
+[20:01:38] Launched 'File Manager' PID:18526
+[20:01:38] PID:18526 exited
+[20:01:39] Launched 'File Manager' PID:18529
+[20:01:39] PID:18529 exited
+[20:01:40] Launched 'File Manager' PID:18538
+[20:01:40] PID:18538 exited
+[20:01:40] Launched 'File Manager' PID:18539
+[20:01:40] PID:18539 exited
+[20:01:44] Launched 'File Manager' PID:18546
+[20:01:44] PID:18546 exited
+[20:01:45] Launched 'File Manager' PID:18547
+[20:01:45] PID:18547 exited
+[20:03:27] NexOS shutting down
+[20:03:40] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[20:03:46] Launched 'Notepad' PID:18777
+[20:03:46] 'Notepad' (PID:18777) granted RAM:50MB HDD:20MB
+[20:03:49] Launched 'Alarm' PID:18795
+[20:03:49] 'Alarm' (PID:18795) granted RAM:20MB HDD:1MB
+[20:03:51] Launched 'File Manager' PID:18812
+[20:03:51] PID:18812 exited
+[20:03:52] Launched 'File Manager' PID:18813
+[20:03:52] PID:18813 exited
+[20:03:53] Launched 'File Manager' PID:18814
+[20:03:53] PID:18814 exited
+[20:03:53] Launched 'File Manager' PID:18827
+[20:03:53] PID:18827 exited
+[20:03:54] Launched 'File Manager' PID:18828
+[20:03:54] PID:18828 exited
+[20:03:54] Launched 'File Manager' PID:18829
+[20:03:54] PID:18829 exited
+[20:03:54] Launched 'File Manager' PID:18839
+[20:03:54] PID:18839 exited
+[20:03:55] Launched 'File Manager' PID:18840
+[20:03:55] PID:18840 exited
+[20:03:55] Launched 'File Manager' PID:18841
+[20:03:55] PID:18841 exited
+[20:03:56] Launched 'File Manager' PID:18843
+[20:03:56] PID:18843 exited
+[20:03:56] Launched 'File Manager' PID:18844
+[20:03:56] PID:18844 exited
+[20:05:01] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[20:05:07] Launched 'File Manager' PID:19136
+[20:05:07] 'File Manager' (PID:19136) granted RAM:60MB HDD:30MB
+[20:05:18] PID:19136 exited
+[20:05:24] Launched 'Notepad' PID:19195
+[20:05:24] 'Notepad' (PID:19195) granted RAM:50MB HDD:20MB
+[20:05:27] PID:19195 exited
+[20:05:29] Launched 'Alarm' PID:19216
+[20:05:29] 'Alarm' (PID:19216) granted RAM:20MB HDD:1MB
+[20:05:33] PID:19216 exited
+[20:05:38] NexOS shutting down
+[20:10:22] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[20:10:29] Launched 'Notepad' PID:19897
+[20:10:29] 'Notepad' (PID:19897) granted RAM:50MB HDD:20MB
+[20:10:34] Launched 'File Manager' PID:19922
+[20:10:34] 'File Manager' (PID:19922) granted RAM:60MB HDD:30MB
+[20:10:39] Launched 'Alarm' PID:19948
+[20:10:39] 'Alarm' (PID:19948) granted RAM:20MB HDD:1MB
+[20:10:43] Launched 'Weather' PID:19979
+[20:10:43] 'Weather' (PID:19979) granted RAM:30MB HDD:5MB
+[20:12:10] Launched 'Paint' PID:20115
+[20:12:10] 'Paint' (PID:20115) granted RAM:90MB HDD:50MB
+[20:41:56] Kernel mode unlocked
+[20:42:03] Killed PID:19897
+[20:42:03] PID:19897 exited
+[20:42:04] Killed PID:19922
+[20:42:04] PID:19922 exited
+[20:42:06] Killed PID:19948
+[20:42:06] PID:19948 exited
+[20:42:07] Killed PID:19979
+[20:42:07] PID:19979 exited
+[20:42:08] Killed PID:20115
+[20:42:08] PID:20115 exited
+[20:42:13] NexOS shutting down
+[20:44:35] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[20:44:41] Launched 'Paint' PID:24850
+[20:44:41] 'Paint' (PID:24850) granted RAM:90MB HDD:50MB
+[20:44:51] PID:24850 exited
+[20:45:30] NexOS shutting down
+[20:47:47] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[20:47:56] Launched 'Paint' PID:25224
+[20:47:56] 'Paint' (PID:25224) granted RAM:90MB HDD:50MB
+[20:47:59] NexOS shutting down
+[20:48:20] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[20:48:26] Launched 'Paint' PID:25370
+[20:48:26] 'Paint' (PID:25370) granted RAM:90MB HDD:50MB
+[20:48:42] NexOS shutting down
+[20:53:05] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[20:53:10] Launched 'Paint' PID:25810
+[20:53:11] 'Paint' (PID:25810) granted RAM:90MB HDD:50MB
+[20:57:42] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[20:57:50] Launched 'Paint' PID:26507
+[20:57:50] 'Paint' (PID:26507) granted RAM:90MB HDD:50MB
+[20:57:56] PID:26507 exited
+[20:58:36] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[20:58:42] Launched 'Paint' PID:26687
+[20:58:42] 'Paint' (PID:26687) granted RAM:90MB HDD:50MB
+[20:58:51] NexOS shutting down
+[21:00:05] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[21:00:11] Launched 'Paint' PID:26962
+[21:00:11] 'Paint' (PID:26962) granted RAM:90MB HDD:50MB
+[21:00:27] NexOS shutting down
+[21:48:36] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[21:48:50] Launched 'Calendar' PID:29276
+[21:48:50] 'Calendar' (PID:29276) granted RAM:20MB HDD:1MB
+[21:55:55] Launched 'Notepad' PID:29622
+[21:55:55] 'Notepad' (PID:29622) granted RAM:50MB HDD:20MB
+[21:56:00] Launched 'Paint' PID:29649
+[21:56:00] 'Paint' (PID:29649) granted RAM:90MB HDD:50MB
+[21:56:03] Launched 'Alarm' PID:29679
+[21:56:03] 'Alarm' (PID:29679) granted RAM:20MB HDD:1MB
+[21:56:05] Launched 'Weather' PID:29686
+[21:56:05] 'Weather' (PID:29686) granted RAM:30MB HDD:5MB
+[21:56:06] Launched 'File Manager' PID:29707
+[21:56:06] 'File Manager' (PID:29707) granted RAM:60MB HDD:30MB
+[21:56:42] Kernel mode unlocked
+[22:00:51] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[22:00:57] Launched 'Alarm' PID:30423
+[22:00:57] 'Alarm' (PID:30423) granted RAM:20MB HDD:1MB
+[22:01:06] PID:30423 exited
+[22:02:44] NexOS shutting down
+[22:20:20] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[22:27:25] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[22:27:31] Launched 'Calculator' PID:33930
+[22:27:31] 'Calculator' (PID:33930) granted RAM:30MB HDD:5MB
+[22:42:44] Launched 'Notepad' PID:35296
+[22:42:44] 'Notepad' (PID:35296) granted RAM:50MB HDD:20MB
+[22:42:51] Launched 'Weather' PID:35347
+[22:42:51] 'Weather' (PID:35347) granted RAM:30MB HDD:5MB
+[22:42:55] Launched 'File Manager' PID:35365
+[22:42:55] 'File Manager' (PID:35365) granted RAM:60MB HDD:30MB
+[22:43:06] Launched 'Calendar' PID:35409
+[22:43:06] 'Calendar' (PID:35409) granted RAM:20MB HDD:1MB
+[22:43:19] Launched 'Alarm' PID:35478
+[22:43:19] 'Alarm' (PID:35478) granted RAM:20MB HDD:1MB
+[22:43:37] Launched 'Paint' PID:35586
+[22:43:38] 'Paint' (PID:35586) granted RAM:90MB HDD:50MB
+[22:45:31] PID:33930 exited
+[22:45:48] PID:35409 exited
+[22:45:59] Launched 'Calendar' PID:36072
+[22:45:59] 'Calendar' (PID:36072) granted RAM:20MB HDD:1MB
+[22:46:32] PID:36072 exited
+[22:46:57] Launched 'Calendar' PID:36384
+[22:46:57] 'Calendar' (PID:36384) granted RAM:20MB HDD:1MB
+[22:47:12] PID:36384 exited
+[22:48:58] Launched 'Calendar' PID:36677
+[22:48:58] 'Calendar' (PID:36677) granted RAM:20MB HDD:1MB
+[22:49:02] PID:36677 exited
+[22:49:04] NexOS shutting down
+[22:49:21] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[22:49:29] Launched 'Calendar' PID:36831
+[22:49:29] 'Calendar' (PID:36831) granted RAM:20MB HDD:1MB
+[22:51:04] PID:36831 exited
+[22:51:05] NexOS shutting down
+[22:52:03] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[22:52:10] Launched 'Calendar' PID:37150
+[22:52:10] 'Calendar' (PID:37150) granted RAM:20MB HDD:1MB
+[22:59:30] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[22:59:43] Launched 'Calendar' PID:38554
+[22:59:43] 'Calendar' (PID:38554) granted RAM:20MB HDD:1MB
+[23:00:44] PID:38554 exited
+[23:00:47] NexOS shutting down
+[23:01:09] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[23:01:15] Launched 'Calendar' PID:38802
+[23:01:15] 'Calendar' (PID:38802) granted RAM:20MB HDD:1MB
+[23:03:19] PID:38802 exited
+[23:03:23] NexOS shutting down
+[23:03:30] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[23:03:37] Launched 'Calendar' PID:38956
+[23:03:37] 'Calendar' (PID:38956) granted RAM:20MB HDD:1MB
+[23:05:48] PID:38956 exited
+[23:05:52] NexOS shutting down
+[23:06:00] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[23:06:06] Launched 'Calendar' PID:39183
+[23:06:06] 'Calendar' (PID:39183) granted RAM:20MB HDD:1MB
+[23:06:42] PID:39183 exited
+[23:06:47] NexOS shutting down
+[23:07:07] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[23:07:13] Launched 'Calendar' PID:39427
+[23:07:13] 'Calendar' (PID:39427) granted RAM:20MB HDD:1MB
+[23:08:03] PID:39427 exited
+[23:08:19] Launched 'Calendar' PID:39567
+[23:08:19] 'Calendar' (PID:39567) granted RAM:20MB HDD:1MB
+[23:08:45] PID:39567 exited
+[23:08:48] Launched 'Calculator' PID:39626
+[23:08:48] 'Calculator' (PID:39626) granted RAM:30MB HDD:5MB
+[23:10:32] PID:39626 exited
+[23:10:38] NexOS shutting down
+[23:18:32] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[23:18:40] Launched 'Shell' PID:41132
+[23:18:40] 'Shell' (PID:41132) granted RAM:60MB HDD:10MB
+[23:23:00] PID:41132 exited
+[23:23:01] NexOS shutting down
+[23:26:44] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[23:26:50] Launched 'Shell' PID:42014
+[23:26:50] 'Shell' (PID:42014) granted RAM:60MB HDD:10MB
+[23:31:49] PID:42014 exited
+[23:31:54] NexOS shutting down
+[23:32:44] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[23:32:55] Launched 'Calculator' PID:42937
+[23:32:55] 'Calculator' (PID:42937) granted RAM:30MB HDD:5MB
+[23:32:58] PID:42937 exited
+[23:33:00] Launched 'Notepad' PID:42961
+[23:33:00] 'Notepad' (PID:42961) granted RAM:50MB HDD:20MB
+[23:33:12] Launched 'Shell' PID:42993
+[23:33:12] 'Shell' (PID:42993) granted RAM:60MB HDD:10MB
+[23:33:23] Launched 'Alarm' PID:43045
+[23:33:23] 'Alarm' (PID:43045) granted RAM:20MB HDD:1MB
+[23:38:50] Launched 'Paint' PID:43446
+[23:38:50] 'Paint' (PID:43446) granted RAM:90MB HDD:50MB
+[23:40:37] Launched 'Weather' PID:43595
+[23:40:37] 'Weather' (PID:43595) granted RAM:30MB HDD:5MB
+[23:40:53] Launched 'File Manager' PID:43664
+[23:40:53] 'File Manager' (PID:43664) granted RAM:60MB HDD:30MB
+[23:40:59] PID:43664 exited
+[23:41:01] NexOS shutting down
+[23:41:10] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[23:41:16] Launched 'Shell' PID:43812
+[23:41:16] 'Shell' (PID:43812) granted RAM:60MB HDD:10MB
+[23:45:48] PID:43812 exited
+[23:45:52] NexOS shutting down
+[23:46:01] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[23:46:07] Launched 'Shell' PID:44243
+[23:46:07] 'Shell' (PID:44243) granted RAM:60MB HDD:10MB
+[23:46:28] PID:44243 exited
+[23:46:29] NexOS shutting down
+[00:24:57] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[00:25:05] Launched 'Shell' PID:46816
+[00:25:05] 'Shell' (PID:46816) granted RAM:60MB HDD:10MB
+[00:25:09] PID:46816 exited
+[00:25:36] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[00:25:42] Launched 'Shell' PID:47052
+[00:25:42] 'Shell' (PID:47052) granted RAM:60MB HDD:10MB
+[00:25:54] PID:47052 exited
+[00:25:56] NexOS shutting down
+[00:27:43] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[00:27:50] Launched 'Shell' PID:47247
+[00:27:50] 'Shell' (PID:47247) granted RAM:60MB HDD:10MB
+[00:27:53] PID:47247 exited
+[00:27:55] NexOS shutting down
+[00:34:23] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[00:34:29] Launched 'Shell' PID:48226
+[00:34:29] 'Shell' (PID:48226) granted RAM:60MB HDD:10MB
+[00:34:31] PID:48226 exited
+[00:34:32] NexOS shutting down
+[00:35:25] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[00:35:31] Launched 'Shell' PID:48419
+[00:35:31] 'Shell' (PID:48419) granted RAM:60MB HDD:10MB
+[00:35:36] PID:48419 exited
+[00:35:38] NexOS shutting down
+[00:36:26] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[00:36:32] Launched 'Shell' PID:48579
+[00:36:32] 'Shell' (PID:48579) granted RAM:60MB HDD:10MB
+[00:36:35] PID:48579 exited
+[00:36:37] NexOS shutting down
+[00:38:18] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[00:38:24] Launched 'Shell' PID:48752
+[00:38:24] 'Shell' (PID:48752) granted RAM:60MB HDD:10MB
+[00:38:26] PID:48752 exited
+[00:38:28] NexOS shutting down
+[00:40:21] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[00:40:29] Launched 'Shell' PID:49082
+[00:40:29] 'Shell' (PID:49082) granted RAM:60MB HDD:10MB
+[00:40:32] PID:49082 exited
+[00:40:45] NexOS shutting down
+[00:41:23] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[00:41:30] Launched 'Shell' PID:49287
+[00:41:30] 'Shell' (PID:49287) granted RAM:60MB HDD:10MB
+[00:41:33] PID:49287 exited
+[00:41:34] NexOS shutting down
+[00:41:59] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[00:42:06] Launched 'Shell' PID:49442
+[00:42:06] 'Shell' (PID:49442) granted RAM:60MB HDD:10MB
+[00:42:08] PID:49442 exited
+[00:42:27] NexOS shutting down
+[00:44:33] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[00:44:39] Launched 'Shell' PID:49717
+[00:44:39] 'Shell' (PID:49717) granted RAM:60MB HDD:10MB
+[00:44:41] PID:49717 exited
+[00:44:42] NexOS shutting down
+[00:46:01] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[00:46:07] Launched 'Shell' PID:49928
+[00:46:07] 'Shell' (PID:49928) granted RAM:60MB HDD:10MB
+[00:46:09] PID:49928 exited
+[00:48:46] NexOS shutting down
+[00:49:12] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[00:49:19] Launched 'Shell' PID:50326
+[00:49:19] 'Shell' (PID:50326) granted RAM:60MB HDD:10MB
+[00:49:23] PID:50326 exited
+[00:49:35] NexOS shutting down
+[00:49:53] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[00:50:18] Launched 'Notepad' PID:50508
+[00:50:18] 'Notepad' (PID:50508) granted RAM:50MB HDD:20MB
+[00:50:21] Launched 'Calculator' PID:50534
+[00:50:21] 'Calculator' (PID:50534) granted RAM:30MB HDD:5MB
+[00:50:22] Launched 'Paint' PID:50539
+[00:50:22] 'Paint' (PID:50539) granted RAM:90MB HDD:50MB
+[00:50:26] Launched 'Shell' PID:50568
+[00:50:26] 'Shell' (PID:50568) granted RAM:60MB HDD:10MB
+[00:50:30] PID:50568 exited
+[00:50:31] NexOS shutting down
+[00:52:21] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[00:52:26] Launched 'Shell' PID:50874
+[00:52:26] 'Shell' (PID:50874) granted RAM:60MB HDD:10MB
+[00:52:39] PID:50874 exited
+[00:52:41] NexOS shutting down
+[00:57:14] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[00:57:21] Launched 'Tetris' PID:51404
+[00:57:21] 'Tetris' (PID:51404) granted RAM:45MB HDD:5MB
+[01:05:12] PID:51404 exited
+[01:05:16] NexOS shutting down
+[01:05:27] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[01:05:35] Launched 'Tetris' PID:51922
+[01:05:35] 'Tetris' (PID:51922) granted RAM:45MB HDD:5MB
+[01:10:49] PID:51922 exited
+[01:10:53] NexOS shutting down
+[01:11:02] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[01:11:10] Launched 'Tetris' PID:52287
+[01:11:10] 'Tetris' (PID:52287) granted RAM:45MB HDD:5MB
+[01:11:22] PID:52287 exited
+[01:11:46] Launched 'Shell' PID:52438
+[01:11:46] 'Shell' (PID:52438) granted RAM:60MB HDD:10MB
+[01:13:36] PID:52438 exited
+[01:13:39] Launched 'Tetris' PID:52576
+[01:13:39] 'Tetris' (PID:52576) granted RAM:45MB HDD:5MB
+[01:14:45] PID:52576 exited
+[01:15:25] NexOS shutting down
+[01:16:28] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[01:16:47] Kernel mode unlocked
+[01:18:13] NexOS shutting down
+[01:18:19] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[01:18:31] Launched 'Notepad' PID:53137
+[01:18:31] 'Notepad' (PID:53137) granted RAM:50MB HDD:20MB
+[01:18:33] Launched 'Calculator' PID:53156
+[01:18:33] 'Calculator' (PID:53156) granted RAM:30MB HDD:5MB
+[01:18:35] Launched 'Paint' PID:53168
+[01:18:35] 'Paint' (PID:53168) granted RAM:90MB HDD:50MB
+[01:18:36] Launched 'Tetris' PID:53174
+[01:18:36] 'Tetris' (PID:53174) granted RAM:45MB HDD:5MB
+[01:18:39] Launched 'Shell' PID:53209
+[01:18:39] 'Shell' (PID:53209) granted RAM:60MB HDD:10MB
+[01:18:40] Launched 'Alarm' PID:53215
+[01:18:40] 'Alarm' (PID:53215) granted RAM:20MB HDD:1MB
+[01:18:41] Launched 'Weather' PID:53222
+[01:18:41] 'Weather' (PID:53222) granted RAM:30MB HDD:5MB
+[01:18:43] Launched 'File Manager' PID:53244
+[01:18:43] 'File Manager' (PID:53244) granted RAM:60MB HDD:30MB
+[01:18:44] Launched 'Calendar' PID:53269
+[01:18:44] 'Calendar' (PID:53269) granted RAM:20MB HDD:1MB
+[01:18:56] Kernel mode unlocked
+[01:18:59] Aging PID:53269 prio->1
+[01:20:21] Killed PID:53244
+[01:20:21] PID:53244 exited
+[01:20:26] Killed PID:53137
+[01:20:26] PID:53137 exited
+[01:20:28] Killed PID:53137
+[01:20:28] Killed PID:53137
+[01:20:28] Killed PID:53137
+[01:20:28] Killed PID:53137
+[01:20:29] Killed PID:53137
+[01:20:29] Killed PID:53137
+[01:20:29] Killed PID:53137
+[01:20:29] Killed PID:53137
+[01:20:30] Killed PID:53137
+[01:20:37] Kernel mode unlocked
+[01:20:53] PID:53156 exited
+[01:20:55] PID:53209 exited
+[01:21:02] Kernel mode unlocked
+[01:21:26] NexOS shutting down
+[01:21:35] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[01:21:43] Launched 'Paint' PID:54025
+[01:21:43] 'Paint' (PID:54025) granted RAM:90MB HDD:50MB
+[01:21:45] Launched 'Calculator' PID:54049
+[01:21:45] 'Calculator' (PID:54049) granted RAM:30MB HDD:5MB
+[01:21:46] Launched 'Notepad' PID:54054
+[01:21:46] 'Notepad' (PID:54054) granted RAM:50MB HDD:20MB
+[01:21:47] Launched 'Tetris' PID:54060
+[01:21:47] 'Tetris' (PID:54060) granted RAM:45MB HDD:5MB
+[01:21:48] Launched 'Shell' PID:54066
+[01:21:49] 'Shell' (PID:54066) granted RAM:60MB HDD:10MB
+[01:22:00] Kernel mode unlocked
+[01:22:04] Launched Kernel Visualizer PID:54133
+[01:22:09] Launched Kernel Visualizer PID:54137
+[01:22:30] NexOS shutting down
+[16:20:29] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[16:20:36] Launched 'Paint' PID:4794
+[16:20:36] PID:4794 exited
+[16:20:38] Launched 'Paint' PID:4810
+[16:20:38] PID:4810 exited
+[16:20:39] Launched 'Calculator' PID:4811
+[16:20:39] 'Calculator' (PID:4811) granted RAM:30MB HDD:5MB
+[16:20:41] Launched 'Notepad' PID:4816
+[16:20:41] PID:4816 exited
+[16:20:43] Launched 'Tetris' PID:4828
+[16:20:43] 'Tetris' (PID:4828) granted RAM:45MB HDD:5MB
+[16:20:44] Launched 'Brick Breaker' PID:4840
+[16:20:44] PID:4840 exited
+[16:20:47] Launched 'Chat' PID:4841
+[16:20:47] PID:4841 exited
+[16:20:48] Launched 'Shell' PID:4863
+[16:20:48] 'Shell' (PID:4863) granted RAM:60MB HDD:10MB
+[16:20:51] Launched 'Song Player' PID:4868
+[16:20:52] PID:4868 exited
+[16:20:54] Launched 'Alarm' PID:4913
+[16:20:54] PID:4913 exited
+[16:20:55] Launched 'Alarm' PID:4914
+[16:20:55] PID:4914 exited
+[16:20:56] Launched 'Weather' PID:4915
+[16:20:56] 'Weather' (PID:4915) granted RAM:30MB HDD:5MB
+[16:20:58] Launched 'File Manager' PID:4947
+[16:20:58] 'File Manager' (PID:4947) granted RAM:60MB HDD:30MB
+[16:21:00] Launched 'Calendar' PID:4952
+[16:21:00] 'Calendar' (PID:4952) granted RAM:20MB HDD:1MB
+[16:21:10] NexOS shutting down
+[16:24:00] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[16:24:06] Launched 'Paint' PID:5401
+[16:24:06] PID:5401 exited
+[16:24:09] Launched 'Paint' PID:5412
+[16:24:09] PID:5412 exited
+[16:24:10] Launched 'Calculator' PID:5418
+[16:24:10] 'Calculator' (PID:5418) granted RAM:30MB HDD:5MB
+[16:24:11] Launched 'Notepad' PID:5423
+[16:24:13] PID:5423 exited
+[16:24:15] Launched 'Tetris' PID:5451
+[16:24:15] 'Tetris' (PID:5451) granted RAM:45MB HDD:5MB
+[16:24:16] Launched 'Brick Breaker' PID:5456
+[16:24:16] PID:5456 exited
+[16:24:20] NexOS shutting down
+[16:28:36] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[16:28:42] Launched 'Paint' PID:6131
+[16:28:42] 'Paint' (PID:6131) granted RAM:90MB HDD:50MB
+[16:28:46] Launched 'Calculator' PID:6142
+[16:28:46] 'Calculator' (PID:6142) granted RAM:30MB HDD:5MB
+[16:28:48] Launched 'Notepad' PID:6168
+[16:28:48] 'Notepad' (PID:6168) granted RAM:50MB HDD:20MB
+[16:28:50] Launched 'Tetris' PID:6174
+[16:28:50] 'Tetris' (PID:6174) granted RAM:45MB HDD:5MB
+[16:28:52] Launched 'Brick Breaker' PID:6193
+[16:28:52] 'Brick Breaker' (PID:6193) granted RAM:70MB HDD:10MB
+[16:28:57] Launched 'Shell' PID:6228
+[16:28:57] 'Shell' (PID:6228) granted RAM:60MB HDD:10MB
+[16:29:00] Launched 'Alarm' PID:6248
+[16:29:00] 'Alarm' (PID:6248) granted RAM:20MB HDD:1MB
+[16:29:01] Launched 'Weather' PID:6255
+[16:29:01] 'Weather' (PID:6255) granted RAM:30MB HDD:5MB
+[16:29:03] Launched 'File Manager' PID:6279
+[16:29:03] 'File Manager' (PID:6279) granted RAM:60MB HDD:30MB
+[16:29:04] Launched 'Calendar' PID:6305
+[16:29:04] 'Calendar' (PID:6305) granted RAM:20MB HDD:1MB
+[16:29:14] Kernel mode unlocked
+[16:29:16] Aging PID:6279 prio->1
+[16:29:16] Aging PID:6305 prio->1
+[16:30:36] PID:6193 exited
+[16:30:48] NexOS shutting down
+[16:36:59] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[16:38:42] Launched 'Shell' PID:8225
+[16:38:42] 'Shell' (PID:8225) granted RAM:60MB HDD:10MB
+[16:39:19] NexOS shutting down
+[16:41:45] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[16:41:55] Launched 'Shell' PID:8760
+[16:41:55] 'Shell' (PID:8760) granted RAM:60MB HDD:10MB
+[16:43:20] PID:8760 exited
+[16:43:38] NexOS shutting down
+[16:43:47] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[16:44:02] Launched 'Shell' PID:8978
+[16:44:02] 'Shell' (PID:8978) granted RAM:60MB HDD:10MB
+[16:44:14] PID:8978 exited
+[16:44:15] NexOS shutting down
+[16:44:55] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[16:45:36] Launched 'Shell' PID:9199
+[16:45:36] 'Shell' (PID:9199) granted RAM:60MB HDD:10MB
+[16:45:40] PID:9199 exited
+[16:45:41] NexOS shutting down
+[16:47:00] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[16:47:07] Launched 'Shell' PID:9392
+[16:47:07] 'Shell' (PID:9392) granted RAM:60MB HDD:10MB
+[16:47:10] PID:9392 exited
+[16:47:11] NexOS shutting down
+[16:49:34] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[16:49:43] Launched 'Paint' PID:9785
+[16:49:43] 'Paint' (PID:9785) granted RAM:90MB HDD:50MB
+[16:49:47] Launched 'Calculator' PID:9809
+[16:49:47] 'Calculator' (PID:9809) granted RAM:30MB HDD:5MB
+[16:49:51] PID:9809 exited
+[16:55:49] NexOS shutting down
+[17:12:37] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[17:12:48] Launched 'Paint' PID:13024
+[17:12:48] 'Paint' (PID:13024) granted RAM:90MB HDD:50MB
+[17:12:52] Launched 'Calculator' PID:13048
+[17:12:52] 'Calculator' (PID:13048) granted RAM:30MB HDD:5MB
+[17:12:54] Launched 'Notepad' PID:13066
+[17:12:54] 'Notepad' (PID:13066) granted RAM:50MB HDD:20MB
+[17:13:04] Launched 'Tetris' PID:13111
+[17:13:04] 'Tetris' (PID:13111) granted RAM:45MB HDD:5MB
+[17:13:09] Launched 'Brick Breaker' PID:13144
+[17:13:09] 'Brick Breaker' (PID:13144) granted RAM:70MB HDD:10MB
+[17:13:11] Launched 'Chat' PID:13180
+[17:13:13] PID:13180 exited
+[17:13:14] Launched 'Shell' PID:13189
+[17:13:14] 'Shell' (PID:13189) granted RAM:60MB HDD:10MB
+[17:13:16] Launched 'Song Player' PID:13230
+[17:13:18] PID:13230 exited
+[17:13:19] Launched 'Alarm' PID:13247
+[17:13:19] 'Alarm' (PID:13247) granted RAM:20MB HDD:1MB
+[17:13:20] Launched 'Weather' PID:13272
+[17:13:21] 'Weather' (PID:13272) granted RAM:30MB HDD:5MB
+[17:13:23] Launched 'File Manager' PID:13296
+[17:13:23] 'File Manager' (PID:13296) granted RAM:60MB HDD:30MB
+[17:13:25] Launched 'Calendar' PID:13314
+[17:13:25] 'Calendar' (PID:13314) granted RAM:20MB HDD:1MB
+[17:13:37] Aging PID:13296 prio->1
+[17:13:37] Aging PID:13314 prio->1
+[17:13:40] Launched 'Notepad' PID:13402
+[17:13:40] 'Notepad' (PID:13402) granted RAM:50MB HDD:20MB
+[17:13:52] Aging PID:13402 prio->1
+[17:14:10] Kernel mode unlocked
+[17:14:19] Launched Kernel Visualizer PID:13516
+[17:14:22] Launched Kernel Visualizer PID:13518
+[17:14:40] NexOS shutting down
+[21:15:54] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[21:16:03] Launched 'Paint' PID:6213
+[21:16:03] 'Paint' (PID:6213) granted RAM:90MB HDD:50MB
+[21:16:06] Launched 'Calculator' PID:6238
+[21:16:06] 'Calculator' (PID:6238) granted RAM:30MB HDD:5MB
+[21:16:08] Launched 'Tetris' PID:6245
+[21:16:08] 'Tetris' (PID:6245) granted RAM:45MB HDD:5MB
+[21:16:10] Launched 'Brick Breaker' PID:6263
+[21:16:10] 'Brick Breaker' (PID:6263) granted RAM:70MB HDD:10MB
+[21:16:12] Launched 'Chat' PID:6281
+[21:16:13] PID:6281 exited
+[21:16:13] Launched 'Shell' PID:6290
+[21:16:13] 'Shell' (PID:6290) granted RAM:60MB HDD:10MB
+[21:16:15] Launched 'Song Player' PID:6325
+[21:16:15] 'Song Player' (PID:6325) granted RAM:40MB HDD:20MB
+[21:17:15] Launched 'Alarm' PID:6447
+[21:17:15] 'Alarm' (PID:6447) granted RAM:20MB HDD:1MB
+[21:17:17] Launched 'Weather' PID:6472
+[21:17:17] 'Weather' (PID:6472) granted RAM:30MB HDD:5MB
+[21:17:18] Launched 'File Manager' PID:6496
+[21:17:18] 'File Manager' (PID:6496) granted RAM:60MB HDD:30MB
+[21:17:19] Launched 'Calendar' PID:6502
+[21:17:19] 'Calendar' (PID:6502) granted RAM:20MB HDD:1MB
+[21:17:29] Launched 'Notepad' PID:6557
+[21:17:29] 'Notepad' (PID:6557) granted RAM:50MB HDD:20MB
+[21:17:29] Aging PID:6496 prio->1
+[21:17:34] Aging PID:6502 prio->1
+[21:17:44] Aging PID:6557 prio->1
+[21:17:44] Kernel mode unlocked
+[21:18:48] NexOS shutting down
+[21:19:38] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[21:19:59] Launched 'Paint' PID:6958
+[21:19:59] 'Paint' (PID:6958) granted RAM:90MB HDD:50MB
+[21:21:49] Kernel mode unlocked
+[21:21:57] Launched 'Calculator' PID:7079
+[21:21:57] 'Calculator' (PID:7079) granted RAM:30MB HDD:5MB
+[21:21:58] Launched 'Notepad' PID:7096
+[21:21:58] 'Notepad' (PID:7096) granted RAM:50MB HDD:20MB
+[21:22:00] Launched 'Brick Breaker' PID:7111
+[21:22:00] 'Brick Breaker' (PID:7111) granted RAM:70MB HDD:10MB
+[21:22:01] Launched 'Shell' PID:7118
+[21:22:01] 'Shell' (PID:7118) granted RAM:60MB HDD:10MB
+[21:22:04] Launched 'Weather' PID:7140
+[21:22:04] 'Weather' (PID:7140) granted RAM:30MB HDD:5MB
+[21:22:05] Launched 'Calendar' PID:7160
+[21:22:05] 'Calendar' (PID:7160) granted RAM:20MB HDD:1MB
+[21:22:13] Kernel mode unlocked
+[21:22:32] Kernel locked
+[21:22:35] Launched 'File Manager' PID:7226
+[21:22:36] 'File Manager' (PID:7226) granted RAM:60MB HDD:30MB
+[21:22:37] Launched 'Song Player' PID:7249
+[21:22:37] 'Song Player' (PID:7249) granted RAM:40MB HDD:20MB
+[21:22:38] Launched 'Alarm' PID:7278
+[21:22:38] 'Alarm' (PID:7278) granted RAM:20MB HDD:1MB
+[21:22:41] Launched 'Tetris' PID:7285
+[21:22:41] 'Tetris' (PID:7285) granted RAM:45MB HDD:5MB
+[21:22:48] Aging PID:7249 prio->1
+[21:22:52] Kernel mode unlocked
+[21:22:53] Aging PID:7285 prio->1
+[21:23:54] PID:6958 exited
+[21:25:07] PID:7079 exited
+[21:25:23] PID:7096 exited
+[21:25:30] NexOS shutting down
+[21:25:44] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[21:25:52] Launched 'Notepad' PID:7809
+[21:25:52] 'Notepad' (PID:7809) granted RAM:50MB HDD:20MB
+[21:26:19] NexOS shutting down
+[21:26:30] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[21:26:36] Launched 'Notepad' PID:7989
+[21:26:36] 'Notepad' (PID:7989) granted RAM:50MB HDD:20MB
+[21:26:40] PID:7989 exited
+[21:26:41] NexOS shutting down
+[21:27:24] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[21:27:30] Launched 'Notepad' PID:8209
+[21:27:30] 'Notepad' (PID:8209) granted RAM:50MB HDD:20MB
+[21:28:00] PID:8209 exited
+[21:28:01] Launched 'Notepad' PID:8245
+[21:28:01] 'Notepad' (PID:8245) granted RAM:50MB HDD:20MB
+[21:30:25] PID:8245 exited
+[21:30:29] Launched 'Tetris' PID:8375
+[21:30:29] 'Tetris' (PID:8375) granted RAM:45MB HDD:5MB
+[21:30:52] PID:8375 exited
+[21:30:58] Launched 'Brick Breaker' PID:8466
+[21:30:58] 'Brick Breaker' (PID:8466) granted RAM:70MB HDD:10MB
+[21:31:28] PID:8466 exited
+[21:31:33] Launched 'Shell' PID:8552
+[21:31:33] 'Shell' (PID:8552) granted RAM:60MB HDD:10MB
+[21:31:49] PID:8552 exited
+[21:31:53] Launched 'Song Player' PID:8624
+[21:31:53] 'Song Player' (PID:8624) granted RAM:40MB HDD:20MB
+[21:32:13] PID:8624 exited
+[21:32:17] Launched 'Alarm' PID:8686
+[21:32:17] 'Alarm' (PID:8686) granted RAM:20MB HDD:1MB
+[21:32:31] PID:8686 exited
+[21:32:36] Launched 'Weather' PID:8741
+[21:32:36] 'Weather' (PID:8741) granted RAM:30MB HDD:5MB
+[21:32:49] PID:8741 exited
+[21:32:53] Launched 'File Manager' PID:8813
+[21:32:53] 'File Manager' (PID:8813) granted RAM:60MB HDD:30MB
+[21:33:24] PID:8813 exited
+[21:33:28] Launched 'Calendar' PID:8879
+[21:33:28] 'Calendar' (PID:8879) granted RAM:20MB HDD:1MB
+[21:33:59] PID:8879 exited
+[21:34:15] NexOS shutting down
+[12:14:20] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[12:14:27] Launched 'Paint' PID:4329
+[12:14:27] 'Paint' (PID:4329) granted RAM:90MB HDD:50MB
+[12:14:55] PID:4329 exited
+[12:14:59] Launched 'Calculator' PID:4384
+[12:14:59] 'Calculator' (PID:4384) granted RAM:30MB HDD:5MB
+[12:15:06] PID:4384 exited
+[12:15:09] Launched 'Tetris' PID:4427
+[12:15:09] 'Tetris' (PID:4427) granted RAM:45MB HDD:5MB
+[12:15:25] Launched 'Brick Breaker' PID:4468
+[12:15:25] 'Brick Breaker' (PID:4468) granted RAM:70MB HDD:10MB
+[12:15:44] Launched 'Shell' PID:4520
+[12:15:44] 'Shell' (PID:4520) granted RAM:60MB HDD:10MB
+[12:15:58] Launched 'Song Player' PID:4578
+[12:15:59] 'Song Player' (PID:4578) granted RAM:40MB HDD:20MB
+[12:16:21] Launched 'Alarm' PID:4696
+[12:16:22] 'Alarm' (PID:4696) granted RAM:20MB HDD:1MB
+[12:16:32] Launched 'Weather' PID:4735
+[12:16:32] 'Weather' (PID:4735) granted RAM:30MB HDD:5MB
+[12:16:45] Launched 'File Manager' PID:4807
+[12:16:45] 'File Manager' (PID:4807) granted RAM:60MB HDD:30MB
+[12:17:02] Launched 'Calendar' PID:4887
+[12:17:02] 'Calendar' (PID:4887) granted RAM:20MB HDD:1MB
+[12:17:17] Kernel mode unlocked
+[12:17:28] Launched 'Calculator' PID:4971
+[12:17:28] 'Calculator' (PID:4971) granted RAM:30MB HDD:5MB
+[12:17:30] Launched 'Paint' PID:4995
+[12:17:30] 'Paint' (PID:4995) granted RAM:90MB HDD:50MB
+[12:17:40] Aging PID:4971 prio->1
+[12:17:42] Kernel mode unlocked
+[12:17:45] Aging PID:4995 prio->1
+[12:17:54] Launched 'Notepad' PID:5070
+[12:17:54] 'Notepad' (PID:5070) granted RAM:50MB HDD:20MB
+[12:17:59] PID:5070 exited
+[12:18:02] NexOS shutting down
+[07:55:00] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[07:55:11] Launched 'Paint' PID:4592
+[07:55:11] 'Paint' (PID:4592) granted RAM:90MB HDD:50MB
+[07:57:02] Launched 'Calculator' PID:4655
+[07:57:03] 'Calculator' (PID:4655) granted RAM:30MB HDD:5MB
+[07:57:14] Launched 'Notepad' PID:4702
+[07:57:14] 'Notepad' (PID:4702) granted RAM:50MB HDD:20MB
+[07:57:35] Launched 'Tetris' PID:4757
+[07:57:35] 'Tetris' (PID:4757) granted RAM:45MB HDD:5MB
+[07:58:01] Launched 'Brick Breaker' PID:4819
+[07:58:01] 'Brick Breaker' (PID:4819) granted RAM:70MB HDD:10MB
+[07:58:23] Launched 'Shell' PID:4890
+[07:58:23] 'Shell' (PID:4890) granted RAM:60MB HDD:10MB
+[07:59:17] Launched 'Song Player' PID:4967
+[07:59:17] 'Song Player' (PID:4967) granted RAM:40MB HDD:20MB
+[07:59:46] Launched 'Alarm' PID:5121
+[07:59:46] 'Alarm' (PID:5121) granted RAM:20MB HDD:1MB
+[08:00:00] Launched 'Weather' PID:5209
+[08:00:00] 'Weather' (PID:5209) granted RAM:30MB HDD:5MB
+[08:00:15] Aging PID:5209 prio->1
+[08:00:18] Launched 'File Manager' PID:5298
+[08:00:18] 'File Manager' (PID:5298) granted RAM:60MB HDD:30MB
+[08:00:30] Aging PID:5298 prio->1
+[08:00:45] Launched 'Calendar' PID:5393
+[08:00:45] 'Calendar' (PID:5393) granted RAM:20MB HDD:1MB
+[08:01:00] Aging PID:5393 prio->1
+[08:01:13] Kernel mode unlocked
+[08:01:28] Killed PID:5121
+[08:01:28] PID:5121 exited
+[08:01:49] NexOS shutting down
+[02:00:47] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[02:02:14] NexOS shutting down
+[02:03:44] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[02:05:20] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[02:05:26] Launched 'Tetris' PID:18095
+[02:05:26] 'Tetris' (PID:18095) granted RAM:45MB HDD:5MB
+[02:05:29] PID:18095 exited
+[02:05:30] NexOS shutting down
+[02:06:26] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[02:06:32] Launched 'Tetris' PID:18357
+[02:06:32] 'Tetris' (PID:18357) granted RAM:45MB HDD:5MB
+[02:07:00] PID:18357 exited
+[02:07:02] Launched 'Tetris' PID:18421
+[02:07:03] 'Tetris' (PID:18421) granted RAM:45MB HDD:5MB
+[02:07:09] PID:18421 exited
+[02:07:24] Launched 'Tetris' PID:18515
+[02:07:24] 'Tetris' (PID:18515) granted RAM:45MB HDD:5MB
+[02:20:44] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[02:21:09] NexOS shutting down
+[02:21:14] PID:18515 exited
+[02:21:18] NexOS shutting down
+[02:27:49] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[02:32:43] NexOS shutting down
+[02:33:20] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[02:37:18] Launched 'Paint' PID:21985
+[02:37:18] 'Paint' (PID:21985) granted RAM:90MB HDD:50MB
+[02:38:03] PID:21985 exited
+[02:38:05] Launched 'Calculator' PID:22076
+[02:38:05] 'Calculator' (PID:22076) granted RAM:30MB HDD:5MB
+[02:38:08] PID:22076 exited
+[02:38:10] Launched 'Tetris' PID:22097
+[02:38:10] 'Tetris' (PID:22097) granted RAM:45MB HDD:5MB
+[02:38:14] PID:22097 exited
+[02:38:17] Launched 'Shell' PID:22140
+[02:38:17] 'Shell' (PID:22140) granted RAM:60MB HDD:10MB
+[02:38:19] PID:22140 exited
+[02:38:21] Launched 'Brick Breaker' PID:22186
+[02:38:21] 'Brick Breaker' (PID:22186) granted RAM:70MB HDD:10MB
+[02:38:25] PID:22186 exited
+[02:38:30] Launched 'Shell' PID:22225
+[02:38:30] 'Shell' (PID:22225) granted RAM:60MB HDD:10MB
+[02:38:33] PID:22225 exited
+[02:40:25] Launched 'Song Player' PID:22411
+[02:40:25] 'Song Player' (PID:22411) granted RAM:40MB HDD:20MB
+[02:40:30] PID:22411 exited
+[02:40:32] Launched 'Weather' PID:22452
+[02:40:32] 'Weather' (PID:22452) granted RAM:30MB HDD:5MB
+[02:40:36] PID:22452 exited
+[02:40:38] Launched 'Paint' PID:22483
+[02:40:38] 'Paint' (PID:22483) granted RAM:90MB HDD:50MB
+[02:40:43] PID:22483 exited
+[02:43:29] NexOS shutting down
+[02:43:44] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[02:45:08] NexOS shutting down
+[02:45:55] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[02:46:04] NexOS shutting down
+[02:48:40] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[02:50:14] NexOS shutting down
+[02:50:37] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[02:51:58] NexOS shutting down
+[02:53:35] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[02:54:06] Launched 'Shell' PID:24431
+[02:54:06] 'Shell' (PID:24431) granted RAM:60MB HDD:10MB
+[02:56:35] PID:24431 exited
+[02:56:45] NexOS shutting down
+[03:02:16] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[03:04:32] NexOS shutting down
+[03:04:41] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[03:06:16] NexOS shutting down
+[03:32:30] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[03:32:48] Kernel mode unlocked
+[03:32:56] Launched 'Alarm' PID:27892
+[03:32:56] 'Alarm' (PID:27892) granted RAM:20MB HDD:1MB
+[03:33:04] Launched 'Song Player' PID:27938
+[03:33:04] 'Song Player' (PID:27938) granted RAM:40MB HDD:20MB
+[03:33:07] Launched 'Weather' PID:27957
+[03:33:07] 'Weather' (PID:27957) granted RAM:30MB HDD:5MB
+[03:33:13] NexOS shutting down
+[03:37:26] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[03:37:35] Launched 'Paint' PID:28902
+[03:37:35] 'Paint' (PID:28902) granted RAM:90MB HDD:50MB
+[03:37:40] Launched 'Calculator' PID:28925
+[03:37:40] 'Calculator' (PID:28925) granted RAM:30MB HDD:5MB
+[03:37:42] PID:28925 exited
+[03:37:44] Launched 'Calculator' PID:28980
+[03:37:44] 'Calculator' (PID:28980) granted RAM:30MB HDD:5MB
+[03:37:46] PID:28980 exited
+[03:37:50] Launched 'Notepad' PID:29026
+[03:37:50] 'Notepad' (PID:29026) granted RAM:50MB HDD:20MB
+[03:37:58] Launched 'Tetris' PID:29074
+[03:37:58] 'Tetris' (PID:29074) granted RAM:45MB HDD:5MB
+[03:38:04] Launched 'Brick Breaker' PID:29104
+[03:38:04] 'Brick Breaker' (PID:29104) granted RAM:70MB HDD:10MB
+[03:38:13] Launched 'Shell' PID:29138
+[03:38:13] 'Shell' (PID:29138) granted RAM:60MB HDD:10MB
+[03:38:18] Launched 'Song Player' PID:29176
+[03:38:18] 'Song Player' (PID:29176) granted RAM:40MB HDD:20MB
+[03:38:23] Launched 'Alarm' PID:29219
+[03:38:23] 'Alarm' (PID:29219) granted RAM:20MB HDD:1MB
+[03:38:25] Launched 'Weather' PID:29260
+[03:38:25] 'Weather' (PID:29260) granted RAM:30MB HDD:5MB
+[03:38:28] Launched 'File Manager' PID:29265
+[03:38:28] 'File Manager' (PID:29265) granted RAM:60MB HDD:30MB
+[03:38:32] Launched 'Calendar' PID:29313
+[03:38:32] 'Calendar' (PID:29313) granted RAM:20MB HDD:1MB
+[03:38:36] Aging PID:29260 prio->1
+[03:38:41] Aging PID:29265 prio->1
+[03:38:46] Aging PID:29313 prio->1
+[03:38:50] Kernel mode unlocked
+[03:41:37] PID:28902 exited
+[03:41:52] Kernel locked
+[03:41:57] Launched 'Calculator' PID:29751
+[03:41:57] 'Calculator' (PID:29751) granted RAM:30MB HDD:5MB
+[03:41:59] PID:29751 exited
+[03:42:11] Aging PID:29751 prio->1
+[03:43:22] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[03:43:29] Launched 'Calculator' PID:30138
+[03:43:29] 'Calculator' (PID:30138) granted RAM:30MB HDD:5MB
+[03:43:31] PID:30138 exited
+[03:43:36] NexOS shutting down
+[03:50:30] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[03:50:40] Launched 'Calculator' PID:30784
+[03:50:40] 'Calculator' (PID:30784) granted RAM:30MB HDD:5MB
+[03:50:42] PID:30784 exited
+[03:50:44] NexOS shutting down
+[03:51:17] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[03:51:23] Launched 'Calculator' PID:31023
+[03:51:23] 'Calculator' (PID:31023) granted RAM:30MB HDD:5MB
+[03:51:48] PID:31023 exited
+[03:51:50] NexOS shutting down
+[03:53:01] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[03:53:09] Launched 'Shell' PID:31244
+[03:53:09] 'Shell' (PID:31244) granted RAM:60MB HDD:10MB
+[03:53:44] PID:31244 exited
+[03:54:00] NexOS shutting down
+[16:17:25] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[16:17:36] Launched 'Chat' PID:5848
+[16:17:36] 'Chat' (PID:5848) granted RAM:20MB HDD:1MB
+[16:41:34] PID:5848 exited
+[16:41:37] NexOS shutting down
+[17:07:50] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[17:07:57] Launched 'Chat' PID:14549
+[17:07:57] 'Chat' (PID:14549) granted RAM:20MB HDD:1MB
+[17:10:06] PID:14549 exited
+[17:10:10] Launched 'Chat' PID:14840
+[17:10:10] 'Chat' (PID:14840) granted RAM:20MB HDD:1MB
+[17:20:04] PID:14840 exited
+[17:20:07] NexOS shutting down
+[17:36:00] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[17:36:07] Launched 'Chat' PID:17748
+[17:36:07] 'Chat' (PID:17748) granted RAM:20MB HDD:1MB
+[17:37:35] PID:17748 exited
+[17:37:41] Launched 'Chat' PID:17906
+[17:37:41] 'Chat' (PID:17906) granted RAM:20MB HDD:1MB
+[17:38:06] PID:17906 exited
+[17:38:11] Launched 'Chat' PID:18016
+[17:38:11] 'Chat' (PID:18016) granted RAM:20MB HDD:1MB
+[17:39:23] PID:18016 exited
+[17:39:28] Launched 'Chat' PID:18211
+[17:39:28] 'Chat' (PID:18211) granted RAM:20MB HDD:1MB
+[17:44:44] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[17:45:01] Launched 'Chat' PID:18956
+[17:45:01] 'Chat' (PID:18956) granted RAM:20MB HDD:1MB
+[17:46:00] PID:18956 exited
+[17:46:06] Launched 'Chat' PID:19104
+[17:46:06] 'Chat' (PID:19104) granted RAM:20MB HDD:1MB
+[17:47:00] PID:19104 exited
+[17:51:34] NexOS shutting down
+[17:51:53] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[17:53:32] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[17:57:43] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[17:59:30] NexOS shutting down
+[18:00:07] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[21:52:37] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[21:52:49] Launched 'Tetris' PID:4497
+[21:52:49] 'Tetris' (PID:4497) granted RAM:45MB HDD:5MB
+[21:52:53] PID:4497 exited
+[21:52:56] Launched 'Calendar' PID:4534
+[21:52:56] 'Calendar' (PID:4534) granted RAM:20MB HDD:1MB
+[21:53:04] PID:4534 exited
+[21:53:08] Launched 'Weather' PID:4577
+[21:53:08] 'Weather' (PID:4577) granted RAM:30MB HDD:5MB
+[21:53:40] PID:4577 exited
+[21:53:43] Launched 'Alarm' PID:4622
+[21:53:43] 'Alarm' (PID:4622) granted RAM:20MB HDD:1MB
+[21:53:51] PID:4622 exited
+[21:53:59] Launched 'Shell' PID:4678
+[21:53:59] 'Shell' (PID:4678) granted RAM:60MB HDD:10MB
+[21:54:06] PID:4678 exited
+[21:54:09] Launched 'Chat' PID:4716
+[21:54:09] 'Chat' (PID:4716) granted RAM:20MB HDD:1MB
+[21:54:31] PID:4716 exited
+[21:54:34] Launched 'Chat' PID:4755
+[21:54:34] 'Chat' (PID:4755) granted RAM:20MB HDD:1MB
+[21:54:36] PID:4755 exited
+[21:54:40] Launched 'Brick Breaker' PID:4775
+[21:54:40] 'Brick Breaker' (PID:4775) granted RAM:70MB HDD:10MB
+[21:54:51] PID:4775 exited
+[21:54:54] Launched 'Tetris' PID:4814
+[21:54:54] 'Tetris' (PID:4814) granted RAM:45MB HDD:5MB
+[21:55:01] PID:4814 exited
+[21:55:04] Launched 'Notepad' PID:4856
+[21:55:04] 'Notepad' (PID:4856) granted RAM:50MB HDD:20MB
+[21:55:12] PID:4856 exited
+[21:55:14] Launched 'Calculator' PID:4895
+[21:55:14] 'Calculator' (PID:4895) granted RAM:30MB HDD:5MB
+[21:55:20] PID:4895 exited
+[21:55:21] Launched 'Paint' PID:4918
+[21:55:21] 'Paint' (PID:4918) granted RAM:90MB HDD:50MB
+[21:56:02] PID:4918 exited
+[21:56:14] Kernel mode unlocked
+[21:56:20] Launched 'Chat' PID:4993
+[21:56:20] 'Chat' (PID:4993) granted RAM:20MB HDD:1MB
+[21:56:40] NexOS shutting down
+[21:58:09] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[22:00:14] NexOS shutting down
+[22:00:25] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[22:01:26] NexOS shutting down
+[22:06:48] NexOS booting. RAM:2048MB HDD:262144MB Cores:8
+[22:08:47] Kernel mode unlocked
+[22:09:16] Launched 'Paint' PID:7126
+[22:09:16] 'Paint' (PID:7126) granted RAM:90MB HDD:50MB
+[22:09:17] Launched 'Calculator' PID:7132
+[22:09:17] 'Calculator' (PID:7132) granted RAM:30MB HDD:5MB
+[22:09:18] Launched 'Notepad' PID:7149
+[22:09:18] 'Notepad' (PID:7149) granted RAM:50MB HDD:20MB
+[22:09:19] Launched 'Tetris' PID:7164
+[22:09:19] 'Tetris' (PID:7164) granted RAM:45MB HDD:5MB
+[22:09:21] Launched 'Brick Breaker' PID:7170
+[22:09:21] 'Brick Breaker' (PID:7170) granted RAM:70MB HDD:10MB
+[22:09:22] Launched 'Chat' PID:7177
+[22:09:22] 'Chat' (PID:7177) granted RAM:20MB HDD:1MB
+[22:09:23] Launched 'Shell' PID:7198
+[22:09:23] 'Shell' (PID:7198) granted RAM:60MB HDD:10MB
+[22:09:24] Launched 'Song Player' PID:7220
+[22:09:24] 'Song Player' (PID:7220) granted RAM:40MB HDD:20MB
+[22:09:25] Launched 'Alarm' PID:7227
+[22:09:25] 'Alarm' (PID:7227) granted RAM:20MB HDD:1MB
+[22:09:27] Launched 'Weather' PID:7234
+[22:09:27] 'Weather' (PID:7234) granted RAM:30MB HDD:5MB
+[22:09:31] Launched 'File Manager' PID:7284
+[22:09:31] 'File Manager' (PID:7284) granted RAM:60MB HDD:30MB
+[22:09:32] Launched 'Calendar' PID:7290
+[22:09:32] 'Calendar' (PID:7290) granted RAM:20MB HDD:1MB
+[22:09:38] Aging PID:7234 prio->1
+[22:09:40] Kernel mode unlocked
+[22:09:43] Aging PID:7284 prio->1
+[22:09:43] Aging PID:7290 prio->1
+[22:10:27] PID:7220 exited
+[22:10:47] Launched 'Song Player' PID:7533
+[22:10:47] 'Song Player' (PID:7533) granted RAM:40MB HDD:20MB
+[22:10:58] Aging PID:7533 prio->1
+[22:11:12] PID:7533 exited
+[22:17:32] PID:7132 exited
+[22:21:21] PID:7149 exited
+[22:25:20] PID:7164 exited
+[22:27:34] PID:7170 exited
+[22:29:18] Launched 'Song Player' PID:8468
+[22:29:18] 'Song Player' (PID:8468) granted RAM:40MB HDD:20MB
+[22:36:03] PID:7198 exited
+[22:36:03] PID:7227 exited
+[22:36:03] PID:7234 exited
+[22:36:03] PID:7284 exited
+[22:36:03] PID:7290 exited
+[22:36:03] PID:8468 exited
+[22:36:17] PID:7126 exited
+[23:05:43] PID:7177 exited
+[23:05:47] Launched 'Chat' PID:9900
+[23:05:47] 'Chat' (PID:9900) granted RAM:20MB HDD:1MB
+[23:07:03] NexOS shutting down
