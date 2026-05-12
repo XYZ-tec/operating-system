@@ -650,7 +650,7 @@ int main(){
     }
 
     SetConfigFlags(FLAG_WINDOW_RESIZABLE);
-    InitWindow(WIN_W,WIN_H,"NexOS Clock");
+    InitWindow(WIN_W,WIN_H,"RayVerve Clock");
     SetTargetFPS(60);SetExitKey(KEY_NULL);
     SetWindowFocused();
     InitTone();

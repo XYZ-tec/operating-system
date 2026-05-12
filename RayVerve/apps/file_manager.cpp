@@ -88,7 +88,7 @@ static std::string previewName    = "";
 static bool        previewOpen    = true;
 
 // ── Status ────────────────────────────────────────────────
-static char        statusMsg[256] = "Welcome to NexOS File Manager";
+static char        statusMsg[256] = "Welcome to RayVerve File Manager";
 static double      statusAt       = 0.0;
 static void SetStatus(const char* m){strncpy(statusMsg,m,255);statusAt=GetTime();}
 
@@ -811,7 +811,7 @@ int main(){
     }
 
     SetConfigFlags(FLAG_WINDOW_RESIZABLE);
-    InitWindow(1100,700,"NexOS File Manager");
+    InitWindow(1100,700,"RayVerve File Manager");
     SetTargetFPS(60);SetExitKey(KEY_NULL);
     SetWindowFocused();
 

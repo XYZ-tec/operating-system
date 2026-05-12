@@ -74,7 +74,7 @@ static AppInfo APPS[] = {
     { "Brick Breaker", "apps/brickbreaker",  70, 10, PRIORITY_LOW,    1, NEON_GREEN,  "assets/icons/brickbreaker.png" },
     { "Browser",       "apps/browser",       150, 30, PRIORITY_NORMAL, 1, NEON_CYAN,   "assets/icons/browser.png"      },
     { "Chat",          "apps/chat",          50, 10, PRIORITY_NORMAL, 1, NEON_CYAN,   "assets/icons/chat.png"         },
-    { "Shell",         "apps/nexos_shell",   60, 10, PRIORITY_NORMAL, 1, NEON_GREEN,  "assets/icons/shell.png"        },
+    { "Shell",         "apps/rayverve_shell",   60, 10, PRIORITY_NORMAL, 1, NEON_GREEN,  "assets/icons/shell.png"        },
     { "Song Player",   "apps/songplayer",    40, 20, PRIORITY_NORMAL, 1, NEON_PURPLE, "assets/icons/songplayer.png"   },
     { "Alarm",         "apps/alarm",         20,  1, PRIORITY_HIGH,   0, NEON_GOLD,   "assets/icons/clock.png"        },
     { "Weather",       "apps/weather",       30,  5, PRIORITY_NORMAL, 1, NEON_CYAN,   "assets/icons/weather.png"      },
@@ -537,7 +537,7 @@ static void DrawTaskbar(int sw,int sh,float ramFrac,float hddFrac,int ramMB,int 
     DrawLine(0,y,sw,y,NEON_CYAN);
 
     // Logo
-    DrawT("RayVerve",10,y+12,FONT_NORMAL,NEON_CYAN);
+    DrawT("Rayvere",10,y+12,FONT_NORMAL,NEON_CYAN);
 
     // Search button
     Rectangle sb={86,(float)(y+8),160,(float)(TASKBAR_H-16)};
@@ -884,9 +884,9 @@ static void RunShutdown(int& sw,int& sh)
     while(!WindowShouldClose()&&a<1.0f){
         a+=0.012f; if(IsWindowResized()){sw=GetScreenWidth();sh=GetScreenHeight();}
         BeginDrawing(); ClearBackground(BG_DEEP); DrawCyberpunkGrid(sw,sh);
-        const char* msg="Shutting down NexOS..."; int mw=MeasureText(msg,26);
+        const char* msg="Shutting down RayVerve..."; int mw=MeasureText(msg,26);
         DrawText(msg,(sw-mw)/2,sh/2-28,26,{0,255,200,(unsigned char)(int)((1-a*0.4f)*255)});
-        const char* bye="Thank you for using NexOS. Goodbye."; int bw2=MeasureText(bye,17);
+        const char* bye="Thank you for using RayVerve. Goodbye."; int bw2=MeasureText(bye,17);
         DrawText(bye,(sw-bw2)/2,sh/2+22,17,{140,60,220,(unsigned char)(int)(a*220)});
         EndDrawing();
     }
@@ -943,7 +943,7 @@ int main()
     SetWindowTitle("RayVerve");
 
     // ── STEP 2: Init log, shared memory, IPC ───────────────
-    logFile=fopen("logs/nexos.log","a");
+    logFile=fopen("logs/rayverve.log","a");
 
     shmid=shmget(SHM_KEY,sizeof(OSResources),0666);
     if(shmid>=0)shmctl(shmid,IPC_RMID,nullptr);

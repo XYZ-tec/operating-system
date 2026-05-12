@@ -21,7 +21,7 @@ APPS = \
   apps/chat \
   apps/clock \
   apps/file_manager \
-  apps/nexos_shell \
+  apps/rayverve_shell \
   apps/notepad \
   apps/paint \
   apps/songplayer \

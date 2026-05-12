@@ -770,7 +770,7 @@ int main() {
     }
 
     SetConfigFlags(FLAG_WINDOW_RESIZABLE);
-    InitWindow(WIN_W, WIN_H, "NexOS — Brick Breaker");
+    InitWindow(WIN_W, WIN_H, "RayVerve — Brick Breaker");
     SetTargetFPS(60);
     SetExitKey(KEY_NULL);
     SetWindowFocused();

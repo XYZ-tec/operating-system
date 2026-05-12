@@ -487,7 +487,7 @@ static void DrawHeader(int sw) {
     DrawRectangle(0,0,sw,46,{30,80,180,255});
     DrawLine(0,46,sw,46,{20,60,160,255});
     // Logo
-    DrawText("NexOS Browser",16,12,FONT_LARGE,{255,255,255,255});
+    DrawText("RayVerve Browser",16,12,FONT_LARGE,{255,255,255,255});
     // Animated dot when browser is running
     double la=GetTime()-lastLaunchAt;
     if(la<4.0){

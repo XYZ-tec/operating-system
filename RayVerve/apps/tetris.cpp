@@ -713,7 +713,7 @@ int main() {
     }
 
     SetConfigFlags(FLAG_WINDOW_RESIZABLE);
-    InitWindow(WIN_W, WIN_H, "NexOS Tetris");
+    InitWindow(WIN_W, WIN_H, "RayVerve Tetris");
     SetTargetFPS(60);
     SetExitKey(KEY_NULL);
     SetWindowFocused();

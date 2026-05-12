@@ -673,7 +673,7 @@ int main() {
     }
 
     SetConfigFlags(FLAG_WINDOW_RESIZABLE);
-    InitWindow(WIN_W,WIN_H,"NexOS — Song Player");
+    InitWindow(WIN_W,WIN_H,"RayVerve — Song Player");
     SetTargetFPS(60);
     SetExitKey(KEY_NULL);
     SetWindowFocused();

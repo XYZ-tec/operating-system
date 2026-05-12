@@ -57,9 +57,9 @@ static int MT(const char* t){
 
 static std::string GetUserName(){
     static bool init=false;
-    static std::string user="nexos_user";
+    static std::string user="RayVerve_user";
     if(!init){
-        char buf[64] = "nexos_user";
+        char buf[64] = "RayVerve_user";
         if(getlogin_r(buf,sizeof(buf))==0 && buf[0]!='\0'){
             user=buf;
         }
@@ -428,7 +428,7 @@ static void ExecuteCommand(const std::string& raw){
     }
 
     if(cmd=="whoami"){
-        char user[64]="nexos_user";
+        char user[64]="RayVerve_user";
         getlogin_r(user,sizeof(user));
         PushLine(std::string(user),TERM_OUTPUT);
         PushPrompt();
@@ -573,8 +573,8 @@ static void DrawTopBar(int sw){
 
     // Title: "NexOS" bright + "Shell" muted
     int tx=iconX+44;
-    DT("NexOS",tx,11,NEON_CYAN);
-    int nw=MT("NexOS");
+    DT("RayVerve",tx,11,NEON_CYAN);
+    int nw=MT("RayVerve Shell");
     DT(" Shell",tx+nw,11,TEXT_MUTED);
 
     // Separator dot

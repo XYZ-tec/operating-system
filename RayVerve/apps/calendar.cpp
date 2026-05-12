@@ -323,7 +323,7 @@ int main() {
     }
 
     SetConfigFlags(FLAG_WINDOW_RESIZABLE);
-    InitWindow(WIN_W, WIN_H, "NexOS Calendar");
+    InitWindow(WIN_W, WIN_H, "RayVerve Calendar");
     SetTargetFPS(60);
     SetExitKey(KEY_NULL);
     SetWindowFocused();

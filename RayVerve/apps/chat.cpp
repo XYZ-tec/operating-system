@@ -1,6 +1,5 @@
-
 // ============================================================
-//  RayVerve Chat  —  TCP peer-to-peer text chat
+//  NexOS Chat  —  TCP peer-to-peer text chat
 //  One partner runs HOST, the other runs JOIN.
 //  Works on a LAN, ZeroTier/Tailscale VPN, or with port-fwd.
 //  Port default: 9999 (editable in the setup screen).
@@ -62,7 +61,7 @@ struct Msg {
     std::string ts;
     bool mine;
     bool sys;
-    bool hist = false; 
+    bool hist = false;
 };
 static std::vector<Msg> msgs;
 static std::mutex       msgMtx;
@@ -74,7 +73,6 @@ static std::string NowHHMM() {
     char b[8]; snprintf(b,sizeof(b),"%02d:%02d",lt->tm_hour,lt->tm_min);
     return b;
 }
-// ── Persistence ───────────────────────────────────────────
 #define HIST_FILE    "hdd/chat_history.txt"
 #define HIST_DELIM   '\x01'
 #define MAX_HIST_LOAD 150
@@ -104,12 +102,12 @@ static void LoadHistory(){
     }
     fclose(f);
     if(lines.empty()) return;
-        if((int)lines.size()>MAX_HIST_LOAD)
+    if((int)lines.size()>MAX_HIST_LOAD)
         lines.erase(lines.begin(),lines.begin()+(int)lines.size()-MAX_HIST_LOAD);
     for(const auto& line:lines){
         // split on HIST_DELIM into 4 parts: TYPE, NAME, TS, TEXT
         std::vector<std::string> parts;
-        std::string cur;
+                std::string cur;
         for(char c:line){
             if(c==HIST_DELIM){ parts.push_back(cur); cur.clear(); }
             else cur+=c;
@@ -129,10 +127,11 @@ static void LoadHistory(){
     msgs.push_back(sep);
     scrollOff=0;
 }
+
 static void PushRaw(const std::string& name,const std::string& text,bool mine,bool sys){
     std::lock_guard<std::mutex> lk(msgMtx);
     if((int)msgs.size()>=MAX_MSGS) msgs.erase(msgs.begin());
-        Msg m; m.name=name; m.text=text; m.ts=NowHHMM(); m.mine=mine; m.sys=sys; m.hist=false;
+       Msg m; m.name=name; m.text=text; m.ts=NowHHMM(); m.mine=mine; m.sys=sys; m.hist=false;
     msgs.push_back(m);
     if(!sys) SaveMsg(m);
     int total=(int)msgs.size();
@@ -323,7 +322,7 @@ static void DrawField(const char* label,char* field,int& len,int maxLen,
 }
 
 static void DrawSetupScreen(int sw,int sh){
-    const char* title=">_ RayVerve Chat";
+    const char* title=">_ NexOS Chat";
     DT(title,sw/2-MT(title,FONT_TITLE)/2,28,FONT_TITLE,NEON_CYAN);
     const char* sub="Direct TCP chat — no server required";
     DT(sub,sw/2-MT(sub,FONT_SMALL)/2,64,FONT_SMALL,TEXT_MUTED);
@@ -424,7 +423,7 @@ static void DrawChatScreen(int sw,int sh){
     DrawCircle(16,barH/2,6,live?NEON_CYAN:NEON_PINK);
     DT(live?"LIVE":"OFFLINE",28,barH/2-FONT_TINY/2,FONT_TINY,live?NEON_CYAN:NEON_PINK);
 
-    std::string chatTitle=std::string(">_ ")+myName+" — RayVerve Chat";
+    std::string chatTitle=std::string(">_ ")+myName+" — NexOS Chat";
     DT(chatTitle.c_str(),sw/2-MT(chatTitle.c_str(),FONT_NORMAL)/2,
        barH/2-FONT_NORMAL/2,FONT_NORMAL,TEXT_PRIMARY);
     DT("ESC = disconnect",sw-MT("ESC = disconnect",FONT_TINY)-12,
@@ -489,7 +488,7 @@ static void DrawChatScreen(int sw,int sh){
             int my=chatY+(i-startIdx)*lineH+4;
             if(m.sys){
                 std::string lab="— "+m.text+" —";
-              Color sc=m.hist?TEXT_DIM:TEXT_MUTED;
+                               Color sc=m.hist?TEXT_DIM:TEXT_MUTED;
                 DT(lab.c_str(),sw/2-MT(lab.c_str(),FONT_SMALL)/2,my+14,FONT_SMALL,sc);
                 continue;
             }
@@ -497,7 +496,7 @@ static void DrawChatScreen(int sw,int sh){
             int nameW=MT(m.name.c_str(),FONT_TINY);
             int tsW  =MT(m.ts.c_str(),FONT_TINY);
             int bubW =std::min(std::max(textW,nameW)+24,sw-80);
-            Color txtCol  = m.hist ? TEXT_MUTED   : TEXT_PRIMARY;
+                        Color txtCol  = m.hist ? TEXT_MUTED   : TEXT_PRIMARY;
             Color metaCol = m.hist ? TEXT_DIM      : TEXT_DIM;
             if(m.mine){
                 int bx=sw-bubW-16;
@@ -509,7 +508,7 @@ static void DrawChatScreen(int sw,int sh){
                 DT(m.name.c_str(),bx+10,my+28,FONT_TINY,metaCol);
                 DT(m.ts.c_str(),bx+bubW-tsW-8,my+28,FONT_TINY,metaCol);
             } else {
-                                Color fill = m.hist ? Color{25,0,45,80}   : Color{60,0,100,130};
+                               Color fill = m.hist ? Color{25,0,45,80}   : Color{60,0,100,130};
                 Color edge = m.hist ? Color{100,30,140,60} : Color{180,60,220,110};
                 DrawRectangleRounded({16.0f,(float)(my+2),(float)bubW,36},0.2f,8,fill);
                 DrawRectangleLinesEx({16.0f,(float)(my+2),(float)bubW,36},1.0f,edge);
@@ -552,7 +551,7 @@ int main(){
     }
 
     SetConfigFlags(FLAG_WINDOW_RESIZABLE);
-    InitWindow(WIN_W,WIN_H,"RayVerve Chat");
+    InitWindow(WIN_W,WIN_H,"NexOS Chat");
     SetTargetFPS(60);
     SetExitKey(KEY_NULL);
     SetWindowFocused();

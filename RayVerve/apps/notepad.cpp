@@ -476,7 +476,7 @@ static void DrawMenuBar(int sw){
 
     // Title - shows filename + dirty marker
     char title[200];
-    sprintf(title,"%s%s - NexOS Notepad",isDirty?"* ":"",isUntitled?"untitled":DisplayName());
+    sprintf(title,"%s%s - RayVerve Notepad",isDirty?"* ":"",isUntitled?"untitled":DisplayName());
     int tw=MT(title,FONT_SMALL);
     DT(title,(sw-tw)/2,9,FONT_SMALL,isDirty?NEON_GOLD:TEXT_MUTED);
 
@@ -826,7 +826,7 @@ int main(){
     }
 
     SetConfigFlags(FLAG_WINDOW_RESIZABLE);
-    InitWindow(960,680,"NexOS Notepad");
+    InitWindow(960,680,"RayVerve Notepad");
     SetTargetFPS(60);SetExitKey(KEY_NULL);SetWindowFocused();
 
     edFontOK=false;
