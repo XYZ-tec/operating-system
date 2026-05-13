@@ -322,7 +322,7 @@ static void DrawField(const char* label,char* field,int& len,int maxLen,
 }
 
 static void DrawSetupScreen(int sw,int sh){
-    const char* title=">_ NexOS Chat";
+    const char* title=">_ RayVerve Chat";
     DT(title,sw/2-MT(title,FONT_TITLE)/2,28,FONT_TITLE,NEON_CYAN);
     const char* sub="Direct TCP chat — no server required";
     DT(sub,sw/2-MT(sub,FONT_SMALL)/2,64,FONT_SMALL,TEXT_MUTED);
@@ -423,7 +423,7 @@ static void DrawChatScreen(int sw,int sh){
     DrawCircle(16,barH/2,6,live?NEON_CYAN:NEON_PINK);
     DT(live?"LIVE":"OFFLINE",28,barH/2-FONT_TINY/2,FONT_TINY,live?NEON_CYAN:NEON_PINK);
 
-    std::string chatTitle=std::string(">_ ")+myName+" — NexOS Chat";
+    std::string chatTitle=std::string(">_ ")+myName+" — RayVerve Chat";
     DT(chatTitle.c_str(),sw/2-MT(chatTitle.c_str(),FONT_NORMAL)/2,
        barH/2-FONT_NORMAL/2,FONT_NORMAL,TEXT_PRIMARY);
     DT("ESC = disconnect",sw-MT("ESC = disconnect",FONT_TINY)-12,
@@ -551,7 +551,7 @@ int main(){
     }
 
     SetConfigFlags(FLAG_WINDOW_RESIZABLE);
-    InitWindow(WIN_W,WIN_H,"NexOS Chat");
+    InitWindow(WIN_W,WIN_H,"RayVerve Chat");
     SetTargetFPS(60);
     SetExitKey(KEY_NULL);
     SetWindowFocused();

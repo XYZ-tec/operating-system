@@ -788,7 +788,11 @@ int main(){
     // Load DejaVu Sans Bold — same font as os.cpp so the whole OS feels unified
     shFontOK=false;
     if(FileExists("assets/fonts/DejaVuSans-Bold.ttf")){
-        shFont=LoadFontEx("assets/fonts/DejaVuSans-Bold.ttf",32,nullptr,0);
+                const int cpCount = 95 + 160;   // 95 ASCII + 160 unicode (box-draw + block)
+        int cp[95 + 160];
+        for(int i=0;i<95; i++) cp[i]      = 32 + i;       // printable ASCII
+        for(int i=0;i<160;i++) cp[95 + i] = 0x2500 + i;   // U+2500..U+259F
+        shFont=LoadFontEx("assets/fonts/DejaVuSans-Bold.ttf",32,cp,cpCount);
         shFontOK=(shFont.texture.id>0);
     }
     if(shFontOK)SetTextureFilter(shFont.texture,TEXTURE_FILTER_BILINEAR);
@@ -799,11 +803,19 @@ int main(){
 
     // Boot message
     PushLine("",TERM_OUTPUT);
-    PushLine("  +----------------------------------------------+", NEON_CYAN);
-    PushLine("  |                                                  |", NEON_CYAN);
-    PushLine("  |   >_  N E X O S   S H E L L   v 1 . 0            |", NEON_CYAN);
-    PushLine("  |                                                  |", NEON_CYAN);
-    PushLine("  +----------------------------------------------+", UI_ACCENT_A);
+       PushLine("  +--------------------------------------------------+", NEON_CYAN);
+PushLine("  |                                                  |", NEON_CYAN);
+PushLine("  |  ██████╗   █████╗ ██╗   ██╗                       |", NEON_CYAN);
+PushLine("  |  ██╔══██╗ ██╔══██╗╚██╗ ██╔╝                       |", NEON_CYAN);
+PushLine("  |  ██████╔╝ ███████║ ╚████╔╝                        |", NEON_CYAN);
+PushLine("  |  ██╔══██╗ ██╔══██║  ╚██╔╝                         |", NEON_CYAN);
+PushLine("  |  ██║  ██║ ██║  ██║   ██║                          |", NEON_CYAN);
+PushLine("  |  ╚═╝  ╚═╝ ╚═╝  ╚═╝   ╚═╝                          |", NEON_CYAN);
+PushLine("  |                                                  |", NEON_CYAN);
+PushLine("  |               >_  R A Y  Shell                  |", UI_ACCENT_A);
+PushLine("  |            Multi-Process OS Simulator            |", UI_ACCENT_A);
+PushLine("  |                                                  |", NEON_CYAN);
+PushLine("  +--------------------------------------------------+", UI_ACCENT_A);
     PushLine("",TERM_OUTPUT);
     PushLine("  Connected to RayVerve kernel -- TTY/1",TERM_PROMPT);
     PushLine("",TERM_OUTPUT);

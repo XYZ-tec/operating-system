@@ -1,4 +1,8 @@
 {
+  "editor.fontFamily": "'Cascadia Code', 'Fira Code', 'JetBrains Mono', Consolas, 'Courier New', monospace",
+  "editor.fontSize": 14,
+  "files.encoding": "utf8",
+  "editor.renderWhitespace": "none",
   "C_Cpp_Runner.cCompilerPath": "gcc",
   "C_Cpp_Runner.cppCompilerPath": "g++",
   "C_Cpp_Runner.debuggerPath": "gdb",
