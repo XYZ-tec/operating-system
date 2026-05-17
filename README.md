@@ -1,243 +1,495 @@
-# NexOS
-A simulated desktop operating system built in C++. NexOS demonstrates core OS concepts — process management, resource allocation, IPC, scheduling, and deadlock detection — through a fully interactive graphical environment powered by [raylib](https://www.raylib.com/).
+<div align="center">
+
+<br/>
+
+```
+  ██████╗  █████╗ ██╗   ██╗██╗   ██╗███████╗██████╗ ██╗   ██╗███████╗
+  ██╔══██╗██╔══██╗╚██╗ ██╔╝██║   ██║██╔════╝██╔══██╗██║   ██║██╔════╝
+██████╔╝███████║ ╚████╔╝ ██║   ██║█████╗  ██████╔╝██║   ██║█████╗
+██╔══██╗██╔══██║  ╚██╔╝  ╚██╗ ██╔╝██╔══╝  ██╔══██╗╚██╗ ██╔╝██╔══╝
+  ██║  ██║██║  ██║   ██║    ╚████╔╝ ███████╗██║  ██║ ╚████╔╝ ███████╗
+  ╚═╝  ╚═╝╚═╝  ╚═╝   ╚═╝     ╚═══╝  ╚══════╝╚═╝  ╚═╝  ╚═══╝  ╚══════╝
+```
+
+**A fully simulated desktop operating system — built in C++17 with raylib**
+
+</div>
+
 ---
+
+## What is RayVerve?
+
+**RayVerve** (formerly NexOS) is a multi-process desktop operating system simulator written in **C++17**. It uses **raylib 5.5** for all graphics rendering and real **POSIX IPC** — shared memory, message queues, and named semaphores — for communication between a live kernel and independently forked application processes.
+
+This is not a toy abstraction. The kernel, scheduler, resource manager, and deadlock detector all run as real background POSIX threads. Each of the 13 built-in apps is a genuine `fork()` + `exec()` child process that negotiates RAM and HDD quotas from the kernel's IPC layer before it is permitted to open its window.
+
+> Runs entirely in software via llvmpipe Mesa + Xvfb — **no GPU required**.
+
+---
+
+## Desktop
+
+<div align="center">
+<img width="1280" height="800" alt="image" src="https://github.com/user-attachments/assets/1b4e9d43-0db4-4bc1-9125-cef31fa9cb19" />
+
+<br/><sub>The RayVerve desktop — 13-app dock, live RAM/HDD taskbar, real-time clock, anime wallpaper</sub>
+</div>
+
+---
+
 ## Table of Contents
-- [Overview](#overview)
-- [Features](#features)
+
 - [Architecture](#architecture)
+- [Kernel Internals](#kernel-internals)
+- [Boot Sequence](#boot-sequence)
+- [Application Showcase](#application-showcase)
+- [Technology Stack](#technology-stack)
+- [IPC Reference](#ipc-reference)
+- [Building & Running](#building--running)
 - [Project Structure](#project-structure)
-- [Prerequisites](#prerequisites)
-- [Build Instructions](#build-instructions)
-- [Running NexOS](#running-nexos)
-- [Built-in Applications](#built-in-applications)
-- [Kernel Mode](#kernel-mode)
-- [IPC System](#ipc-system)
+- [OS Concepts Demonstrated](#os-concepts-demonstrated)
 - [Adding a New App](#adding-a-new-app)
-- [Logging](#logging)
+
 ---
-## Overview
-NexOS launches as a standard Linux process and presents a full cyberpunk-themed desktop. Each application is a separate child process; the OS kernel forks and exec's them on demand, manages their RAM and HDD quotas, schedules them across virtual CPU cores, and tears them down cleanly on exit or shutdown.
----
-## Features
-### Desktop Environment
-- **Hardware Configuration Screen** — configure virtual RAM (MB), HDD (MB), and CPU core count before boot
-- **Left Dock** — quick-launch sidebar with app icons and running indicators
-- **Bottom Taskbar** — NexOS logo, live search bar, running-app pills, RAM/HDD progress bars, real-time clock, and Kernel Mode badge
-- **App Search Overlay** — press the search button or type to filter and launch any app instantly
-- **Cyberpunk grid background** with neon glow UI elements
-### Process & Resource Management
-- **Resource Manager Thread** — receives app resource requests via POSIX message queue; grants or denies based on available RAM and HDD
-- **Multi-Level Queue Scheduler** — promotes ready processes to running state across virtual CPU cores, respecting priority and queue level (system vs. user)
-- **Priority Aging Thread** — automatically promotes long-waiting processes to prevent starvation (every 5 s; threshold 10 s)
-- **Deadlock Detector Thread** — flags a deadlock when ≥ 2 processes are blocked and RAM utilisation exceeds 90 % (checks every 10 s)
-- **Process Control Block (PCB)** table shared in POSIX shared memory — up to 32 concurrent processes
-### App Lifecycle
-- Each app is **fork + exec'd** as a child process
-- Apps communicate with the OS via **POSIX shared memory** and **message queues**
-- Minimize/restore uses **SIGSTOP / SIGCONT**
-- Termination uses **SIGTERM**; the OS reaps children with `waitpid`
----
+
 ## Architecture
+
 ```
-┌─────────────────────────────────────────────────┐
-│                   NexOS (os.cpp)                │
-│                                                 │
-│  ┌───────────────┐  ┌──────────────────────┐   │
-│  │  Desktop UI   │  │  Background Threads  │   │
-│  │  (raylib)     │  │  ResourceManager     │   │
-│  │               │  │  Scheduler           │   │
-│  │  Dock         │  │  AgingThread         │   │
-│  │  Taskbar      │  │  DeadlockDetector    │   │
-│  │  Search       │  └──────────────────────┘   │
-│  │  KernelMode   │                             │
-│  └───────────────┘                             │
-│          │  fork/exec                          │
-│          ▼                                     │
-│  ┌─────────────────────────────────────────┐   │
-│  │           Child App Processes           │   │
-│  │  (Paint, Notepad, Shell, Tetris, …)     │   │
-│  └─────────────────────────────────────────┘   │
-│          │                                     │
-│  ┌───────┴──────────────────────────────────┐  │
-│  │         Shared IPC Layer                 │  │
-│  │  POSIX Shared Memory  (SHM_KEY 0x4E584F53)│  │
-│  │  POSIX Message Queue  (MSG_KEY 0x4E584F54)│  │
-│  │  POSIX Semaphore      (/nexos_shm_sem)   │  │
-│  └──────────────────────────────────────────┘  │
-└─────────────────────────────────────────────────┘
+┌──────────────────────────────────────────────────────────────┐
+│                      RayVerve Kernel (os.cpp)                │
+│                                                              │
+│   ┌────────────────┐    ┌──────────────────────────────┐     │
+│   │   Desktop UI   │    │      Background Threads      │     │
+│   │   (raylib)     │    │                              │     │
+│   │                │    │  ● ResourceManagerThread     │     │
+│   │  ● Dock        │    │  ● SchedulerThread (500ms)   │     │
+│   │  ● Taskbar     │    │  ● AgingThread     (5s)      │     │
+│   │  ● Search      │    │  ● DeadlockThread  (10s)     │     │
+│   │  ● KernelPanel │    │                              │     │
+│   └────────────────┘    └──────────────────────────────┘     │
+│              │  fork() + exec()                              │
+│              ▼                                               │
+│   ┌──────────────────────────────────────────────────────┐   │
+│   │              Child App Processes                     │   │
+│   │   paint · calculator · notepad · tetris · shell …    │   │
+│   └──────────────────────────────────────────────────────┘   │
+│              │                                               │
+│   ┌──────────▼───────────────────────────────────────────┐   │
+│   │                   Shared IPC Layer                   │   │
+│   │  Shared Memory  (SHM_KEY  0x4E584F53)  — PCB table   │   │
+│   │  Message Queue  (MSG_KEY  0x4E584F54)  — resource RPC│   │
+│   │  Named Semaphore (/nexos_shm_sem)      — mutex       │   │
+│   └──────────────────────────────────────────────────────┘   │
+└──────────────────────────────────────────────────────────────┘
 ```
-### Key Header Files
-| File | Purpose |
-|------|---------|
-| `include/resources.h` | `PCB`, `OSResources`, `ResourceRequest`, `ResourceReply` structs; process state and priority constants |
-| `include/ipc.h` | Helper functions every app uses: `GetSharedResources()`, `RequestResources()`, `ReleaseResources()` |
-| `include/theme.h` | All colors, font sizes, and inline UI helpers (`DrawGlowRect`, `DrawButton`, `DrawProgressBar`, `DrawCyberpunkGrid`) |
+
 ---
-## Project Structure
-```
-operating-system/
-└── NexOS/
-    ├── os.cpp               # Main OS process: desktop, threads, IPC setup
-    ├── Makefile             # Build system
-    ├── .env                 # Environment / log reference
-    ├── include/
-    │   ├── resources.h      # Shared data structures
-    │   ├── ipc.h            # IPC helpers for apps
-    │   └── theme.h          # UI theme constants and drawing helpers
-    ├── apps/
-    │   ├── app_template.cpp # Starter template for new apps
-    │   ├── alarm.cpp
-    │   ├── brickbreaker.cpp
-    │   ├── calculator.cpp
-    │   ├── calendar.cpp
-    │   ├── chat.cpp
-    │   ├── clock.cpp
-    │   ├── file_manager.cpp
-    │   ├── nexos_shell.cpp
-    │   ├── notepad.cpp
-    │   ├── paint.cpp
-    │   ├── songplayer.cpp
-    │   ├── tetris.cpp
-    │   ├── visualization.cpp
-    │   └── weather.cpp
-    ├── assets/
-    │   ├── icons/           # PNG icons for each app
-    │   └── songs/           # Audio files for Song Player (mp3/ogg/wav)
-    └── hdd/                 # Persistent app state (alarm, calendar, clock saves)
-```
+
+## Kernel Internals
+
+### Resource Manager Thread
+Listens on a POSIX message queue. When any app starts, it sends a `ResourceRequest` (app name, PID, RAM/HDD needed, priority). The kernel checks the shared `OSResources` struct under a named semaphore, grants or denies the request, and replies with a `ResourceReply`. Successful grants update the PCB table and deduct from the shared resource pool.
+
+### Scheduler Thread — Multi-Level Queue
+Runs every **500 ms**. Processes in `STATE_READY` are promoted to `STATE_RUNNING` up to the configured CPU core limit. Queue level 0 (system/high priority) is always drained before queue level 1 (user/normal apps).
+
+### Aging Thread
+Runs every **5 seconds**. Any process waiting in `STATE_READY` for more than 10 seconds has its priority boosted by one level toward `PRIORITY_HIGH`, preventing indefinite starvation.
+
+### Deadlock Detection Thread
+Runs every **10 seconds**. Raises a deadlock flag when: `blocked_processes ≥ 2` **AND** `ram_utilisation > 90%`. The alert is displayed live in the Kernel Mode panel.
+
+### Kernel Mode Panel
+Press **`K`** to open the live kernel inspector:
+- Full PCB table (PID, name, state, priority, RAM, HDD, wait time)
+- Real-time RAM and HDD usage bars
+- Deadlock alert banner when triggered
+
 ---
-## Prerequisites
-| Dependency | Notes |
-|------------|-------|
-| `g++` ≥ 9 | C++17 support required |
-| `raylib` | Graphics, audio, and input library |
-| `libGL`, `libX11` | Standard on Linux desktop systems |
-| `libpthread`, `libdl`, `librt`, `libm` | Standard POSIX/math libraries |
-**Install raylib on Ubuntu/Debian:**
-```bash
-sudo apt install libraylib-dev
-# or build from source: https://github.com/raysan5/raylib
-```
----
-## Build Instructions
-```bash
-cd NexOS
-# Create required directories (first time only)
-make setup
-# Build the OS and all apps
-make
-# Build a single app
-make apps/notepad
-make apps/paint
-```
-The compiler invocation is:
-```
-g++ -std=c++17 -Wall -O2 -Iinclude <source.cpp> -o <binary> \
-    -lraylib -lGL -lm -lpthread -ldl -lrt -lX11
-```
----
-## Running NexOS
-```bash
-# Default: 2048 MB RAM, 262144 MB HDD, 8 CPU cores
-make run
-# Custom hardware
-./NexOS <RAM_MB> <HDD_MB> <CPU_cores>
-# Example: 4096 MB RAM, 512 GB HDD, 16 cores
-./NexOS 4096 524288 16
-```
-On startup, a **Hardware Configuration Screen** is shown where you can set or confirm these values before the desktop loads. Valid ranges:
+
+## Boot Sequence
+
+<div align="center">
+<img width="1280" height="800" alt="image" src="https://github.com/user-attachments/assets/7550c397-296f-4432-b3c4-069bfcd41867" />
+
+<br/><sub>Hardware Configuration — configure virtual RAM, HDD, and CPU cores before booting</sub>
+</div>
+
+At startup the user sets the virtual machine's resources. These are validated and passed to the kernel's shared memory pool, which all apps later draw from.
+
 | Parameter | Min | Max |
 |-----------|-----|-----|
-| RAM | 256 MB | 65 536 MB |
-| HDD | 1 024 MB | 1 048 576 MB |
+| RAM | 256 MB | 65,536 MB |
+| Hard Drive | 1,024 MB | 1,048,576 MB |
 | CPU Cores | 1 | 64 |
+
 ---
-## Built-in Applications
-| App | RAM | HDD | Priority | Description |
-|-----|-----|-----|----------|-------------|
-| **Paint** | 90 MB | 50 MB | Normal | Pixel art and drawing tool. Tools: pencil, eraser, fill, line, rectangle, ellipse, eyedropper. 32-color palette, custom color picker, up to 4 layers, 20-level undo, canvas resize, zoom/pan, save to `hdd/` |
-| **Calculator** | 30 MB | 5 MB | Normal | Standard and scientific calculator with expression evaluation |
-| **Notepad** | 50 MB | 10 MB | Normal | Text editor with file open/save |
-| **Tetris** | 45 MB | 5 MB | Low | Classic Tetris with cyberpunk skin (10 × 20 board, all 7 tetrominoes) |
-| **Brick Breaker** | 70 MB | 10 MB | Low | Brick breaker with 3 lives, power-ups (wide paddle, multi-ball, slow ball, laser, sticky), and procedural audio |
-| **Chat** | 50 MB | 10 MB | Normal | LAN-style chat application |
-| **Shell** | 60 MB | 10 MB | Normal | Terminal emulator with cyberpunk styling; runs shell commands as child processes |
-| **Song Player** | 40 MB | 20 MB | Normal | Audio player reading from `assets/songs/`. Supports mp3/ogg/wav, cover art, progress seek, volume, shuffle, repeat, and animated visualizer |
-| **Alarm** | 20 MB | 1 MB | **High** | Alarm clock with day-of-week scheduling; state persisted to `hdd/alarm_state.txt` |
-| **Weather** | 30 MB | 5 MB | Normal | Simulated weather with multi-city support, 7-day forecast, hourly breakdown, and animated visuals |
-| **File Manager** | 60 MB | 30 MB | Normal | File browser with sidebar panel, toolbar, status bar, and file preview |
-| **Calendar** | 20 MB | 1 MB | **High** | Monthly calendar view with event creation; state persisted to `hdd/calendar_state.txt` |
-| **Clock** | 20 MB | 1 MB | Normal | Analog/digital clock; state persisted to `hdd/clock_state.txt` |
-| **Visualization** | — | — | — | Kernel process visualizer; launched from the Kernel Mode panel |
-> Apps with **High** priority (Alarm, Calendar) are placed in the system queue (queue level 0) and are scheduled before user-level apps.
+
+## Application Showcase
+
+### Shell
+**RAM:** 60 MB · **Priority:** Normal
+
+Custom terminal emulator with a Unicode block-art **RAYVERVE** splash banner (rendered using DejaVu Sans Bold with a custom codepoint range covering U+2500–U+259F). Commands: `ls`, `cat`, `echo`, `mkdir`, `rm`, `cp`, `mv`, `pwd`, `clear`, `help`. Tab-completion, command history (↑/↓), and Ctrl+L to clear.
+
+<div align="center">
+</div>
+
 ---
-## Kernel Mode
-Access the Kernel Mode panel by clicking the **KERNEL** button on the taskbar.
-- **Password:** `abcd123`
-- Shows a live PCB table with PID, name, state, priority, RAM, and HDD for every running process
-- Live **RAM** and **CPU utilization** mini-graphs (sampled every second, last 30 values)
-- **Launch Full View** button — opens the standalone `apps/visualization` kernel visualizer
-- Deadlock alert displayed when the OS detects a potential deadlock
-When Kernel Mode is active the taskbar displays a purple **KERNEL** badge.
+
+### Paint
+**RAM:** 90 MB · **Priority:** Normal
+
+Full pixel-art drawing application. 640×480 canvas, 8 tools (pencil, eraser, flood fill, line, rectangle, ellipse, eyedropper, select), 32-colour palette, custom colour picker, 4 layers, 20-level undo, zoom/pan, and save to `hdd/` as BMP or PNG.
+
+<div align="center">
+<img width="1100" height="720" alt="image" src="https://github.com/user-attachments/assets/597edde4-6f05-41d1-b808-e027c1990561" />
+
+</div>
+
 ---
-## IPC System
-All inter-process communication uses standard POSIX primitives:
-### Shared Memory (`OSResources`)
-- Key: `0x4E584F53` ("NXOS")
-- Contains: hardware specs, current RAM/HDD/core usage, PCB table (up to 32 entries), system flags (kernel mode, shutdown, deadlock)
-- Protected by the named semaphore `/nexos_shm_sem`
-### Message Queue (`ResourceRequest` / `ResourceReply`)
-- Key: `0x4E584F54` ("NXOT")
-- App → OS: `ResourceRequest` (type 1) — app name, PID, RAM/HDD needed, priority, queue level
-- OS → App: `ResourceReply` (type = requesting PID) — `granted` flag and reason string
+
+### Notepad
+**RAM:** 50 MB · **Priority:** Normal
+
+Code-editor-grade text editor — line numbers, blinking cursor, selection highlight, line highlight, Find/Replace (`Ctrl+F`), file open/save (`Ctrl+O` / `Ctrl+S`), multi-file (`Ctrl+N`), live word/char count, and a background auto-save `pthread` running every 60 seconds.
+
+<div align="center">
+<img width="960" height="680" alt="image" src="https://github.com/user-attachments/assets/a5aa20ec-be7e-47f6-a4d5-44d775622b67" />
+
+</div>
+
+---
+
+### Calculator
+**RAM:** 30 MB · **Priority:** Normal
+
+Scientific calculator with a full expression evaluator written from scratch in C++. Supports operator precedence, parentheses, and the functions `sin`, `cos`, `tan`, `sqrt`, `log`, `abs`, `ceil`, `floor`. Toggle **Advanced** mode for function shortcut buttons.
+
+<div align="center">
+<img width="600" height="500" alt="image" src="https://github.com/user-attachments/assets/a516a74b-ab54-4982-bdc9-11653615d06e" />
+
+</div>
+
+---
+
+### Tetris
+**RAM:** 45 MB · **Priority:** Low
+
+Complete Tetris — 10×20 board, ghost piece, hold piece, 3-piece next queue, level progression, line-clear scoring with Tetris bonus, and a neon cyberpunk colour scheme per tetromino type.
+
+<div align="center">
+<img width="452" height="359" alt="image" src="https://github.com/user-attachments/assets/b517c53f-9072-453e-89e6-519280e821b2" />
+
+</div>
+
+---
+
+### Brick Breaker
+**RAM:** 70 MB · **Priority:** Low
+
+Arkanoid-style game with a 12×7 brick grid, star-field background, and 3 lives. Five power-up types drop from broken bricks: **Wide Paddle**, **Multi-Ball**, **Slow Ball**, **Laser**, and **Sticky Paddle**.
+
+<div align="center">
+<img width="900" height="660" alt="image" src="https://github.com/user-attachments/assets/07a605bd-a875-4984-a436-05c379f036ee" />
+
+</div>
+
+---
+
+### Weather
+**RAM:** 30 MB · **Priority:** Normal
+
+Multi-city simulated weather with procedurally generated data and hand-drawn condition icons (sun, clouds, rain, storm, snow). Three tabs: **Current** (temp, feels-like, humidity, wind, UV index, visibility), **Hourly** (24 h breakdown), and **7-Day** forecast.
+
+<div align="center">
+<img width="960" height="660" alt="image" src="https://github.com/user-attachments/assets/74859da8-867c-4958-9ec1-11f751ca1d5c" />
+
+</div>
+
+---
+
+### Calendar
+**RAM:** 20 MB · **Priority:** High
+
+Monthly calendar synced to real system time. Click any date to write and save a per-day note, persisted to `hdd/calendar_state.txt`. Today's date is highlighted. Navigation arrows step through months and years.
+
+<div align="center">
+<img width="1024" height="680" alt="image" src="https://github.com/user-attachments/assets/b1eeecc7-4b72-447d-8692-5deef6c058b7" />
+
+</div>
+
+---
+
+### Alarm / Clock
+**RAM:** 20 MB · **Priority:** High
+
+Four-tab time utility:
+- **World** — live digital clock with configurable world time zones
+- **Alarms** — set alarms with label, hour/minute, per-weekday repeat bitmask, snooze duration
+- **Stopwatch** — start/stop/lap with full lap history
+- **Timer** — configurable countdown
+
+<div align="center">
+<img width="452" height="343" alt="image" src="https://github.com/user-attachments/assets/6a059900-07c8-422c-a203-6f3f5996a8d1" />
+
+</div>
+
+---
+
+### Song Player
+**RAM:** 40 MB · **Priority:** Normal
+
+Music player that scans `assets/songs/` for MP3, OGG, and WAV files. Displays album art (loads matching JPG/PNG cover), title, and artist. Controls: play/pause, prev/next, volume slider, shuffle, repeat. A live **38-bar frequency visualiser** pulses frame-by-frame with the audio output.
+
+<div align="center">
+<img width="860" height="580" alt="image" src="https://github.com/user-attachments/assets/f37096e0-d753-4f77-b239-d4a123814dbf" />
+
+</div>
+
+---
+
+### File Manager
+**RAM:** 60 MB · **Priority:** Normal
+
+Full file manager for the virtual `hdd/` filesystem. Folder tree on the left, detail list (name, size, modified date, type) on the right. Operations: New File, New Folder, Copy, Cut, Paste, Rename, Delete, Info. Text file preview pane at the bottom.
+
+<div align="center">
+<img width="1100" height="700" alt="image" src="https://github.com/user-attachments/assets/4ea07231-6b08-4f0c-a810-c78e202d610d" />
+
+</div>
+
+---
+
+### Browser Launcher
+**RAM:** 150 MB · **Priority:** Normal
+
+Detects installed system browsers via `which` checks (Chromium, Chrome, Firefox, Brave, Edge, Opera, Vivaldi, Epiphany). Provides a URL bar, quick-access bookmarks (Google, YouTube, GitHub, Wikipedia, Reddit, Stack Overflow, HackerNews, DuckDuckGo), and a launch history log saved to `hdd/browser_history.txt`. Launches the detected browser binary with `fork()` + `execvp()`.
+
+
+
+---
+
+### Chat
+**RAM:** 20 MB · **Priority:** Normal
+
+The Chat app creates a direct TCP connection — no relay server needed. TCP peer-to-peer text chat. One user runs as **HOST** (binds port 9999), the other as **JOIN** (connects by IP). Works on LAN, ZeroTier/Tailscale VPN, or port-forwarded internet. A background `pthread` handles all socket I/O so the UI never blocks. Chat history saved to `hdd/chat_history.txt`. Supports up to 300 in-memory messages with timestamps and sender/receiver colour coding.
+
+
+<div align="center">
+<img width="452" height="334" alt="image" src="https://github.com/user-attachments/assets/0393bd07-6738-4867-bf51-af793b8a9af5" />
+
+</div>
+
+---
+
+## Technology Stack
+
+| Component | Technology |
+|-----------|-----------|
+| Language | C++17 |
+| Graphics & Audio | raylib 5.5 (OpenGL 4.5 core profile) |
+| IPC | POSIX Shared Memory · Message Queues · Named Semaphores |
+| Threading | POSIX `pthread` (4 kernel background threads) |
+| Font | DejaVu Sans Bold — custom codepoint array: ASCII + U+2500–U+259F |
+| Rendering backend | Xvfb + llvmpipe Mesa software GL (headless, no GPU needed) |
+| Build system | GNU Make + g++ |
+| Platform | Linux (tested on NixOS / Replit) |
+
+---
+
+## IPC Reference
+
+| Constant | Value | Purpose |
+|----------|-------|---------|
+| `SHM_KEY` | `0x4E584F53` | Shared memory — `OSResources` struct (PCB table, resource counters, flags) |
+| `MSG_KEY` | `0x4E584F54` | Message queue — `ResourceRequest` / `ResourceReply` |
+| Semaphore name | `/nexos_shm_sem` | Named POSIX semaphore — mutex on `OSResources` |
+| `MAX_PROCESSES` | `32` | Maximum concurrent PCB entries |
+
 ### App IPC Flow
+
 ```
-App start:
-  RequestResources(name, ramMB, hddMB, priority, queueLevel)
-    → msgsnd(type=1) ──► ResourceManagerThread
-    ◄── msgrcv(type=pid)  reply.granted ?
+App startup:
+  RequestResources(name, ram_mb, hdd_mb, priority, queue_level)
+    → msgsnd(mtype=1)  ──────►  ResourceManagerThread
+    ◄── msgrcv(mtype=pid)        reply.granted / reply.reason
+
 App exit:
-  ReleaseResources(name, ramMB, hddMB)
-    → directly updates OSResources via shared memory (semaphore-protected)
-    → removes PCB entry
+  ReleaseResources(name, ram_mb, hdd_mb)
+    → sem_wait → update OSResources → remove PCB → sem_post
 ```
+
 ---
+
+## Building & Running
+
+## Prerequisites
+
+| Dependency | Version | How to Get |
+|---|---|---|
+| `g++` | C++17 (≥ 9) | `sudo apt install build-essential` |
+| `raylib` | 5.5 | `sudo apt install libraylib-dev` or [build from source](https://github.com/raysan5/raylib) |
+| `libGL` | any | `sudo apt install libgl1-mesa-dev` |
+| `libX11` | any | `sudo apt install libx11-dev` |
+| `pkg-config` | any | `sudo apt install pkg-config` |
+| `xvfb-run` | any | `sudo apt install xvfb` *(headless / VNC environments only)* |
+
+---
+
+## Build & Run
+
+```bash
+# Clone
+git clone https://github.com/XYZ-tec/operating-system.git
+cd operating-system/RayVerve
+
+# Build the OS and all 14 apps
+make all
+
+# Run with default hardware: 2 GB RAM, 256 GB HDD, 8 CPU cores
+./RayVerve 2048 262144 8
+
+```
+### Custom hardware at launch
+
+```bash
+./RayVerve <RAM_MB> <HDD_MB> <CPU_cores>
+
+# Examples
+./RayVerve 512 4096 2      # tight resources — see apps get denied
+./RayVerve 8192 524288 16  # generous — run everything at once
+```
+
+A **Hardware Configuration Screen** also appears on startup so you can adjust these values before the desktop loads.
+
+### Build a single app
+
+```bash
+make apps/chat
+make apps/paint
+```
+
+### Clean all binaries
+
+```bash
+make clean
+```
+
+---
+### Keyboard Shortcuts
+
+| Key | Action |
+|-----|--------|
+| `K` | Open / close Kernel Mode panel |
+| `ESC` | Graceful shutdown — terminates all child processes |
+| Click icon | Launch app |
+| Search bar | Type app name to quick-launch |
+
+---
+
+## Project Structure
+
+```
+.
+├── RayVerve/
+│   ├── os.cpp                    # Kernel — desktop, IPC setup, scheduler, all 4 threads
+│   ├── Makefile
+│   ├── apps/
+│   │   ├── app_template.cpp      # Starter template for new apps
+│   │   ├── paint.cpp
+│   │   ├── calculator.cpp
+│   │   ├── notepad.cpp
+│   │   ├── tetris.cpp
+│   │   ├── brickbreaker.cpp
+│   │   ├── browser.cpp
+│   │   ├── chat.cpp
+│   │   ├── rayverve_shell.cpp
+│   │   ├── songplayer.cpp
+│   │   ├── alarm.cpp
+│   │   ├── weather.cpp
+│   │   ├── file_manager.cpp
+│   │   └── calendar.cpp
+│   ├── include/
+│   │   ├── theme.h               # Colors, font sizes, DrawGlowRect, DrawButton helpers
+│   │   ├── resources.h           # PCB, OSResources, ResourceRequest/Reply structs
+│   │   └── ipc.h                 # RequestResources() / ReleaseResources() helpers
+│   └── assets/
+│       ├── fonts/                # DejaVu Sans Bold
+│       ├── icons/                # PNG icons per app
+│       └── songs/                # Audio files for Song Player (mp3/ogg/wav)
+└── README.md
+```
+
+---
+
+## OS Concepts Demonstrated
+
+| Concept | Implementation |
+|---------|---------------|
+| **Process Management** | `fork()` + `exec()` per app; PCB table in shared memory |
+| **Inter-Process Communication** | POSIX message queue for resource negotiation |
+| **Mutual Exclusion** | Named POSIX semaphore protects the shared PCB table |
+| **CPU Scheduling** | Two-level priority queue, 500 ms scheduler tick |
+| **Priority Aging** | Wait-time monitoring; starved processes boosted every 5 s |
+| **Deadlock Detection** | Monitors blocked-process count + RAM pressure every 10 s |
+| **Resource Management** | Per-app RAM + HDD quota; granted at launch, released at exit |
+| **Virtual Filesystem** | `hdd/` directory acts as the OS virtual disk |
+| **Minimize / Restore** | `SIGSTOP` / `SIGCONT` sent to child PIDs |
+| **Graceful Shutdown** | `SIGTERM` broadcast; OS reaps children with `waitpid` |
+
+---
+
 ## Adding a New App
+
 1. Copy the template:
    ```bash
-   cp apps/app_template.cpp apps/myapp.cpp
+   cp RayVerve/apps/app_template.cpp RayVerve/apps/myapp.cpp
    ```
-2. Edit `apps/myapp.cpp`:
-   - Set `APP_NAME`, `RAM_MB`, `HDD_MB`, `WIN_W`, `WIN_H`
-   - Implement `DrawAppContent(Rectangle content)` with your app logic
-3. Register it in `os.cpp` — add an entry to the `APPS[]` array:
+
+2. Set the constants at the top of your file:
+   ```cpp
+   #define APP_NAME  "My App"
+   #define RAM_MB    40
+   #define HDD_MB    10
+   #define WIN_W     800
+   #define WIN_H     600
+   ```
+
+3. Register it in `os.cpp` — add a row to `APPS[]`:
    ```cpp
    { "My App", "apps/myapp", RAM_MB, HDD_MB, PRIORITY_NORMAL, 1, NEON_CYAN, "assets/icons/myapp.png" }
    ```
-   Update `APP_COUNT` accordingly.
-4. Add the app to `Makefile`'s `APPS` list:
-   ```makefile
-   APPS = \
-     ...
-     apps/myapp
-   ```
-5. Build:
+   Increment `APP_COUNT` accordingly.
+
+4. Add it to `Makefile`'s `APPS` list, then build:
    ```bash
    make apps/myapp
-   make          # rebuild OS to include the new app entry
+   make   # rebuild kernel to pick up the new entry
    ```
-The `RequestResources` / `ReleaseResources` calls in `main()` are already handled by the template — the OS will automatically track your app's RAM and HDD usage.
+
+The `RequestResources()` / `ReleaseResources()` calls in the template's `main()` handle all IPC registration automatically.
+
 ---
+
 ## Logging
-The OS writes a timestamped log to `logs/nexos.log`. Log entries include:
+
+The OS writes a timestamped log to `logs/nexos.log`. Entries cover:
+
 - Boot / shutdown events with hardware configuration
-- App launch (PID, RAM/HDD granted)
-- App exit (PID)
-- Resource grant/deny decisions
+- Resource grant / deny decisions (app name, PID, RAM, HDD)
 - Priority aging events
-- Kernel Mode lock/unlock
 - Deadlock detection events
-Logging can be toggled via the `logging_enabled` flag in `OSResources`. Log output format:
-```
-[HH:MM:SS] <message>
-```
+- App launch and exit (PID)
+
+Log format: `[HH:MM:SS] <message>`
+
+Logging is toggled by the `logging_enabled` flag in `OSResources` (default: on).
+
+---
+
+<div align="center">
+
+Built with raylib · C++17 · POSIX IPC
+
+</div>
