@@ -114,7 +114,7 @@ Press **`K`** to open the live kernel inspector:
 ## Boot Sequence
 
 <div align="center">
-<img width="1280" height="800" alt="image" src="https://github.com/user-attachments/assets/7550c397-296f-4432-b3c4-069bfcd41867" />
+<img width="452" height="271" alt="image" src="https://github.com/user-attachments/assets/7550c397-296f-4432-b3c4-069bfcd41867" />
 
 <br/><sub>Hardware Configuration — configure virtual RAM, HDD, and CPU cores before booting</sub>
 </div>
@@ -144,7 +144,7 @@ Custom terminal emulator with a Unicode block-art **RAYVERVE** splash banner (re
 Full pixel-art drawing application. 640×480 canvas, 8 tools (pencil, eraser, flood fill, line, rectangle, ellipse, eyedropper, select), 32-colour palette, custom colour picker, 4 layers, 20-level undo, zoom/pan, and save to `hdd/` as BMP or PNG.
 
 <div align="center">
-<img width="1100" height="720" alt="image" src="https://github.com/user-attachments/assets/597edde4-6f05-41d1-b808-e027c1990561" />
+<img width="452" height="271" alt="image" src="https://github.com/user-attachments/assets/597edde4-6f05-41d1-b808-e027c1990561" />
 
 </div>
 
@@ -156,7 +156,7 @@ Full pixel-art drawing application. 640×480 canvas, 8 tools (pencil, eraser, fl
 Code-editor-grade text editor — line numbers, blinking cursor, selection highlight, line highlight, Find/Replace (`Ctrl+F`), file open/save (`Ctrl+O` / `Ctrl+S`), multi-file (`Ctrl+N`), live word/char count, and a background auto-save `pthread` running every 60 seconds.
 
 <div align="center">
-<img width="960" height="680" alt="image" src="https://github.com/user-attachments/assets/a5aa20ec-be7e-47f6-a4d5-44d775622b67" />
+<img width="452" height="271" alt="image" src="https://github.com/user-attachments/assets/a5aa20ec-be7e-47f6-a4d5-44d775622b67" />
 
 </div>
 
@@ -168,7 +168,7 @@ Code-editor-grade text editor — line numbers, blinking cursor, selection highl
 Scientific calculator with a full expression evaluator written from scratch in C++. Supports operator precedence, parentheses, and the functions `sin`, `cos`, `tan`, `sqrt`, `log`, `abs`, `ceil`, `floor`. Toggle **Advanced** mode for function shortcut buttons.
 
 <div align="center">
-<img width="600" height="500" alt="image" src="https://github.com/user-attachments/assets/a516a74b-ab54-4982-bdc9-11653615d06e" />
+<img width="452" height="271" alt="image" src="https://github.com/user-attachments/assets/a516a74b-ab54-4982-bdc9-11653615d06e" />
 
 </div>
 
@@ -192,7 +192,7 @@ Complete Tetris — 10×20 board, ghost piece, hold piece, 3-piece next queue, l
 Arkanoid-style game with a 12×7 brick grid, star-field background, and 3 lives. Five power-up types drop from broken bricks: **Wide Paddle**, **Multi-Ball**, **Slow Ball**, **Laser**, and **Sticky Paddle**.
 
 <div align="center">
-<img width="900" height="660" alt="image" src="https://github.com/user-attachments/assets/07a605bd-a875-4984-a436-05c379f036ee" />
+<img width="452" height="271" alt="image" src="https://github.com/user-attachments/assets/07a605bd-a875-4984-a436-05c379f036ee" />
 
 </div>
 
@@ -204,7 +204,7 @@ Arkanoid-style game with a 12×7 brick grid, star-field background, and 3 lives.
 Multi-city simulated weather with procedurally generated data and hand-drawn condition icons (sun, clouds, rain, storm, snow). Three tabs: **Current** (temp, feels-like, humidity, wind, UV index, visibility), **Hourly** (24 h breakdown), and **7-Day** forecast.
 
 <div align="center">
-<img width="960" height="660" alt="image" src="https://github.com/user-attachments/assets/74859da8-867c-4958-9ec1-11f751ca1d5c" />
+<img width="452" height="271" alt="image" src="https://github.com/user-attachments/assets/74859da8-867c-4958-9ec1-11f751ca1d5c" />
 
 </div>
 
@@ -216,7 +216,7 @@ Multi-city simulated weather with procedurally generated data and hand-drawn con
 Monthly calendar synced to real system time. Click any date to write and save a per-day note, persisted to `hdd/calendar_state.txt`. Today's date is highlighted. Navigation arrows step through months and years.
 
 <div align="center">
-<img width="1024" height="680" alt="image" src="https://github.com/user-attachments/assets/b1eeecc7-4b72-447d-8692-5deef6c058b7" />
+<img width="452" height="271" alt="image" src="https://github.com/user-attachments/assets/b1eeecc7-4b72-447d-8692-5deef6c058b7" />
 
 </div>
 
@@ -232,7 +232,7 @@ Four-tab time utility:
 - **Timer** — configurable countdown
 
 <div align="center">
-<img width="452" height="343" alt="image" src="https://github.com/user-attachments/assets/6a059900-07c8-422c-a203-6f3f5996a8d1" />
+<img width="452" height="271" alt="image" src="https://github.com/user-attachments/assets/6a059900-07c8-422c-a203-6f3f5996a8d1" />
 
 </div>
 
@@ -244,7 +244,7 @@ Four-tab time utility:
 Music player that scans `assets/songs/` for MP3, OGG, and WAV files. Displays album art (loads matching JPG/PNG cover), title, and artist. Controls: play/pause, prev/next, volume slider, shuffle, repeat. A live **38-bar frequency visualiser** pulses frame-by-frame with the audio output.
 
 <div align="center">
-<img width="860" height="580" alt="image" src="https://github.com/user-attachments/assets/f37096e0-d753-4f77-b239-d4a123814dbf" />
+<img width="452" height="271" alt="image" src="https://github.com/user-attachments/assets/f37096e0-d753-4f77-b239-d4a123814dbf" />
 
 </div>
 
@@ -256,7 +256,7 @@ Music player that scans `assets/songs/` for MP3, OGG, and WAV files. Displays al
 Full file manager for the virtual `hdd/` filesystem. Folder tree on the left, detail list (name, size, modified date, type) on the right. Operations: New File, New Folder, Copy, Cut, Paste, Rename, Delete, Info. Text file preview pane at the bottom.
 
 <div align="center">
-<img width="1100" height="700" alt="image" src="https://github.com/user-attachments/assets/4ea07231-6b08-4f0c-a810-c78e202d610d" />
+<img width="452" height="271" alt="image" src="https://github.com/user-attachments/assets/4ea07231-6b08-4f0c-a810-c78e202d610d" />
 
 </div>
 
@@ -278,7 +278,7 @@ The Chat app creates a direct TCP connection — no relay server needed. TCP pee
 
 
 <div align="center">
-<img width="452" height="334" alt="image" src="https://github.com/user-attachments/assets/0393bd07-6738-4867-bf51-af793b8a9af5" />
+<img width="452" height="271" alt="image" src="https://github.com/user-attachments/assets/0393bd07-6738-4867-bf51-af793b8a9af5" />
 
 </div>
 
