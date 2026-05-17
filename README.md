@@ -19,11 +19,10 @@
 
 ## What is RayVerve?
 
-**RayVerve** (formerly NexOS) is a multi-process desktop operating system simulator written in **C++17**. It uses **raylib 5.5** for all graphics rendering and real **POSIX IPC** — shared memory, message queues, and named semaphores — for communication between a live kernel and independently forked application processes.
+**RayVerve** is a multi-process desktop operating system simulator written in **C++17**. It uses **raylib 5.5** for all graphics rendering and real **POSIX IPC** — shared memory, message queues, and named semaphores — for communication between a live kernel and independently forked application processes.
 
 This is not a toy abstraction. The kernel, scheduler, resource manager, and deadlock detector all run as real background POSIX threads. Each of the 13 built-in apps is a genuine `fork()` + `exec()` child process that negotiates RAM and HDD quotas from the kernel's IPC layer before it is permitted to open its window.
 
-> Runs entirely in software via llvmpipe Mesa + Xvfb — **no GPU required**.
 
 ---
 
@@ -105,6 +104,11 @@ Press **`K`** to open the live kernel inspector:
 - Real-time RAM and HDD usage bars
 - Deadlock alert banner when triggered
 
+<div align="center">
+  <img width="452" height="271" alt="image" src="https://github.com/user-attachments/assets/a45f15ec-4729-4ea3-8f70-26b1cb5a5461" />
+
+</div>
+
 ---
 
 ## Boot Sequence
@@ -131,9 +135,6 @@ At startup the user sets the virtual machine's resources. These are validated an
 **RAM:** 60 MB · **Priority:** Normal
 
 Custom terminal emulator with a Unicode block-art **RAYVERVE** splash banner (rendered using DejaVu Sans Bold with a custom codepoint range covering U+2500–U+259F). Commands: `ls`, `cat`, `echo`, `mkdir`, `rm`, `cp`, `mv`, `pwd`, `clear`, `help`. Tab-completion, command history (↑/↓), and Ctrl+L to clear.
-
-<div align="center">
-</div>
 
 ---
 
